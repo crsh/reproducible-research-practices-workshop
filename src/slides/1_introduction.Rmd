@@ -1,0 +1,108 @@
+---
+title     : "Reproducible research workflows"
+subtitle  : "<small>for psychologists</small>"
+
+author    : "<br />`r paste(params$author, collapse = ' & ')`"
+date      : "<small>`r paste0(params$location, ', ', params$date)`</small>"
+---
+exclude: true
+
+```{r setup, include = FALSE}
+library("knitr")
+options(htmltools.dir.version = FALSE)
+opts_chunk$set(echo = FALSE, fig.align = "center")
+
+# remotes::install_github("gadenbuie/xaringanExtra")
+library("xaringanExtra")
+library("xaringanthemer")
+
+my_colors <- c("#bc0031", "#d67f42")
+```
+
+```{r extras-styling, include = FALSE}
+use_xaringan_extra(c("tile_view", "clipboard"))
+
+style_mono_accent(
+  base_color = my_colors[1]
+  , header_font_google = google_font("Poppins")
+  , header_h1_font_size = "36pt"
+  , text_font_google = google_font("Open Sans")
+  , text_font_size = "22pt"
+  , text_color = "#3a3a3a"
+  , outfile = "src/xaringan-themer.css"
+)
+```
+
+```{r}
+add_overlay <- function(..., label = NULL, label_style = NULL) {
+  el <- list(...)
+  
+  y <- '<div id="overlay-highlight"'
+  if(length(el) > 0) {
+    y <- c(y, 'style="', glue::glue('{names(el)}:{el};'))
+  }
+  y <- c(y, '">')
+  
+  if(!is.null(label)) {
+    y <- c(y, glue::glue('<span" class="vertical-center"" style="{label_style}">{label}</span>'))
+  }
+  
+  knitr::asis_output(glue::glue_collapse(c(y, "</div>")))
+}
+```
+
+---
+
+# Agenda
+
+1. First things first
+--
+
+2. and so on
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.js"></script>
+<script type="module">
+import mediumZoom from 'https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.esm.js'
+
+const zoomDefault = mediumZoom('#zoom-default')
+const zoomMargin = mediumZoom('#zoom-margin', { margin: 45 })
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  "HTML-CSS": {
+    scale: 150,
+  }
+});
+</script>
+
+---
+# A zoomable plot
+
+```{r zoomable-plot, out.height = "95%", out.extra='id="zoom-margin"'}
+plot(cars)
+```
+
+
+---
+# Two columns
+
+<!-- See CSS file -->
+
+.pull-left-45[
+
+- A
+- B
+- C
+
+]
+
+.pull-right-45[
+
+```{r out.width = "100%"}
+plot(cars)
+```
+
+
+]

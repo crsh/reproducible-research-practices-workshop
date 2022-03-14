@@ -1,0 +1,398 @@
+.pull-right-25 {
+  float: right;
+  width: 25%;
+}
+
+.pull-right-30 {
+  float: right;
+  width: 30%;
+}
+
+.pull-right-30 p:first-child {
+  margin-top: 0;
+}
+
+.pull-right-36 {
+  float: right;
+  width: 36%;
+}
+
+.pull-right-36 p:first-child {
+  margin-top: 0;
+}
+
+.pull-right-40 {
+  float: right;
+  width: 40%;
+}
+
+.pull-right-40 p:first-child {
+  margin-top: 0;
+}
+.pull-right-45 {
+  float: right;
+  width: 45%;
+}
+
+.pull-right-50 {
+  float: right;
+  width: 50%;
+}
+
+.pull-right-55 {
+  float: right;
+  width: 55%;
+}
+
+.pull-right-60 {
+  float: right;
+  width: 60%;
+}
+
+.pull-right-99 {
+  float: right;
+  width: 99%;
+}
+
+.pull-right {
+  float: right;
+}
+
+.pull-left {
+  float: left;
+  margin-right: 25px;
+  width: auto;
+}
+
+.pull-left-40 {
+  float: left;
+  width: 40%;
+}
+
+div.pull-left-40 p:first-child {
+  margin-top: 0;
+}
+
+.pull-left-45 {
+  float: left;
+  width: 45%;
+}
+
+.pull-left-50 {
+  float: left;
+  width: 50%;
+}
+
+.pull-left-60 {
+  float: left;
+  width: 60%;
+}
+
+div.pull-left-60 p:first-child {
+  margin-top: 0;
+}
+
+.pull-left-75 {
+  float: left;
+  width: 75%;
+}
+
+.center{
+  text-align: center;
+}
+
+.center-70 {
+  display: block;
+  margin: 0 auto;
+  width: 70%;
+}
+
+.vertical-center {
+  /*margin-right: 2em;*/
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.vertical-center-slide {
+  /*margin-right: 2em;*/
+  position: absolute;
+  top: 55%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+p {
+  line-height: 140%;
+}
+
+li {
+  margin: 15px 0 0px 0;
+}
+
+ol {
+  line-height: 140%;
+  margin: 0 0 8px 0;
+}
+
+ol li {
+  overflow: visible;
+  padding-left: 0.5em;
+  margin-left: 0.5em;
+  position: relative;
+}
+
+ul li:before
+{
+  left: -0.25em;
+  position: absolute;
+}
+
+ul {
+  line-height: 120%;
+  margin: 0 0 8px 0;
+  list-style: none;
+}
+
+ul li {
+  overflow: visible;
+  padding-left: 1em;
+  position: relative;
+}
+
+ul > li:before
+{
+  content: "\00B7";
+  left: -0.25em;
+  position: absolute;
+  font-size: 2em;
+  color: #4c4c4c;
+}
+
+ol ol, ol ul, ul ol, ul ul {
+  font-size: 0.9em;
+  margin: 0 0 25px 0;
+}
+
+.remark-slide-number {
+  position: inherit;
+}
+
+.remark-slide-number .progress-bar-container {
+  position: absolute;
+  bottom: 0;
+  height: 5px;
+  display: block;
+  left: 0;
+  right: 0;
+}
+
+.remark-slide-number .progress-bar {
+  height: 100%;
+  background-color: #bc0031;
+  border-radius: 0 2px 2px 0;
+}
+
+.inverse .remark-slide-number .progress-bar-container {
+  display: none;
+}
+
+.title-slide h1 {
+  line-height: 130%;
+}
+
+.title-slide h3 {
+  font-size: 24pt;
+  line-height: 110%;
+}
+
+.highlight {
+  background-color: rgb(255, 150, 79, 0.75); /*#ffcc66;*/
+}
+
+.footnote {
+  font-size: 66%;
+  color: #9c9c9c;
+  right: 0;
+  bottom: 2.75em;
+  padding-right: 2.5em;
+  padding-bottom: 0.75em;
+  line-height: 1.5em;
+  text-align: right;
+}
+
+.grey {
+  color: #9c9c9c;
+}
+
+div.my-footer {
+    background-color: #4a657d;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 32px;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content:space-between;
+}
+
+div.my-footer span {
+    font-size: 10pt;
+    color: #32475b;
+    position: relative;
+    padding-left: 12px;
+    padding-right: 12px;
+    bottom: 14px;
+}
+
+div.my-footer span.current {
+    color: #F7F8FA;
+}
+
+div.my-footer div {
+  white-space:nowrap;
+}
+
+.remark-code {
+  border-radius: 7px;
+}
+
+.remark-inline-code {
+  background-color: #e8e8e8;
+  border-radius: 7px;
+  font-size: 0.9em;
+  padding: 3px 6px 3px 6px;
+}
+
+blockquote.twitter-tweet {
+  display: inline-block;
+  padding: 16px;
+  margin: 5px 0;
+  max-width: 468px;
+  border: #ddd 1px solid;
+  border-top-color: #eee;
+  border-bottom-color: #bbb;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  font: bold 14px/18px Helvetica, Arial, sans-serif;
+  color: #000;
+  text-align: left;
+}
+
+blockquote.twitter-tweet p {
+  font: normal 18px/24px Georgia, "Times New Roman", Palatino, serif;
+  margin: 0 5px 10px 0;
+}
+
+blockquote.twitter-tweet a[href^="https://twitter.com"] {
+  font-weight: normal;
+  color: #666;
+  font-size: 12px;
+}
+
+.MathJax {
+  font-size: 100%;
+}
+
+kbd {
+  -moz-border-radius:3px;
+  -moz-box-shadow:0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+  -webkit-border-radius:3px;
+  -webkit-box-shadow:0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+  background-color:#f7f7f7;
+  border:1px solid #ccc;
+  border-radius:3px;
+  box-shadow:0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+  color:#333;
+  display:inline-block;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:18px;
+  line-height:1.4;
+  margin:0 .1em;
+  padding:.1em .6em;
+  text-shadow:0 1px 0 #fff;
+}
+
+
+
+/* For medium-zoom.js */
+
+.medium-zoom-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 300ms;
+  will-change: opacity;
+  z-index: 999;
+}
+
+.medium-zoom--opened .medium-zoom-overlay {
+  cursor: pointer;
+  cursor: zoom-out;
+  opacity: 1;
+}
+
+.medium-zoom-image {
+  cursor: pointer;
+  cursor: zoom-in;
+  /*
+    The `transition` is marked as "!important" for the animation to happen
+    even though it's overriden by another inline `transition` style attribute.
+    This is problematic with frameworks that generate inline styles on their
+    images (e.g. Gatsby).
+    See https://github.com/francoischalifour/medium-zoom/issues/110
+   */
+  transition: transform 300ms cubic-bezier(0.2, 0, 0.2, 1) !important;
+  z-index: 1000;
+}
+
+.medium-zoom-image--hidden {
+  visibility: hidden;
+}
+
+.medium-zoom-image--opened {
+  position: relative;
+  cursor: pointer;
+  cursor: zoom-out;
+  will-change: transform;
+}
+
+
+
+
+
+
+#overlay-highlight {
+  position: fixed; /* Sit on top of the page content */
+  z-index: 0; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+  width: fit-content; /* Full width (cover the whole page) */
+  width: -moz-fit-content;
+  height: fit-content; /* Full height (cover the whole page) */
+  height: -moz-fit-content;
+  top: 30%;
+  left: 30%;
+  right: 0;
+  bottom: 0;
+  border-style: solid;
+  border-width: 7px;
+  border-radius: 25px;
+  border-color: rgba(188, 0, 49, 0.8);
+  background-color: rgba(188, 0, 49, 0.25);
+  /* border-color: rgba(229, 45, 55, 0.8);
+  background-color: rgba(229, 45, 55, 0.25); */
+}
+
+.my-one-page-font {
+  font-size: 24px;
+}
+
+
+.remark-slide thead, .remark-slide tfoot, .remark-slide tr:nth-child(even) {
+  background: inherit;
+}

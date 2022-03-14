@@ -1,0 +1,144 @@
+library("targets")
+library("tarchetypes")
+
+options(tidyverse.quiet = TRUE)
+
+tar_option_set(packages = c("rprojroot", "tools", "rmarkdown", "fs"))
+
+slides_dir <- "src/slides"
+exercise_dir <- "src/exercises"
+
+list(
+  # Workshop metadata
+  tar_target(
+    workshop_meta
+    , list(
+      author = c("Johannes Breuer", "Frederik Aust")
+      , date = "27.-28.04.2022"
+      , location = "KU Leuven"
+    )
+  ),
+
+  # Source files
+  ## Slides
+  tar_target(
+    slide_rmd_files
+    , {
+        slide_rmd <- list.files(
+          path = !!slides_dir
+          , pattern = "\\.rmd$|\\.Rmd$"
+          , full.names = TRUE
+        )
+        slide_rmd[!grepl("template", slide_rmd)]
+    }
+    , format = "file"
+  ),
+  tar_target(
+    slide_rmds
+    , slide_rmd_files
+  ),
+  tar_target(
+    slide_styles
+    , c("src/slides/src/xaringan-themer.css", "src/slides/src/slides.css")
+    , format = "file"
+  ),
+  tar_target(
+    slide_output_file
+    , file.path(!!slides_dir, "_output.yaml")
+    , format = "file"
+  ),
+
+  ## Exercises
+  tar_target(
+    exercise_rmd_files
+    , {
+      exercise_rmd <- list.files(
+        path = !!exercise_dir
+        , pattern = "\\.rmd$|\\.Rmd$"
+        , full.names = TRUE
+      )
+      exercise_rmd[!grepl("template", exercise_rmd)]
+    }
+    , format = "file"
+  ),
+  tar_target(
+    exercise_rmds
+    , exercise_rmd_files
+  ),
+  tar_target(
+    exercise_output_file
+    , file.path(!!exercise_dir, "_output.yaml")
+    , format = "file"
+  ),
+
+  # Render R Markdown files
+  ## Slides
+  tar_target(
+    render_slides
+    , {
+      params <- workshop_meta
+
+      fs::path_rel(
+        # Need to return/track all input/output files.
+        c(
+          rmarkdown::render(
+            input = slide_rmds
+            , output_dir = "slides"
+            , intermediates_dir = file.path(rprojroot::find_rstudio_root_file(), !!slides_dir)
+            , knit_root_dir = file.path(rprojroot::find_rstudio_root_file(), !!slides_dir)
+            , clean = TRUE
+            , params = workshop_meta
+            , output_yaml = slide_output_file
+            , output_options = list(self_contained = TRUE)
+          )
+          , slide_rmds
+        )
+      )
+    }
+    , pattern =  map(slide_rmds)
+    , format = "file"
+  ),
+
+  ## Exercises
+  tar_target(
+    render_exercises
+    , {
+      params <- workshop_meta
+
+      fs::path_rel(
+        # Need to return/track all input/output files.
+        c(
+          rmarkdown::render(
+            input = exercise_rmds
+            , output_format = "all"
+            , output_dir = "exercises"
+            , intermediates_dir = file.path(rprojroot::find_rstudio_root_file(), !!exercise_dir)
+            , knit_root_dir = file.path(rprojroot::find_rstudio_root_file(), !!exercise_dir)
+            , clean = TRUE
+            , params = workshop_meta
+            , output_yaml = exercise_output_file
+          )
+          , exercise_rmds
+        )
+      )
+    }
+    , pattern =  map(exercise_rmds)
+    , format = "file"
+  ),
+
+  # Spell checking
+  tar_target(
+    spellcheck_exceptions
+      # Add new exceptions here
+    , c("pandoc")
+  ),
+  tar_target(
+    spellcheck_rmds
+    , spelling::spell_check_files(slide_rmds, ignore = spellcheck_exceptions)
+  ),
+  tar_force(
+    spellcheck_report_results
+    , print(spellcheck_rmds)
+    , nrow(spellcheck_rmds) > 0
+  )
+)

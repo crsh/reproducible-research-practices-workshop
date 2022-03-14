@@ -1,0 +1,11 @@
+xaringan::moon_reader:
+  lib_dir: libs
+  chakra: libs/remark-latest.min.js
+  css: ["src/xaringan-themer.css", "src/slides.css"]
+  nature:
+    countIncrementalSlides: false
+    slideNumberFormat: |
+      <div class="progress-bar-container">
+        <div class="progress-bar" style="width: calc(%current% / %total% * 100%);">
+        </div>
+      </div>

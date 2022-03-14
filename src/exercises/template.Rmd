@@ -1,0 +1,34 @@
+---
+title     : "Reproducible research workflows"
+subtitle  : "<small>for psychologists</small>"
+---
+
+```{r setup, include = FALSE}
+# custom boxes
+knitr::opts_template$set(
+  clues = list(
+    box.title = "Clues"
+    , box.body = list(fill = "#fff9dc", colour = "black")
+    , box.header = list(fill = "#ffec8b", colour = "black")
+    , box.icon = "fa-search"
+    , box.collapse = TRUE
+  )
+)
+```
+
+```{r klippy, echo = FALSE}
+klippy::klippy()
+```
+
+
+```{block, box.title = "1", box.body = list(fill = "white"), box.icon = "fa-star"}
+This is exercise 1.
+```
+
+```{block, opts.label = "clues"}
+Not really a lot to do here.
+```
+
+```{block, solution = TRUE}
+Well done!
+```
