@@ -10,14 +10,14 @@ exercise_dir <- "src/exercises"
 
 
 exercise_rmd <- list.files(
-  path = !!exercise_dir
+  path = exercise_dir
   , pattern = "\\.rmd$|\\.Rmd$"
   , full.names = TRUE
 )
 exercise_rmd <- exercise_rmd[!grepl("template", exercise_rmd)]
 
 slide_rmd <- list.files(
-  path = !!slides_dir
+  path = slides_dir
   , pattern = "\\.rmd$|\\.Rmd$"
   , full.names = TRUE
 )
@@ -132,11 +132,14 @@ list(
   tar_target(
     spellcheck_exceptions
       # Add new exceptions here
-    , c("pandoc")
+    , c("pandoc", "Frederik", "Aust", "Johannes", "Breuer")
   ),
   tar_target(
     spellcheck_rmds
-    , spelling::spell_check_files(slide_rmds, ignore = spellcheck_exceptions)
+    , spelling::spell_check_files(
+      c(slide_rmds, exercise_rmd)
+      , ignore = spellcheck_exceptions
+    )
   ),
   tar_force(
     spellcheck_report_results
