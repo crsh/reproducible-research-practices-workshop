@@ -8,6 +8,22 @@ tar_option_set(packages = c("rprojroot", "tools", "rmarkdown", "fs"))
 slides_dir <- "src/slides"
 exercise_dir <- "src/exercises"
 
+
+exercise_rmd <- list.files(
+  path = !!exercise_dir
+  , pattern = "\\.rmd$|\\.Rmd$"
+  , full.names = TRUE
+)
+exercise_rmd <- exercise_rmd[!grepl("template", exercise_rmd)]
+
+slide_rmd <- list.files(
+  path = !!slides_dir
+  , pattern = "\\.rmd$|\\.Rmd$"
+  , full.names = TRUE
+)
+slide_rmd <- slide_rmd[!grepl("template", slide_rmd)]
+
+
 list(
   # Workshop metadata
   tar_target(
@@ -23,14 +39,7 @@ list(
   ## Slides
   tar_target(
     slide_rmd_files
-    , {
-        slide_rmd <- list.files(
-          path = !!slides_dir
-          , pattern = "\\.rmd$|\\.Rmd$"
-          , full.names = TRUE
-        )
-        slide_rmd[!grepl("template", slide_rmd)]
-    }
+    , !!slide_rmd
     , format = "file"
   ),
   tar_target(
@@ -51,14 +60,7 @@ list(
   ## Exercises
   tar_target(
     exercise_rmd_files
-    , {
-      exercise_rmd <- list.files(
-        path = !!exercise_dir
-        , pattern = "\\.rmd$|\\.Rmd$"
-        , full.names = TRUE
-      )
-      exercise_rmd[!grepl("template", exercise_rmd)]
-    }
+    , !!exercise_rmd
     , format = "file"
   ),
   tar_target(
