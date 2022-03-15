@@ -38,8 +38,5 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 
-# targets
-_targets/
-
 # Operating system
 .DS_Store
