@@ -106,3 +106,8 @@ plot(cars)
 
 
 ]
+
+---
+# New test slide
+
+This is not a test!

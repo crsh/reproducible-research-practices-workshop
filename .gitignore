@@ -40,3 +40,5 @@ vignettes/*.pdf
 
 # Operating system
 .DS_Store
+
+_targets
