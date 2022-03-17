@@ -3,21 +3,7 @@ title     : "Reproducible research workflows"
 subtitle  : "<small>for psychologists</small>"
 ---
 
-```{r setup, include = FALSE}
-# custom boxes
-knitr::opts_template$set(
-  clues = list(
-    box.title = "Clues"
-    , box.body = list(fill = "#fff9dc", colour = "black")
-    , box.header = list(fill = "#ffec8b", colour = "black")
-    , box.icon = "fa-search"
-    , box.collapse = TRUE
-  )
-)
-```
-
-```{r klippy, echo = FALSE}
-klippy::klippy()
+```{r child = "_setup.Rmd"}
 ```
 
 

@@ -1,0 +1,16 @@
+
+```{r custom-boxes, include = FALSE}
+knitr::opts_template$set(
+  clues = list(
+    box.title = "Clues"
+    , box.body = list(fill = "#fff9dc", colour = "black")
+    , box.header = list(fill = "#ffec8b", colour = "black")
+    , box.icon = "fa-search"
+    , box.collapse = TRUE
+  )
+)
+```
+
+```{r klippy, echo = FALSE}
+klippy::klippy()
+```

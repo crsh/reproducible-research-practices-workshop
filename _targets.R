@@ -14,14 +14,14 @@ exercise_rmd <- list.files(
   , pattern = "\\.rmd$|\\.Rmd$"
   , full.names = TRUE
 )
-exercise_rmd <- exercise_rmd[!grepl("template", exercise_rmd)]
+exercise_rmd <- exercise_rmd[!grepl("template|setup", exercise_rmd)]
 
 slide_rmd <- list.files(
   path = slides_dir
   , pattern = "\\.rmd$|\\.Rmd$"
   , full.names = TRUE
 )
-slide_rmd <- slide_rmd[!grepl("template", slide_rmd)]
+slide_rmd <- slide_rmd[!grepl("template|setup", slide_rmd)]
 
 
 list(
@@ -39,7 +39,7 @@ list(
   ## Slides
   tar_target(
     slide_rmd_files
-    , !!slide_rmd
+    , c(!!slide_rmd)
     , format = "file"
   ),
   tar_target(
@@ -53,14 +53,17 @@ list(
   ),
   tar_target(
     slide_output_file
-    , file.path(!!slides_dir, "_output.yaml")
+    , c(
+      file.path(!!slides_dir, "_output.yaml")
+      , file.path(!!slides_dir, "_setup.Rmd")
+    )
     , format = "file"
   ),
 
   ## Exercises
   tar_target(
     exercise_rmd_files
-    , !!exercise_rmd
+    , c(!!exercise_rmd)
     , format = "file"
   ),
   tar_target(
@@ -69,16 +72,46 @@ list(
   ),
   tar_target(
     exercise_output_file
-    , file.path(!!exercise_dir, "_output.yaml")
+    , c(
+      file.path(!!exercise_dir, "_output.yaml")
+      , file.path(!!exercise_dir, "_setup.Rmd")
+    )
     , format = "file"
   ),
 
   # Render R Markdown files
+  ## Outline
+  tar_target(
+    render_outline
+    , {
+      params <- workshop_meta
+
+      fs::path_rel(
+        # Need to return/track all input/output files.
+        c(
+          rmarkdown::render(
+            input = "src/outline.Rmd"
+            , output_dir = "."
+            , intermediates_dir = file.path(rprojroot::find_rstudio_root_file(), "src")
+            , knit_root_dir = file.path(rprojroot::find_rstudio_root_file(), "src")
+            , clean = TRUE
+            , params = workshop_meta
+            , output_options = list(self_contained = TRUE)
+          )
+          , "src/outline.Rmd"
+        )
+      )
+    }
+    , format = "file"
+  ),
+
   ## Slides
   tar_target(
     render_slides
     , {
       params <- workshop_meta
+      list(slide_styles)
+      list(slide_output_file)
 
       fs::path_rel(
         # Need to return/track all input/output files.
@@ -106,6 +139,7 @@ list(
     render_exercises
     , {
       params <- workshop_meta
+      list(exercise_output_file)
 
       fs::path_rel(
         # Need to return/track all input/output files.
