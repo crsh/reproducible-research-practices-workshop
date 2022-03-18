@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use these materials, please cite them as follows."
+authors:
+- family-names: "Aust"
+  given-names: "Frederik"
+  orcid: "https://orcid.org/0000-0003-4900-788X"
+- family-names: "Breuer"
+  given-names: "Johannes"
+  orcid: "https://orcid.org/0000-0001-5906-7873"
+title: "Workshop on reproducible research practices for psychologists "
+date-released: 2022-04-27
+url: "https://github.com/crsh/reproducible-research-practices-workshop"
+license: CC-BY-4.0
