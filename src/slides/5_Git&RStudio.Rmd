@@ -1,0 +1,366 @@
+---
+title     : "Reproducible research workflows for psychologists"
+subtitle  : "<small>Git & RStudio</small>"
+
+author    : "<br />`r paste(params$author, collapse = ' & ')`"
+date      : "<small>`r paste0(params$location, ', ', params$date)`</small>"
+---
+exclude: true
+
+```{r setup, include = FALSE}
+library(knitr)
+options(htmltools.dir.version = FALSE)
+opts_chunk$set(echo = FALSE, fig.align = "center")
+
+# remotes::install_github("gadenbuie/xaringanExtra")
+library(xaringanExtra)
+library(xaringanthemer)
+library(emo)
+
+my_colors <- c("#bc0031", "#d67f42")
+```
+
+```{r extras-styling, include = FALSE}
+use_xaringan_extra(c("tile_view", "clipboard"))
+
+style_mono_accent(
+  base_color = my_colors[1]
+  , header_font_google = google_font("Poppins")
+  , header_h1_font_size = "36pt"
+  , text_font_google = google_font("Open Sans")
+  , text_font_size = "22pt"
+  , text_color = "#3a3a3a"
+  , outfile = "src/xaringan-themer.css"
+)
+```
+
+---
+
+# Interacting with `Git`
+
+There are various tools that we can use for interactiong with `Git`. Besides command line interfaces (CLI), such as [*git bash*](https://gitforwindows.org/) for *Windows* or the Terminal on *MacOS*, there also are Graphical User Interfaces (GUI), such as [*GitHub Desktop*](https://desktop.github.com/) or [*GitKraken*](https://www.gitkraken.com/) (for an overview of `Git` clients with a GUI, see https://git-scm.com/downloads/guis).
+
+---
+
+# A note on tool stacks
+
+While we introduce you to different tools for reproducible research in this workshop and it is always possible to "mix and match", it is usually advisable to try to minimize the number of different tools in your workflow.
+
+---
+
+# VC in your favorite IDE
+
+Lucky for us, the most popular Integrated Development Interfaces (IDE) for `R`, *RStudio*, also offers functionalities for using `Git`.<sup>1</sup>
+
+.footnote[
+[1] Another popular IDE that works nicely with `R` and `Git` is [*Visual Studio Code*](https://code.visualstudio.com/) - or VSCode for short - by *Microsoft*.
+
+---
+
+# All set?
+
+If you have correctly set up `Git`, *RStudio* should be able to detect it. The easiest way to check this is via the *RStudio* options: *Tools* -> *Global Options* -> *Git/SVN*
+
+```{r git-menu, out.width = "55%", echo=FALSE}
+include_graphics("./img/git_menu.png")
+```
+
+---
+
+# Finding `Git`
+
+If you have properly installed `Git` and *RStudio* cannot detect your local `Git` executable, you need to tell it where to find it via the *Browse* button in the menu shown on the previous slide.
+
+On macOS and Linux, a common path for the `Git` installation is (something like) `/usr/bin/git`, while on Windows it is (something like) `C:/Program Files/Git/bin/git.exe`.
+
+*Note*: You should restart *RStudio* after making changes in this menu.
+
+---
+
+# How to use `Git` in *RStudio*
+
+There are essentially two options for using `Git` via *RStudio*
+
+1. Through the GUI
+
+2. Via the Terminal
+
+---
+
+# Other options for using `Git` with `R`
+
+While we won't cover those in any detail in this session, there are also *R* packages for `Git` operations. The package [`usethis`](https://usethis.r-lib.org/) can, e.g., be used to initialize a `Git` repository or for managing credentials, and the [`gert` package](https://docs.ropensci.org/gert/) is a simple `Git` client for `R` that can be used to perform basic `Git` commands, such as staging, adding, and committing files, or creating, merging, and deleting branches.
+
+---
+
+# Are you legit to `Git`?
+
+As a reminder, there are two protocols for securely communicating with remote `Git` servers, such as *GitHub*: `HTTPS` and `SSH`.
+
+For our *GitHub* examples, we will use `HTTPS` with a Personal Access Token (PAT). For the *KU Leuven GitLab*, we will use `SSH`.
+
+---
+
+# Creating a PAT
+
+You should have created a PAT in preparation for this course (via the *GitHub* web interface. If you have not yet done so, you can also use a function from the `usethis` package.
+
+```{r create-gh-token, eval = FALSE}
+library(usethis)
+
+create_github_token()
+```
+
+**NB**: Do not close the browser window/tab with the PAT until you have stored it somewhere. You should treat the PAT like a password.
+
+---
+
+# Storing a PAT
+
+Once you have created a PAT, the simplest way to store it for use with `R` and *RStudio* is the `gitcreds_set()` function from the [`gitcreds` package](https://gitcreds.r-lib.org/).
+
+```{r store-pat, eval = FALSE}
+library(gitcreds)
+
+gitcreds_set()
+```
+
+*Note*: Of course, you can also (or additionally) store your PAT in another (safe) place, such as your password manager.
+
+---
+
+# SSH
+
+SSH stands for Secure Shell and is another option for secure interaction with remote `Git` servers, such as *GitHub* or *GitLab* instances. As for the PAT, you should have set up SSH in preparation for the workshop. If you have done so, the location of your RSA key should be displayed in the *RStudio* `Git` menu (*Tools* -> *Global Options* -> *Git/SVN*)
+
+```{r rstudio-ssh, out.width = "75%", echo=FALSE}
+include_graphics("./img/git_menu_rstudio.png")
+```
+
+---
+
+# SSH
+
+If you have not done so before, you first need to create an RSA key via the `Git` menu in *RStudio*. After that, you have to need to copy the public key into the key field in the SSH Keys page on *GitLab*.
+
+```{r gitlab-ssh, out.width = "60%", echo=FALSE}
+include_graphics("./img/ssh_key_gitlab.png")
+```
+
+---
+
+# `Git` + *RStudio* = `r ji("heart")`
+
+Now you should hopefully be all set to use `Git` as well *GitHub* and *GitLab* via *RStudio*.
+
+In order to get the best out of the combination of `R`, `R Markdown`, *RStudio*, and `Git`, it is recommendable to adopt a ["project-oriented workflow"](https://rstats.wtf/project-oriented-workflow.html). 
+
+---
+
+# Excursus: *RStudio* projects
+
+*RStudio* projects are associated with `.Rproj` files that contain some specific settings for the project. If you double-click on a `.Rproj` file, this opens a new instance of *RStudio* with the working directory and file browser set to the location of that file (the repository/folder for this workshop contains an `.Rproj` file, if you want to try this out).
+
+---
+
+# Excursus: *RStudio* projects
+
+Using *RStudio* projects can facilitate several things: the organization of files, the use of (relative) file paths, but also the integration of `R` and `R Markdown` with `Git`.
+
+Explaining *RStudio* projects in detail would be too much of a detour at this point, but if your interested in that, you can check out the [*RStudio* support site](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects) or the [respective chapter in *What They Forgot to Teach You About R*](https://rstats.wtf/project-oriented-workflow.html#rstudio-projectsl).
+
+---
+
+# What comes first? `r ji("chicken")` `r ji("egg")`
+
+In your everyday work, you quite likely need different workflows depending on the temporal order in which things are created or set up: your local project/files, version control with `Git`, and the remote *GitHub* repository.
+
+- [New project, GitHub first](https://happygitwithr.com/new-github-first.html)
+- [Existing project, GitHub first](https://happygitwithr.com/existing-github-first.html)
+- [Existing project, GitHub last](https://happygitwithr.com/existing-github-last.html)
+
+--
+
+In this session, we will focus on the *New project, GitHub first* approach (which works the same for *GitLab*).
+
+---
+
+# `Git` through the GUI
+
+You can perform quite a few `Git` operations via the *RStudio* GUI: You can, e.g., create a new `Git` repository, clone an existing repository, stage and commit changes and push them to a remote repository, or pull changes from there, and merge those with your local changes. We'll go through a few of these common steps in the following.
+
+---
+
+# New `Git` project connected to existing remote repo
+
+You can create a new version-controlled project that is connected to a remote repository that already exists on *GitHub* or *GitLab* via *File* -> *New Project* -> *Version Control* in the *RStudio* menu.
+
+```{r vc-proj, out.width = "75%", echo=FALSE}
+include_graphics("./img/vc_project.png")
+```
+
+---
+
+# New `Git` project connected to existing remote repo
+
+Next, choose `Git`...
+
+```{r git-proj, out.width = "75%", echo=FALSE}
+include_graphics("./img/choose_git.png")
+```
+
+---
+
+# Associate remote repo: `HTTPS`
+
+In the menu that opens after that, enter the URL of the remote repository, give the local repository a name, and tell *RStudio* where it should be stored. It usually makes sense to check "Open in new session".
+
+Which URL you should enter depends on the authentication method you use. If you use `HTTPS`, you can simply copy the URL from the address bar of your browser.
+
+---
+
+# Associate remote repo: `HTTPS`
+
+```{r gh-clone-https, out.width = "75%", echo=FALSE}
+include_graphics("./img/git_clone_https.png")
+```
+
+---
+
+# URL for `SSH`
+
+In case you use `SSH`, you can get the right URL from *GitLab* via the blue *Clone* button on the website of the repository.
+
+```{r gl-ssh, out.width = "70%", echo=FALSE}
+include_graphics("./img/gl_ssh.png")
+```
+
+---
+
+# Associate remote repo: `SSH`
+
+```{r gl-clone-ssh, out.width = "75%", echo=FALSE}
+include_graphics("./img/git_clone_ssh.png")
+```
+
+---
+
+# Modifying & creating files within the project
+
+Once you have successfully created the project, you can start editing files or creating new ones. When you have modified existing files and/or created new ones and saved the changes, these will be displayed in the `Git` tab in *RStudio* and their status will be indicated as *modified* or *untracked*.
+
+*Note*: The `Git` tab also displays in which branch you are currently working.
+
+```{r files-changed, out.width = "75%", echo=FALSE}
+include_graphics("./img/git_pane_files_changed.png")
+```
+
+---
+
+# Staging changes
+
+Once you have reached a point at which you want to commit (and possibly also push) your changes, you can stage them by checking the boxes in the *Staged* column in the `Git` tab. This the *RStudio* GUI equivalent of `git add`. The status of previously untracked files will then change to *added*.
+
+```{r staged, out.width = "70%", echo=FALSE}
+include_graphics("./img/git_staged.png")
+```
+
+---
+
+# Committing & pushing changes
+
+After staging your changes you can commit them via the *Commit* button in the `Git` tab. In the commit menu that opens you should enter a meaningful commit message. Once that is done you can click the *Commit* button. If you want to, you can also directly push your changes to the remote repository on *GitHub* via the *Push* button. You can, of course, also do this at a later point (directly via the `Git` tab).
+
+```{r commit, out.width = "75%", echo=FALSE}
+include_graphics("./img/git_commit.png")
+```
+
+---
+
+# Pulling changes from the remote repository
+
+You can also pull changes from the remote repository via the *Pull* button in the `Git` tab. As a general workflow recommendation (especially if you're just getting started with `Git` and *GitHub*/*GitLab*) it is usually advisable to first pull from the remote repository before making (and then staging, committing, and pushing) any local changes. This is even more relevant when you collaborate with others on the same repository (more on that later).
+
+---
+
+# Pulling changes from the remote repository
+
+*Important technical note*: If you click the *Pull* button in *RStudio* this will perform a [pull with rebase](http://gitready.com/advanced/2009/02/11/pull-with-rebase.html). Put briefly, pulling with rebase means that local changes are reapplied on top of remote changes. This is [different from pull with merge](https://sdqweb.ipd.kit.edu/wiki/Git_pull_--rebase_vs._--merge). In many scenarios, this is generally the preferable method and nothing you need to worry about. However, in some cases, this can cause issues, and it is good to be aware of this.
+
+---
+
+# Limitations of the GUI
+
+While the *RStudio* GUI can be used for quite a few basic `Git` operations, it has a set of limitations. The first one is the use of specific defaults as is the case with pulling (with rebase). Another one is that it can become quite tedious to stage a large number of files through the GUI. 
+
+---
+
+# Limitations of the GUI
+
+Another downside of interacting with `Git` through the *RStudio*  GUI is that there is a risk of *RStudio* becoming really slow or even crashing if you add/commit a lot of files at the same time and/or very large files. If the overall size of added or altered files is large, the Commit menu in *RStudio* usually also gives a warning about this. 
+
+The *RStudio* GUI is also not the best tool for [handling merge conflicts](https://happygitwithr.com/git-branches.html?q=merge%20conflict#dealing-with-conflicts) (we will discuss those in more detail when we talk about *Git* & collaboration).
+
+
+---
+
+# Destination `Terminal`
+
+If you want to add/commit a lot of files or large files, want more control over the `Git` commands, or need to use more advanced `Git` operations, the *RStudio* GUI is not the right choice. Instead, you should use a command line interface (CLI). 
+
+---
+
+# Destination `Terminal`
+
+Lucky for us, if you need a CLI for using `Git`, you don't need to leave *RStudio*. As of version 1.3.1056-1 *RStudio* provides a `Terminal` tab in the console pane. Through this, *RStudio* provides access to the [system shell](https://happygitwithr.com/shell.html). If you have properly installed `Git` you can use this to execute the full range of `Git` commands.
+
+---
+
+# Picking shells `r ji("shell")`
+
+Depending on your OS as well as your installation of `Git`, you can pick different shells to be run in the *RStudio* Terminal tab. You can choose those via the the *Terminal* menu in the *RStudio* Global Options.
+
+```{r terminal-menu, out.width = "50%", echo=FALSE}
+include_graphics("./img/terminal_menu.png")
+```
+
+---
+
+# Picking shells `r ji("shell")`
+
+If you use Windows and have installed `Git` for Windows, you should use `Git Bash` as the shell that is run in the *RStudio* terminal (shown in the picture below). On MacOS you should be able to simply use its own `Terminal` in *RStudio*. 
+
+```{r terminal, out.width = "80%", echo=FALSE}
+include_graphics("./img/terminal.png")
+```
+
+---
+
+# Terminal and Shell in *RStudio*
+
+For some more information on choosing and using the shell in *RStudio*, you can check out the [chapter on this in *Happy Git and GitHub for the useR*](https://happygitwithr.com/shell.html) or the *RStudio* How To Article on [*Using the RStudio Terminal in the RStudio IDE*](https://support.rstudio.com/hc/en-us/articles/115010737148-Using-the-RStudio-Terminal-in-the-RStudio-IDE).
+
+---
+
+# Using the `Terminal` in *RStudio*
+
+You can use the `Terminal` in *RStudio* to run all available `Git` commands, such as `git status`.
+
+```{r git-status, out.width = "80%", echo=FALSE}
+include_graphics("./img/git-status.png")
+```
+
+---
+
+# Using the `Terminal` in *RStudio*
+
+You can also use the full range of arguments to customize your `Git` commands. For example, to stage and commit all changes, you could run the following command in the `Terminal`: `git add -A && git commit -m "Your Message"`
+
+---
+
+# Resources
+
+A really great resource on using `Git` (and *GitHub*) in combination with `R` and *RStudio* is the website [*Happy Git and GitHub for the useR*](https://happygitwithr.com/) by [Jennifer Bryan](https://jennybryan.org/). Much of the content in this session is based on this resource and it offers a lot of additional helpful information and advice (including some help with troubleshooting commonly encountered issues).
+
+Another good introductory resource is the *RStudio* How-To Article on [*Version Control with Git and SVN*](https://support.rstudio.com/hc/en-us/articles/200532077?version=2021.09.0%2B351&mode=desktop).
+
