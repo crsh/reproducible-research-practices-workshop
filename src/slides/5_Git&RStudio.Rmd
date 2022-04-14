@@ -7,31 +7,8 @@ date      : "<small>`r paste0(params$location, ', ', params$date)`</small>"
 ---
 exclude: true
 
-```{r setup, include = FALSE}
-library(knitr)
-options(htmltools.dir.version = FALSE)
-opts_chunk$set(echo = FALSE, fig.align = "center")
+```{r child = "_setup.Rmd"}
 
-# remotes::install_github("gadenbuie/xaringanExtra")
-library(xaringanExtra)
-library(xaringanthemer)
-library(emo)
-
-my_colors <- c("#bc0031", "#d67f42")
-```
-
-```{r extras-styling, include = FALSE}
-use_xaringan_extra(c("tile_view", "clipboard"))
-
-style_mono_accent(
-  base_color = my_colors[1]
-  , header_font_google = google_font("Poppins")
-  , header_h1_font_size = "36pt"
-  , text_font_google = google_font("Open Sans")
-  , text_font_size = "22pt"
-  , text_color = "#3a3a3a"
-  , outfile = "src/xaringan-themer.css"
-)
 ```
 
 ---
@@ -89,7 +66,10 @@ There are essentially two options for using `Git` via *RStudio*
 
 # Other options for using `Git` with `R`
 
-While we won't cover those in any detail in this session, there are also *R* packages for `Git` operations. The package [`usethis`](https://usethis.r-lib.org/) can, e.g., be used to initialize a `Git` repository or for managing credentials, and the [`gert` package](https://docs.ropensci.org/gert/) is a simple `Git` client for `R` that can be used to perform basic `Git` commands, such as staging, adding, and committing files, or creating, merging, and deleting branches.
+While we won't cover those in any detail in this session, there are also *R* packages for `Git` operations:
+- [`usethis`](https://usethis.r-lib.org/) can, e.g., be used to initialize a `Git` repository or for managing credentials
+- [`gert`](https://docs.ropensci.org/gert/) is a simple `Git` client for `R` that can be used to perform basic `Git` commands, such as staging, adding, and committing files, or creating, merging, and deleting branches
+- [`ghstudio`](https://github.com/moodymudskipper/ghstudio) is a novel in-development package that provides "experimental tools to use git/github with RStudio, e.g see issues and diffs in the viewer"
 
 ---
 

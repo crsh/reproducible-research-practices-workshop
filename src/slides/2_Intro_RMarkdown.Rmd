@@ -7,31 +7,8 @@ date      : "<small>`r paste0(params$location, ', ', params$date)`</small>"
 ---
 exclude: true
 
-```{r setup, include = FALSE}
-library(knitr)
-options(htmltools.dir.version = FALSE)
-opts_chunk$set(echo = FALSE, fig.align = "center")
+```{r child = "_setup.Rmd"}
 
-# remotes::install_github("gadenbuie/xaringanExtra")
-library(xaringanExtra)
-library(xaringanthemer)
-library(emo)
-
-my_colors <- c("#bc0031", "#d67f42")
-```
-
-```{r extras-styling, include = FALSE}
-use_xaringan_extra(c("tile_view", "clipboard"))
-
-style_mono_accent(
-  base_color = my_colors[1]
-  , header_font_google = google_font("Poppins")
-  , header_h1_font_size = "36pt"
-  , text_font_google = google_font("Open Sans")
-  , text_font_size = "22pt"
-  , text_color = "#3a3a3a"
-  , outfile = "src/xaringan-themer.css"
-)
 ```
 
 ---
@@ -572,6 +549,42 @@ A comment in `R Markdown` looks like this: `<!-- This is a comment -->`
 
 ---
 
+# Excursus: Tables in `R Markdown`
+
+As with many things in `R`, there are many options for creating tables that can be used with `R Markdown`. Discussing all of them would be too much for this workshop (but we will see some further examples in the session on `papaja`). An easy-to-use and quite versatile option is `knitr::kable()` which can be nicely extended using the [`kableExtra` package](https://haozhu233.github.io/kableExtra/).
+
+---
+
+# Excursus: Tables in `R Markdown`
+
+```{r kable, eval=FALSE}
+library(tidyverse) # for wrangling and piping
+library(gapminder) # for exemplary data
+library(kableExtra) # for table formatting
+
+gapminder %>% 
+  filter(year == 2007,
+         continent == "Europe") %>%
+  select(country,
+         lifeExp,
+         pop,
+         gdpPercap) %>% 
+  head(11) %>% 
+  knitr::kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+  
+```
+
+---
+
+# Excursus: Tables in `R Markdown`
+
+```{r ref.label=c("kable")}
+
+```
+
+---
+
 # Knitting `r ji("yarn")`
 
 To compile the `R Markdown` document (in this case into a `HTML`) document, you simply need to click the `Knit` `r ji("yarn")` button. Doing this will generate the `HTML` file (by default) in the directory where the `.Rmd` file is stored. It will also open a preview window in *RStudio*.
@@ -678,3 +691,21 @@ The [`R Markdown` chapter](https://r4ds.had.co.nz/r-markdown.html) in *R for Dat
 
 [*R Markdown Tips and Tricks*](https://indrajeetpatil.github.io/RmarkdownTips/) by Indrajeet Patil
 
+---
+
+# Outlook
+
+`R Markdown` is a great tool (esp. for reproducibility) and will continue to be used and extended...
+
+--
+
+BUT... there is a potential (or likely?) successor in the wings:
+"[Quarto](https://quarto.org/) is a multi-language, next generation version of R Markdown from RStudio, with many new features and capabilities" 
+
+--
+
+- support for `R`, `Python`, [`Julia`](https://julialang.org/), and [`Observable`](https://observablehq.com/)
+- can also be used with [`Jupyter`](https://jupyter.org/) notebooks
+- even more output formats
+
+For further details check out the [Quarto documentation](https://quarto.org/) and this [blog post by Alison Hill](https://www.apreshill.com/blog/2022-04-we-dont-talk-about-quarto/).

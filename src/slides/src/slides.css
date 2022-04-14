@@ -396,3 +396,37 @@ kbd {
 .remark-slide thead, .remark-slide tfoot, .remark-slide tr:nth-child(even) {
   background: inherit;
 }
+
+/* Custom Fonts */
+
+.bold {font-weight: bold}
+.smaller { font-size: 70% }
+.small { font-size: 80% }
+.ssmall { font-size: 90% }
+.large { font-size: 130% }
+.larger { font-size: 150% }
+.huge { font-size: 300% }
+.tinyisher {
+  font-size: 50%;
+  line-height: 1.1;
+  display: block;
+}
+.tinyish {font-size: 30% }
+
+.small .remark-code {
+  font-size: 65%;
+  line-height: 1.1;
+  display: block;
+}
+
+.tinyisher .remark-code {
+  font-size: 50%;
+  line-height: 1.1;
+  display: block;
+}
+
+.mini .remark-code {
+  font-size: 30%;
+  line-height: 1.1;
+  display: block;
+}

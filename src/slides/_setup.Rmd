@@ -1,11 +1,16 @@
 ```{r setup, include=FALSE}
 library("knitr")
-options(htmltools.dir.version = FALSE)
+options(htmltools.dir.version = FALSE,
+        htmltools.preserve.raw = FALSE)
 opts_chunk$set(echo = FALSE, fig.align = "center")
 
 # remotes::install_github("gadenbuie/xaringanExtra")
-library("xaringanExtra")
-library("xaringanthemer")
+# remotes::install_github("hadley/emo")
+# remotes::install_github("gadenbuie/tweetrmd")
+library(xaringanExtra)
+library(xaringanthemer)
+library(emo)
+library(tweetrmd)
 
 my_colors <- c("#bc0031", "#d67f42")
 ```
