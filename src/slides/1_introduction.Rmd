@@ -1,113 +1,182 @@
 ---
-title     : "Reproducible research workflows"
-subtitle  : "<small>for psychologists</small>"
+title     : "Reproducible research workflows for psychologists"
+subtitle  : "<small>Introduction</small>"
 
 author    : "<br />`r paste(params$author, collapse = ' & ')`"
 date      : "<small>`r paste0(params$location, ', ', params$date)`</small>"
 ---
 exclude: true
 
-```{r setup, include = FALSE}
-library("knitr")
-options(htmltools.dir.version = FALSE)
-opts_chunk$set(echo = FALSE, fig.align = "center")
 
-# remotes::install_github("gadenbuie/xaringanExtra")
-library("xaringanExtra")
-library("xaringanthemer")
+```{r child = "_setup.Rmd"}
 
-my_colors <- c("#bc0031", "#d67f42")
 ```
 
-```{r extras-styling, include = FALSE}
-use_xaringan_extra(c("tile_view", "clipboard"))
+---
 
-style_mono_accent(
-  base_color = my_colors[1]
-  , header_font_google = google_font("Poppins")
-  , header_h1_font_size = "36pt"
-  , text_font_google = google_font("Open Sans")
-  , text_font_size = "22pt"
-  , text_color = "#3a3a3a"
-  , outfile = "src/xaringan-themer.css"
+# About us
+
+[Frederik Aust](http://frederikaust.com/) ([f.aust@uva.nl](mailto:f.aust@uva.nl), [@frederikaust](http://twitter.com/frederikaust))
+
+- PostDoc with Prof. Dr. Eric-Jan Wagenmakers at the University of Amsterdam
+
+--
+    - Mathematical models of learning and memory
+    - Bayesian statistics
+    - Computational reproducibility
+--
+- Author and contributor to several R packages<br> (e.g., [`afex`](https://cran.r-project.org/web/packages/afex/index.html), [`citr`](https://cran.r-project.org/web/packages/citr/index.html), [`papaja`](https://github.com/crsh/papaja))
+
+---
+
+# About us
+
+[Johannes Breuer](https://www.johannesbreuer.com/) ([johannes.breuer@gesis.org](mailto:johannes.breuer@gesis.org), [@MattEagle09](https://twitter.com/MattEagle09)
+
+- Senior researcher at [*GESIS - Leibniz Institute for the Social Sciences*](https://www.gesis.org/home) (Department Survey Data Curation) & (co-) leader of the team *Research Data & Methods* at the [*Center for Advanced Internet Studies*](https://www.cais.nrw/) (CAIS)
+
+---
+
+  - Uses and effects of digital media
+  - Computational methods
+  - Data management & Open science
+
+---
+
+# About you
+
+- What's your name?  
+
+- What is your research area?  
+
+- What are your experiences with reproducible research (and the tools we cover in this course)?
+
+- What are your expectations for this course?
+
+---
+
+# Preliminaries
+
+Slides and material are available at
+
+.center[https://github.com/crsh/reproducible-research-practices-workshop]
+
+- The workshop consists of a combination of lectures and hands-on exercises
+
+- Feel free to ask questions anytime
+
+- We will have frequent breaks (please remind us if necessary)
+
+---
+
+# Preliminaries
+
+Did you have any trouble with the setup for this workshop?
+
+Installing...
+
+- [`git`](https://git-scm.com/)
+- [`R`](https://www.r-project.org/) & [*RStudio*](https://www.rstudio.com/products/rstudio/)
+- a `TeX` distribution (e.g., [TinyTeX](https://yihui.name/tinytex/))
+- [`papaja`](https://github.com/crsh/papaja)
+
+---
+
+# Preliminaries
+
+Did you have any trouble with the setup for this workshop?
+
+Creating...
+
+- a [*GitHub*](https://github.com/) account
+- an account for the [KU Leuven *GitLab*](https://gitlab.kuleuven.be/)
+- access credentials for *GitHub* (HTTPS, PAT) and *GitLab* (SSH)
+
+---
+
+## Course schedule
+
+.center[**Wednesday, April 27th, 2022**]
+```{r schedule Wed, echo = F}
+schedule <- data.frame(
+  "When?" = c("10:00 - 12:00", "12:00 - 13:00", "13:00 - 15:00", "15:00 - 15:30", "15:30 - 17:30")
+  , "What?" = c("Introduction: Reproducible Workflows", "<i>Lunch break</i>", "Introduction to R Markdown", "<i>Coffee break</i>", "papaja")
+  , check.names = FALSE
+)
+knitr::kable(
+  schedule
+  , format = "html"
+  , align = "cc"
+  , escape = FALSE
 )
 ```
 
-```{r}
-add_overlay <- function(..., label = NULL, label_style = NULL) {
-  el <- list(...)
-  
-  y <- '<div id="overlay-highlight"'
-  if(length(el) > 0) {
-    y <- c(y, 'style="', glue::glue('{names(el)}:{el};'))
-  }
-  y <- c(y, '">')
-  
-  if(!is.null(label)) {
-    y <- c(y, glue::glue('<span" class="vertical-center"" style="{label_style}">{label}</span>'))
-  }
-  
-  knitr::asis_output(glue::glue_collapse(c(y, "</div>")))
-}
+---
+
+## Course schedule
+
+.center[**Thursday, April 28th, 2022**]
+```{r schedule Thur, echo = F}
+sharing_options <- data.frame(
+  "When?" = c("09:00 - 10:15", "10:15 - 10:30", "10:30 - 11:30", "11:30 - 12:30", "12:30 - 13:30", "13:30 - 14:00", "14:00 - 14:15", "14:15 - 15:30", "15:30 - 16:00")
+  , "What?" = c("Introduction to Git & GitHub", "<i>Coffee break</i>", "Git in RStudio", "Git & GitHub for collaboration - Part 1", "<i>Lunch break</i>", "Git & GitHub for collaboration - Part 2", "<i>Coffee break</i>", "Other tools & workflows for reproducible research", "Wrap-Up")
+  , check.names = FALSE
+)
+knitr::kable(
+  sharing_options
+  , format = "html"
+  , align = "cc"
+  , escape = FALSE
+)
 ```
 
 ---
 
-# Agenda
+# Defining reproducibility
 
-1. First things first
---
-
-2. and so on
-
-
-<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.js"></script>
-<script type="module">
-import mediumZoom from 'https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.esm.js'
-
-const zoomDefault = mediumZoom('#zoom-default')
-const zoomMargin = mediumZoom('#zoom-margin', { margin: 45 })
-</script>
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  "HTML-CSS": {
-    scale: 150,
-  }
-});
-</script>
+As with (almost) everything in science, there are different definitions of reproducibility.
+We will discuss some of them in the following.
 
 ---
-# A zoomable plot
 
-```{r zoomable-plot, out.height = "95%", out.extra='id="zoom-margin"'}
-plot(cars)
+# Defining dimensions
+
+3-dimensional concept space
+
+```{r, three-dims, out.width = "75%", echo = F}
+include_graphics("./img/trr-cube.jpg")
 ```
-
+<small><small>By Christof Schöch. Source: https://dh-trier.github.io/trr/#/2/1</small></small>
 
 ---
-# Two columns
 
-<!-- See CSS file -->
+# Defining dimensions
 
-.pull-left-45[
-
-- A
-- B
-- C
-
-]
-
-.pull-right-45[
-
-```{r out.width = "100%"}
-plot(cars)
+```{r, turing-dims, out.width = "75%", echo = F}
+include_graphics("./img/turing_way_parts.jpg")
 ```
-
-
-]
+<small><small>[*The Turing Way Project*](https://the-turing-way.netlify.app/welcome.html) illustration by Scriberia. DOI: [10.5281/zenodo.3332807](https://doi.org/10.5281/zenodo.3332807)</small></small>
 
 ---
-# New test slide
 
-This is not a test!
+# *The Turing Way* definition
+
+```{r, turing-def, out.width = "75%", echo = F}
+include_graphics("./img/reproducible-matrix.jpg")
+```
+<small><small>Source: https://the-turing-way.netlify.app/reproducible-research/overview/overview-definitions.html</small></small>
+
+---
+
+# Replication or reproduction?
+
+```{r, other-def, out.width = "75%", echo = F}
+include_graphics("./img/replication-typology-a.jpg")
+```
+<small><small>By Christof Schöch. Source: https://dh-trier.github.io/trr/#/2/2</small></small>
+
+---
+
+# Zooming in (on experimental research)
+
+Add figure from papaja workshop advanced slide 19 here (Frederik to continue with a focus on computational reproducibility)
