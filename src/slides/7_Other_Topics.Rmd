@@ -1,0 +1,132 @@
+---
+title     : "Reproducible research workflows for psychologists"
+subtitle  : "<small>Other topics in reproducible research</small>"
+
+author    : "<br />`r paste(params$author, collapse = ' & ')`"
+date      : "<small>`r paste0(params$location, ', ', params$date)`</small>"
+---
+exclude: true
+
+```{r child = "_setup.Rmd"}
+
+```
+
+---
+
+# Other topics in reproducible research
+
+As we said in the introduction, we cannot cover all tools and topics related to reproducible research in this workshop. However, we want to use this session to cover some additional tools as well as other topics in reproducible research:
+
+- dependency management
+- preventing code rot
+- collaborating with others who do not use `R Markdown` and/or `Git`
+- publishing reproducible research environments and "one-click reproducibility"
+
+---
+
+<!-- Frederik takes over from here -->
+
+# Dependency management
+
+`renv`, `checkpoint`, `groundhog`, etc.
+
+<!-- also show/remind of `sessionInfo()`? -->
+
+---
+
+# Preventing code rot
+
+`Docker`...
+
+---
+
+<!-- Johannes takes over from here -->
+
+# Collaborating on publications
+
+There also are `R` packages that you can use for collaborating on `R Markdown` documents with people who do not (want to) use `R Markdown` (and `Git`):
+
+- [`trackdown`](https://claudiozandonella.github.io/trackdown/) uses *Google Drive* for this
+
+- [`redoc`](https://noamross.github.io/redoc/) "is a package to enable a two-way R Markdown-Microsoft Word workflow"
+
+---
+
+# `trackdown`
+
+---
+
+# Publishing reproducible research environments
+
+Binder...
+
+---
+
+# Exercise
+
+Try out and explore one or more of the tools we have just presented:
+
+- `Docker`
+- `Binder`
+- `trackdown`
+- one of the `R` packages for dependency management (such as `renv`, `checkpoint`, or `groundhog`)
+
+---
+
+# Exercise
+
+What did you do?
+
+What were your experiences?
+
+Do you think you are going to use the tool(s)? Why/why not? If yes, for what purposes?
+
+---
+
+# Project setup and templates
+
+In this workshop, we have shown you how to manually set up a reproducible research workflows. However, there are some tools that you can use to automate parts of this process. These can range from very simple to very elaborate solutions. We will show you two examples in the following.
+
+---
+
+# Project setup and templates
+
+`create-project.sh`: small shell script for initializing a basic project folder structure (which can be easily adapted and extended)
+
+---
+
+<!-- Frederik -->
+
+# Project setup and templates
+
+Frederik's `R` package for initializing new projects: https://github.com/crsh/template
+
+---
+
+<!-- Back to Johannes -->
+
+# Workflow tools
+
+There also several `R` other packages for facilitating the creation and maintenance of reproducible research workflows, such as...
+
+- [`WORCS`](https://cjvanlissa.github.io/worcs/index.html) - *Workflow for Open Reproducible Code in Science*
+- [`workflowr`](https://workflowr.github.io/workflowr/)
+- [`starter`](https://www.danieldsjoberg.com/starter/)
+
+[*start your lab*](https://www.startyourlab.com/) also provides an [`R` Project Template](https://github.com/startyourlab/r-project-template).
+
+---
+
+# Keep calm and stay reproducible!
+
+We hope that we could get you started or help you with with making your research (more) reproducible. 
+Of course, as always, there is much more to explore and learn. The only way to really get familiar with the tools and workflows is if you use them for your own research. 
+Notably, not all tools always play together nicely and some are likely to work better for you than others. However, we encourage you to work towards establishing the use of some of the tools and practices we have discussed in this workshop in your research and maybe also try to convince some of your collaborators to adopt them as well.
+
+---
+
+class: center, middle
+
+# Thank you very much for participating in this workshop! `r ji("bowing_man")`
+
+We hope that you learned something and also had some fun (at least a little bit...)
