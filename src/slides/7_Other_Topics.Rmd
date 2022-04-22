@@ -42,6 +42,101 @@ As we said in the introduction, we cannot cover all tools and topics related to 
 
 <!-- Johannes takes over from here -->
 
+# Publishing reproducible research environments
+
+If you want to publicly share your fully reproducible research environment and allow others to interact with it without having to install any software on their own machines, you can use services like [*Code Ocean*](https://codeocean.com/) or [*RStudio Cloud*](https://rstudio.cloud/). A good free and open source alternative is [*BinderHub*](https://binderhub.readthedocs.io/en/latest/). 
+
+---
+
+# What is *BinderHub*?
+
+From the [*BinderHub GitHub* repository](https://github.com/jupyterhub/binderhub):
+
+*BinderHub* allows you to `BUILD` and `REGISTER` a `Docker` image from a `Git` repository, then `CONNECT` with *JupyterHub*, allowing you to create a public IP address that allows users to interact with the code and environment within a live *JupyterHub* instance. You can select a specific branch name, commit, or tag to serve.
+
+---
+
+# What is *BinderHub*?
+
+From the [*BinderHub GitHub* repository](https://github.com/jupyterhub/binderhub):
+
+*BinderHub* ties together:
+
+- [*JupyterHub*](https://github.com/jupyterhub/jupyterhub) to provide a scalable system for authenticating users and spawning single user `Jupyter Notebook` servers, and
+- [*Repo2Docker*](https://github.com/jupyter/repo2docker) which generates a `Docker` image using a `Git` repository hosted online.
+
+---
+
+# What is *BinderHub*?
+
+```{r binger-img, out.width = "75%", echo=FALSE}
+include_graphics("./img/binderhub.png")
+```
+
+---
+
+# How to use *BinderHub*
+
+Using a *BinderHub* deployment like [*mybinder.org*](https://mybinder.org/) or [*GESIS Notebooks*](https://notebooks.gesis.org/binder/) you can turn an existing public `Git` repository into an executable environment.
+
+In order for this to work, you just need to add a few *Binder*-specific files to your repo (i.e., "Binderize" it).
+
+---
+
+# Binderizing your `Git` repository
+
+The minimum requirements are the following:
+
+1. Add a `binder` folder to your repo
+2. In that folder, create two files: `runtime.txt` & `install.R`
+
+---
+
+# Binderizing your `Git` repository
+
+In the `runtime.txt` file, you need to specify a date indicating which *CRAN* snapshot to use from the [*CRAN Time Machine*](https://mran.microsoft.com/timemachine) which is part of the [*Microsoft R Application Network* (MRAN)](https://mran.microsoft.com/). This is used to install `R` and *CRAN* packages. For example: `r-2022-04-28` (optionally, you can also specify a specific `R` version to be installed: `r-4.1-2022-04-28`).
+
+---
+
+# Binderizing your `Git` repository
+
+In the `install.R` file, you need to specify which `R` packages to install as you normally would in an `.R` or `.Rmd` file (e.g., `install.packages(c("gapminder", "tinytex"))).
+
+--
+
+There are many more options for changing or extending the executable environment. Two good resources to learn more are the [*Turing Way* guide *Zero-toBinder*](https://the-turing-way.netlify.app/communication/binder/zero-to-binder.html) or the [*Binder* example for `R`](https://github.com/binder-examples/r). 
+
+---
+
+# Deploying your executable environment
+
+Once you have "Binderized" your repository, you can use [*mybinder.org*](https://mybinder.org/) to create the executable environment. You can set a few additional parameters in the process (such as the branch). *NB*: Creating the executable environment can take some time (esp. if you install many and/or large `R` packages).
+
+---
+
+# Deploying your executable environment
+
+Once the executable environment has been created, anyone who has the link to it can use it. The easiest way to share it and enable "1-click reproducibility" for others is by adding a *Launch Binder* button to the `README` for your associated *GitHub* (or *GitLab*) repository. The `Markdown` code for this will be displayed on the *mybinder* site.
+
+---
+
+# Things to note when using *Binder*
+
+.small[
+1. The *BinderHub* deployments are hosted on free-to-use servers (sometimes by academic institutions), so you might experience some "hiccups" in deploying and using the executable environments (e.g., if the service is heavily used at the time).
+2. Related to that, the amount of RAM is limited for the executable environment.
+3. One thing you need to consider is how to share your data when using *Binder*. The [*Turing Way* guide *Zero-toBinder*](https://the-turing-way.netlify.app/communication/binder/zero-to-binder.html) has some suggestions for that.
+4. By default, the link to the executable environment will open an instance of [*Jupyter Notebook*](https://jupyter.org/), but it is also possible to run [*Jupyter Lab*](https://jupyterlab.readthedocs.io/en/stable/#), *RStudio* or *R Shiny* (the easiest way to change this is by adding parameters at the end of the URL, such as `$urlpath=rstudio`). 
+]
+
+---
+
+# Test drive `r ji("racing_car")`
+
+We have prepared a Binderized repo for you that you can test, clone, fork or whatever else you would like to to: https://github.com/jobreu/demo-repo
+
+---
+
 # Collaborating on publications
 
 There also are `R` packages that you can use for collaborating on `R Markdown` documents with people who do not (want to) use `R Markdown` (and `Git`):
@@ -54,11 +149,15 @@ There also are `R` packages that you can use for collaborating on `R Markdown` d
 
 # `trackdown`
 
+The basic workflow for `trackdown` is that you upload the content of an `.Rmd` file to *Google Drive* where you can collaboratively edit the text parts. You can then download the document again (e.g., to edit the code in the `R Markdown` document in *RStudio*), and also update the file on *Google Drive* after changing the `.Rmd` locally. The [`trackdown` documentation](https://claudiozandonella.github.io/trackdown/) provides further details.
+
 ---
 
-# Publishing reproducible research environments
+# Advanced use of `trackdown` with `Git`
 
-Binder...
+To combine `R Markdown` with collaborative text editing via `trackdown` and version control (and to avoid potential issues caused by - possibly unintended - changes to the code parts on *Google Drive*), the author of the `trackdown` package, [Claudio Zandonella Callegher](https://github.com/ClaudioZandonella), proposes a solution in an [issue in the *GitHub* repository for the package](https://github.com/ClaudioZandonella/trackdown/issues/31).
+
+Essentially, the idea here is to create a `trackdown` branch in the `Git` repository and merge it with the `main` branch which is (mainly) used to edit the code.
 
 ---
 
@@ -66,10 +165,10 @@ Binder...
 
 Try out and explore one or more of the tools we have just presented:
 
+- one of the `R` packages for dependency management (such as `renv`, `checkpoint`, or `groundhog`)
 - `Docker`
 - `Binder`
 - `trackdown`
-- one of the `R` packages for dependency management (such as `renv`, `checkpoint`, or `groundhog`)
 
 ---
 
@@ -91,7 +190,13 @@ In this workshop, we have shown you how to manually set up a reproducible resear
 
 # Project setup and templates
 
-`create-project.sh`: small shell script for initializing a basic project folder structure (which can be easily adapted and extended)
+`create-project.sh`: small shell script for initializing a basic project folder structure (which can be easily adapted and extended using any text editor)
+
+To run the file, open a shell/command line interface (and navigate to) where the `create-project.sh` file is located. To execute it, you need to provide a valid path for the new project folder that should be created as an argument.
+
+```{r eval=FALSE}
+sh create-project.sh "./my-project"
+```
 
 ---
 
@@ -117,11 +222,42 @@ There also several `R` other packages for facilitating the creation and maintena
 
 ---
 
-# Keep calm and stay reproducible!
+# Shoulders of giants... but sometimes also clay feet
+
+.small[
+As you may have already experienced, not all tools always play together nicely. Keep in mind, that most tools that we have covered in this workshop are free and open source software (FOSS). Also, tool stacks can have break points and many tools themselves depend on other tools/tool stacks. Hence, things may not always work perfectly.
+
+But don't despair! There usually are solutions ([*Stack Overflow*](https://stackoverflow.com/) and issues in associated *GitHub* repositories are good places to find them) and the advantage of FOSS is that there usually is an active development community that you can also get involved in.
+]
+
+---
+
+# Showing appreciation `r ji("clapping_hands")`
+
+The creation and maintenance of FOSS takes a lot of time and this is rarely recognized as much as it should be. One thing we can do to change this is to at least give credit where credit is due and cite the tools and resources that we use.
+
+```{r cite, echo=TRUE}
+citation("papaja")
+```
+
+---
+
+# Showing appreciation `r ji("clapping_hands")`
+
+When working with `R Markdown`, you can create a `packages.bib` file to cite the packages you have used or use the [`grateful` package](https://pakillo.github.io/grateful/).
+
+---
+
+# Share the `r ji("heart")` for reproducible research tools
+
+In addition to properly citing the tools and resources you use, you can make sure that they get the recognition they deserve by talking about them (e.g., on social media) and convincing your collaborators to use them as well.
+
+---
+
+# Keep calm and stay reproducible! `r ji("smiling_face_with_smiling_eyes")`
 
 We hope that we could get you started or help you with with making your research (more) reproducible. 
 Of course, as always, there is much more to explore and learn. The only way to really get familiar with the tools and workflows is if you use them for your own research. 
-Notably, not all tools always play together nicely and some are likely to work better for you than others. However, we encourage you to work towards establishing the use of some of the tools and practices we have discussed in this workshop in your research and maybe also try to convince some of your collaborators to adopt them as well.
 
 ---
 
