@@ -502,7 +502,7 @@ The minimum requirements are the following:
 
 # Binderizing your `Git` repository
 
-In the `runtime.txt` file, you need to specify a date indicating which *CRAN* snapshot to use from the [*CRAN Time Machine*](https://mran.microsoft.com/timemachine) which is part of the [*Microsoft R Application Network* (MRAN)](https://mran.microsoft.com/). This is used to install `R` and *CRAN* packages. For example: `r-2022-04-28` (optionally, you can also specify a specific `R` version to be installed: `r-4.1-2022-04-28`).
+In the `runtime.txt` file, you need to specify a date indicating which [snapshot](https://packagemanager.rstudio.com/client/#/repos/1/overview) to use from the [*R Studio Package Manager*](https://packagemanager.rstudio.com/client/#/). This is used to install `R` packages. For example: `r-2022-04-28` (optionally, you can also specify a specific `R` version to be installed: `r-4.1-2022-04-28`).
 
 ---
 
@@ -534,7 +534,7 @@ Once the executable environment has been created, anyone who has the link to it 
 1. The *BinderHub* deployments are hosted on free-to-use servers (sometimes by academic institutions), so you might experience some &quot;hiccups&quot; in deploying and using the executable environments (e.g., if the service is heavily used at the time).
 2. Related to that, the amount of RAM is limited for the executable environment.
 3. One thing you need to consider is how to share your data when using *Binder*. The [*Turing Way* guide *Zero-toBinder*](https://the-turing-way.netlify.app/communication/binder/zero-to-binder.html) has some suggestions for that.
-4. By default, the link to the executable environment will open an instance of [*Jupyter Notebook*](https://jupyter.org/), but it is also possible to run [*Jupyter Lab*](https://jupyterlab.readthedocs.io/en/stable/#), *RStudio* or *R Shiny* (the easiest way to change this is by adding parameters at the end of the URL, such as `$urlpath=rstudio`). 
+4. By default, the link to the executable environment will open an instance of [*Jupyter Notebook*](https://jupyter.org/), but it is also possible to run [*Jupyter Lab*](https://jupyterlab.readthedocs.io/en/stable/#), or *RStudio* (this can be done by adding parameters at the end of the URL, such as `$urlpath=rstudio`). 
 ]
 
 ---

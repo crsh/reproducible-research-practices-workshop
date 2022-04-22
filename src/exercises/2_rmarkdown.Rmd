@@ -1,0 +1,21 @@
+---
+title     : "Exercises: Intro to R Markdown"
+subtitle  : "Reproducible research workflows for psychologists"
+---
+
+```{r child = "_setup.Rmd"}
+```
+
+*Note*: You can find the solutions for this exercise as well as the following ones in the `solutions` folder within the workshop materials.
+
+```{block, box.title = "1", box.body = list(fill = "white"), box.icon = "fa-star"}
+This is exercise 1.
+```
+
+```{block, opts.label = "clues"}
+Not really a lot to do here.
+```
+
+```{block, solution = TRUE}
+Well done!
+```
