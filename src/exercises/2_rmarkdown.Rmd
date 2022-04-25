@@ -6,16 +6,127 @@ subtitle  : "Reproducible research workflows for psychologists"
 ```{r child = "_setup.Rmd"}
 ```
 
-*Note*: You can find the solutions for this exercise as well as the following ones in the `solutions` folder within the workshop materials.
+# Preliminaries
+
+You can find the solutions for this exercise as well as the following ones in the `solutions` folder within the workshop materials. You can easily copy code from these solution files by clicking on the small blue clipboard icon in the upper right corner of the solution boxes showing the code.
+
+In this exercise, we will create a first `R Markdown` document. The example data we use here comes from the [`gapminder` package](https://github.com/jennybc/gapminder) which is based on data from [the non-profit with the same name](https://www.gapminder.org/). However, if you prefer to use other or your own data for this exercise as well as the following ones, feel free to do so. 
+
+Please also feel free to change and play around with any of the other parameters in this exercise (e.g., output format, chunk options, document content, etc.).
+
+# Exercises
 
 ```{block, box.title = "1", box.body = list(fill = "white"), box.icon = "fa-star"}
-This is exercise 1.
+Create a new `R Markdown` document, give it a meaningful name, and save it somewhere in your project folder where you will find it. The output format that we want to use for this exercise is `HTML`
 ```
 
 ```{block, opts.label = "clues"}
-Not really a lot to do here.
+The easiest way to create a new `R Markdown` document is through the *RStudio*  GUI.
 ```
 
 ```{block, solution = TRUE}
-Well done!
+You can create a new `R Markdown` document in *RStudio* via *File* -> *New File* -> *R Markdown* in the menu.
 ```
+
+```{block, box.title = "2", box.body = list(fill = "white"), box.icon = "fa-star"}
+Create/edit the `YAML` header of the document, so that it includes the following:
+- a meaningful title
+- an author name
+- the current date
+
+We also want a table of contents with two levels and numbered headings.
+```
+
+```{block, opts.label = "clues"}
+You can already specify some parts of the `YAML` header through the *RStudio* GUI when creating a new document. To add the current date, you can use inline `R` code in the respective field within the `YAML` header.
+```
+
+```{block, solution = TRUE}
+---
+title: "Exploring Gapminder data"
+author: "Your name"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    number_sections: true
+---
+```
+
+```{block, box.title = "3", box.body = list(fill = "white"), box.icon = "fa-star"}
+Include a setup chunk in your document. Use this chunk to set the `knitr` options so that the code is displayed in the output document but messages are suppressed.
+
+Three other things we want to do in the setup chunk:
+
+- set the "penalty to be applied when deciding to print numeric values in fixed or exponential notation" to 10
+- set the number of significant digits to print to 2
+- load the packages `gapminder` and `tidyverse`
+```
+
+```{block, opts.label = "clues"}
+For the general options (i.e., the one not related to `knitr`), you can check `?options`.
+
+You probably do not want to include the chunk options as code output in the resulting `HTML` document. You can achieve this by setting the chunk option `include` to `FALSE` for the setup chunk.
+
+Of course, if you want to use additional/other packages, you can also add those to the setup chunk.
+```
+
+```{block, solution = TRUE}
+Chunk options: {r setup, include=FALSE}
+(for the code to be included in this chunk, see the following solution box)
+
+*NB*: In your `R Markdown` document, this code block needs to start and end with three backticks. Remember that in *RStudio* you can use the keyboard shortcut <kbd>Ctrl + Alt + I</kbd> (*Windows* & *Linux*)/<kbd>Cmd + Option + I</kbd> (*Mac*) for inserting code chunks.
+```
+
+```{r setup, solution = TRUE, eval=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE)
+
+options(scipen = 10,
+        digits = 2)
+
+library(tidyverse)
+library(gapminder)
+```
+
+```{block, box.title = "4", box.body = list(fill = "white"), box.icon = "fa-star"}
+Now you can start to create some [content](https://www.youtube.com/watch?v=9Tnux7K3MOQ) for your document. You can get as creative as you want, but the document should at least include the following:
+
+- two levels of headings
+
+- some basic text formatting and links
+
+- some inline code
+
+- code chunks with different options
+
+- at least one table
+
+- at least one figure
+```
+
+```{block, opts.label = "clues"}
+To check if everything works the way you expect, you should knit the document periodically. We have created an exemplary `.Rmd` file using the *Gapminder* data. You can find this in the `exercises` folder.
+
+Please note that in the exemplary `R Markdown` document we use the [`dplyr` package](https://dplyr.tidyverse.org/) from the [`tidyverse`](https://www.tidyverse.org/) for data wrangling and [`ggplot2`](https://ggplot2.tidyverse.org/) for plotting. If you are not used to that or have other preferences, feel free to use `base R` or other packages of your choosing instead.
+```
+
+```{block, solution = TRUE}
+Have a look at `gapminder_example.Rmd` and the resulting `gapminder_example.html` for some examples and inspiration.
+```
+
+```{block, box.title = 5, box.body = list(fill = "white"), box.icon = "fa-star"}
+To further increase reproducibility, let's add some information about your `R` session (OS, `R` version, loaded packages) to the document. Add a section named *Reproducibility information* at the end of your document and display this information there.
+```
+
+```{block, opts.label = "clues"}
+You can use a `base R` function to access information about your session (function name hint 1) and another one for printing it (function name hint 2). You can exclude information about your `locale` settings there.
+```
+
+```{r session-info, solution = TRUE, eval=FALSE}
+sessionInfo() %>% 
+  print(locale = FALSE)
+```
+
+Once you are satisfied with the result (or when we tell you that the time for this exercise is over), knit the document, add the files to `Git`, commit your changes (adding a meaningful commit message), and push them to your remote repository.

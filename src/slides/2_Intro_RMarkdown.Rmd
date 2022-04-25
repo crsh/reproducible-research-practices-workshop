@@ -585,6 +585,12 @@ gapminder %>%
 
 ---
 
+# Excursus: Tables in `R Markdown`
+
+*Note*: If you want to [reference tables (or figures) `R Markdown` documents](https://bookdown.org/yihui/rmarkdown-cookbook/cross-ref.html), you need to use the [`bookdown`](https://bookdown.org/home/) output format `html_document2` (or `pdf_document2`).
+
+---
+
 # Knitting `r ji("yarn")`
 
 To compile the `R Markdown` document (in this case into a `HTML`) document, you simply need to click the `Knit` `r ji("yarn")` button. Doing this will generate the `HTML` file (by default) in the directory where the `.Rmd` file is stored. It will also open a preview window in *RStudio*.
@@ -595,7 +601,21 @@ include_graphics("./img/rmarkdown_preview.png")
 
 ---
 
-Knitting an `R Markdown` file
+# Knitting `r ji("yarn")`
+
+Instead of using the *Knit* button in the *RStudio GUI you can also use the `render()` command from the `rmarkdown` package.
+
+```{r knit, eval=FALSE}
+rmarkdown::render('my_report.Rmd', 
+                  output_file = '../output/my_report.html')
+```
+
+---
+
+# Knitting `r ji("yarn")`
+
+.small[
+Knitting an `R Markdown` file...
 
 1. Starts a new `R` session
     - No variables defined
@@ -607,6 +627,7 @@ Knitting an `R Markdown` file
     - Variables are available in subsequent chunks
     
 *Note*: For computationally intensive tasks, you can set the option `opts_chunk$set(cache = TRUE)`. It will cache chunk calls and their results as long as you do not edit them.
+]
 
 ---
 
@@ -672,6 +693,27 @@ include_graphics("./img/rstudio_visual_rmd.png")
 --
 
 - Set seeds for random number generators (`set.seed()`)
+
+---
+
+# Reproducibility information
+
+To further increase the reproducibility of your `R Markdown` document you can include some information about your `R` (e.g., the OS, `R` version, and packages that you have used).
+
+```{r repro-info, eval=FALSE}
+sessionInfo() %>% 
+  print()
+```
+
+---
+
+# Reproducibility information
+
+.small[
+```{r ref.label=c("repro-info")}
+
+```
+]
 
 ---
 

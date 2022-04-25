@@ -440,7 +440,7 @@ As we said in the introduction, we cannot cover all tools and topics related to 
 
 `renv`, `checkpoint`, `groundhog`, etc.
 
-&lt;!-- also show/remind of `sessionInfo()`? --&gt;
+&lt;!-- also show/remind of `sessionInfo()`? - is mentioned before in the R Markdown intro --&gt;
 
 ---
 
@@ -489,6 +489,13 @@ Using a *BinderHub* deployment like [*mybinder.org*](https://mybinder.org/) or [
 
 In order for this to work, you just need to add a few *Binder*-specific files to your repo (i.e., &quot;Binderize&quot; it).
 
+--
+
+.small[
+A platform that works in similar ways is [*PsychNotebook*](https://www.psychnotebook.org/)
+by the [Leibniz Institute for Psychology (ZPID)](https://leibniz-psychology.org/en/).
+]
+
 ---
 
 # Binderizing your `Git` repository
@@ -509,6 +516,10 @@ In the `runtime.txt` file, you need to specify a date indicating which [snapshot
 # Binderizing your `Git` repository
 
 In the `install.R` file, you need to specify which `R` packages to install as you normally would in an `.R` or `.Rmd` file (e.g., `install.packages(c(&quot;gapminder&quot;, &quot;tinytex&quot;))).
+
+.small[
+*Note*: You can also use the [`holepunch` package](https://karthik.github.io/holepunch/) to Binderize your `R` project hosted on *GitHub*.
+]
 
 --
 
@@ -623,6 +634,7 @@ There also several `R` other packages for facilitating the creation and maintena
 - [`WORCS`](https://cjvanlissa.github.io/worcs/index.html) - *Workflow for Open Reproducible Code in Science*
 - [`workflowr`](https://workflowr.github.io/workflowr/)
 - [`starter`](https://www.danieldsjoberg.com/starter/)
+- [`rrtools`](https://github.com/benmarwick/rrtools) - Tools for Writing Reproducible Research in R
 
 [*start your lab*](https://www.startyourlab.com/) also provides an [`R` Project Template](https://github.com/startyourlab/r-project-template).
 

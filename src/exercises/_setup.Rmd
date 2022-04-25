@@ -12,5 +12,5 @@ knitr::opts_template$set(
 ```
 
 ```{r klippy, echo = FALSE}
-klippy::klippy()
+klippy::klippy(position = c("top", "right"))
 ```
