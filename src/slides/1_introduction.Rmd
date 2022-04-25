@@ -140,7 +140,7 @@ knitr::kable(
 ```{r schedule Thur-2, echo = F}
 sharing_options <- data.frame(
   "When?" = c("12:30 - 13:30", "13:30 - 14:00", "14:00 - 14:15", "14:15 - 15:30", "15:30 - 16:00")
-  , "What?" = c("<i>Lunch break</i>", "Git & GitHub for collaboration - Part 2", "<i>Coffee break</i>", "Other tools & workflows for reproducible research", "Wrap-Up")
+  , "What?" = c("<i>Lunch break</i>", "Git & GitHub for collaboration - Part 2", "<i>Coffee break</i>", "Other tools & workflows", "Wrap-Up")
   , check.names = FALSE
 )
 knitr::kable(
@@ -155,21 +155,22 @@ knitr::kable(
 
 # What is reproducibility?
 
-class: center, middle
-
+.center[
 ```{r repro-tweet, echo=FALSE}
 tweetrmd::tweet_embed("https://twitter.com/jakevdp/status/519563939177197571")
 ```
+]
 
 ---
 
 # Why reproducibility matters
 
-class: center, middle
 
+.center[
 ```{r repro-lazy, echo=FALSE}
 tweetrmd::tweet_embed("https://twitter.com/hadleywickham/status/598532170160873472")
 ```
+]
 
 ---
 
