@@ -97,6 +97,10 @@ The minimum requirements are the following:
 1. Add a `binder` folder to your repo
 2. In that folder, create two files: `runtime.txt` & `install.R`
 
+.small[
+*Note*: It would also be ok to add those files to the root folder of your project.
+]
+
 ---
 
 # Binderizing your `Git` repository
@@ -144,7 +148,7 @@ Once the executable environment has been created, anyone who has the link to it 
 
 # Test drive `r ji("racing_car")`
 
-We have prepared a Binderized repo for you that you can test, clone, fork or whatever else you would like to to: https://github.com/jobreu/demo-repo
+We have prepared a Binderized repo for you that you can test, clone, fork or whatever else you would like to to: https://github.com/jobreu/binder-r-demo
 
 ---
 

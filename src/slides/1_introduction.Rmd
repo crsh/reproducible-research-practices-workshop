@@ -37,7 +37,7 @@ exclude: true
 
 - Senior researcher at [*GESIS - Leibniz Institute for the Social Sciences*](https://www.gesis.org/home) (Department Survey Data Curation) & (co-) leader of the team *Research Data & Methods* at the [*Center for Advanced Internet Studies*](https://www.cais.nrw/) (CAIS)
 
----
+--
 
   - Uses and effects of digital media
   - Computational methods
@@ -118,10 +118,29 @@ knitr::kable(
 ## Course schedule
 
 .center[**Thursday, April 28th, 2022**]
-```{r schedule Thur, echo = F}
+```{r schedule Thur-1, echo = F}
 sharing_options <- data.frame(
-  "When?" = c("09:00 - 10:15", "10:15 - 10:30", "10:30 - 11:30", "11:30 - 12:30", "12:30 - 13:30", "13:30 - 14:00", "14:00 - 14:15", "14:15 - 15:30", "15:30 - 16:00")
-  , "What?" = c("Introduction to Git & GitHub", "<i>Coffee break</i>", "Git in RStudio", "Git & GitHub for collaboration - Part 1", "<i>Lunch break</i>", "Git & GitHub for collaboration - Part 2", "<i>Coffee break</i>", "Other tools & workflows for reproducible research", "Wrap-Up")
+  "When?" = c("09:00 - 10:15", "10:15 - 10:30", "10:30 - 11:30", "11:30 - 12:30")
+  , "What?" = c("Introduction to Git & GitHub", "<i>Coffee break</i>", "Git in RStudio", "Git & GitHub for collaboration - Part 1")
+  , check.names = FALSE
+)
+knitr::kable(
+  sharing_options
+  , format = "html"
+  , align = "cc"
+  , escape = FALSE
+)
+```
+
+---
+
+## Course schedule
+
+.center[**Thursday, April 28th, 2022**]
+```{r schedule Thur-2, echo = F}
+sharing_options <- data.frame(
+  "When?" = c("12:30 - 13:30", "13:30 - 14:00", "14:00 - 14:15", "14:15 - 15:30", "15:30 - 16:00")
+  , "What?" = c("<i>Lunch break</i>", "Git & GitHub for collaboration - Part 2", "<i>Coffee break</i>", "Other tools & workflows for reproducible research", "Wrap-Up")
   , check.names = FALSE
 )
 knitr::kable(
@@ -136,6 +155,8 @@ knitr::kable(
 
 # What is reproducibility?
 
+class: center, middle
+
 ```{r repro-tweet, echo=FALSE}
 tweetrmd::tweet_embed("https://twitter.com/jakevdp/status/519563939177197571")
 ```
@@ -143,6 +164,8 @@ tweetrmd::tweet_embed("https://twitter.com/jakevdp/status/519563939177197571")
 ---
 
 # Why reproducibility matters
+
+class: center, middle
 
 ```{r repro-lazy, echo=FALSE}
 tweetrmd::tweet_embed("https://twitter.com/hadleywickham/status/598532170160873472")
@@ -161,7 +184,7 @@ We will discuss some of them in the following.
 
 3-dimensional concept space
 
-```{r, three-dims, out.width = "75%", echo = F}
+```{r, three-dims, out.width = "50%", echo = F}
 include_graphics("./img/trr-cube.jpg")
 ```
 <small><small>By Christof Schöch. Source: https://dh-trier.github.io/trr/#/2/1</small></small>
@@ -179,7 +202,7 @@ include_graphics("./img/turing_way_parts.jpg")
 
 # *The Turing Way* definition
 
-```{r, turing-def, out.width = "75%", echo = F}
+```{r, turing-def, out.width = "80%", echo = F}
 include_graphics("./img/reproducible-matrix.jpg")
 ```
 <small><small>Source: https://the-turing-way.netlify.app/reproducible-research/overview/overview-definitions.html</small></small>
@@ -188,7 +211,7 @@ include_graphics("./img/reproducible-matrix.jpg")
 
 # Replication or reproduction?
 
-```{r, other-def, out.width = "75%", echo = F}
+```{r, other-def, out.width = "50%", echo = F}
 include_graphics("./img/replication-typology-a.jpg")
 ```
 <small><small>By Christof Schöch. Source: https://dh-trier.github.io/trr/#/2/2</small></small>
@@ -232,6 +255,7 @@ If you feel comfortable with that, feel free to share screenshots of some of you
 
 # Sharing is caring
 
+.small[
 One prerequisite for research being reproducible (by others) is sharing research materials. There are many parts of their work that researchers can share to increase the reproducibility as well as the (potential) replicability of their work (see Klein et al., 2018). Four main types of output are:
 
 1. Data
@@ -239,7 +263,8 @@ One prerequisite for research being reproducible (by others) is sharing research
 3. Other study materials (e.g., questionnaires or stimulus materials)
 4. (Detailed) Information about the study procedure
 
-.small[Notably, all of these outputs should be well-documented (e.g., via ReadMe files, metadata or comments in code).]
+Notably, all of these outputs should be well-documented (e.g., via ReadMe files, metadata or comments in code).
+]
 
 ---
 
@@ -287,7 +312,7 @@ access to a particular set of users)
 - have persistence guarantees for long-term access
 - store data in accordance with local legislation (e.g. the [GDPR](https://gdpr.eu/) in Europe)
 
-.small[See see [Klein et al., (2018)](https://doi.org/10.1525/collabra.158) for further details
+.small[See [Klein et al., (2018)](https://doi.org/10.1525/collabra.158) for further details
 ]
 
 ---
