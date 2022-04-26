@@ -40,13 +40,11 @@ One solution for producing dynamic documents is `R Markdown`.
 `R Markdown` is...
 
 - an authoring framework
-
 --
 
 - a document format (`.Rmd`)
 
 --
-
 - an [`R` package](https://github.com/rstudio/rmarkdown)
 
 ---
@@ -85,7 +83,6 @@ include_graphics("./img/reproducibility_court.png")
 In a nutshell, with `R Markdown` it is possible to generate **reproducible** dynamic documents which...
 
 - (can) include text, code, and output from that code
-
 - render to many different output formats, including:
   + `HTML`
   + `Markdown`
@@ -104,7 +101,7 @@ For a [full list of supported output formats](https://rmarkdown.rstudio.com/docs
 .small[
 There are quite a few packages that offer extension output formats for `R Markdown`. For example:
 
-- [`xaringan`](https://github.com/yihui/xaringan) for presentations - which is what we use for our slides
+- [`xaringan`](https://github.com/yihui/xaringan) for presentations---which is what we use for our slides
 - [`bookdown`](https://bookdown.org/) for books (but also for websites)
 - [`blogdown`](https://bookdown.org/yihui/blogdown/) for websites
 - [`vitae`](https://github.com/mitchelloharawild/vitae) for (data-based) Résumés and CVs
@@ -138,7 +135,7 @@ In the next session, we will discuss reference management with `R Markdown` and 
 
 If you use *RStudio* you only need to install the `R Markdown` package:
 
-```{r rmarkdown-requirements, eval = F}
+```{r rmarkdown-requirements, eval = FALSE, echo = TRUE}
 install.packages("rmarkdown")
 ```
 
@@ -154,15 +151,15 @@ If you want to generate PDF output with `R Markdown`, you need $\LaTeX$. If you 
 
 # PDF output with `R Markdown`
 
-If you do not have $\LaTeX$ installed, the easiest option - especially if you do not want to use plain $\LaTeX$ - is installing [`TinyTeX`](https://yihui.org/tinytex/), which is "a lightweight, cross-platform, portable, and easy-to-maintain LaTeX distribution based on TeX Live". You can do that using the [`tinytex` package](https://cran.r-project.org/web/packages/tinytex/index.html). It also takes care of installing missing $\LaTeX$ packages on the fly when knitting documents.
+If you do not have $\LaTeX$ installed, the easiest option---especially if you do not want to use plain $\LaTeX$---is installing [`TinyTeX`](https://yihui.org/tinytex/), which is "a lightweight, cross-platform, portable, and easy-to-maintain LaTeX distribution based on TeX Live". You can do that using the [`tinytex` package](https://cran.r-project.org/web/packages/tinytex/index.html). It also takes care of installing missing $\LaTeX$ packages on the fly when knitting documents.
 
-```{r tinytex, eval = F}
+```{r tinytex, eval = FALSE, echo = TRUE}
 install.packages('tinytex')
 
 tinytex::install_tinytex()
 ```
 
-*Note*: You can also install $\LaTeX$ packages manually using the `tlmgr_install()` function from the `tinytex` package.
+<!-- *Note*: You can also install $\LaTeX$ packages manually using the `tlmgr_install()` function from the `tinytex` package. -->
 
 ---
 
@@ -213,7 +210,7 @@ output: html_document
 .small[
 [YAML](https://yaml.org/) stands for "YAML Ain't Markup Language" (formerly known as "Yet Another Markup Language"). The YAML header in `R Markdown` documents contains metadata for the document. It provides human-readable configuration information and can include a large variety of key:values-pairs to specify what the document should look like. It needs to be at the beginning of the document and start and end with `---`.
 
-*Note*: There is an `R` package called [`ymlthis`](https://ymlthis.r-lib.org/) for creating extended YAML headers in and with `R`.
+<!-- *Note*: There is an `R` package called [`ymlthis`](https://ymlthis.r-lib.org/) for creating extended YAML headers in and with `R`. -->
 ]
 
 ---
@@ -221,7 +218,7 @@ output: html_document
 # YAML header
 
 
-`YAML` data structures translate to (named) `list` objects in `R`
+`YAML` data structures translate to `list` objects in `R`
 
 .pull-left-45[
 ```{yaml, echo = TRUE}
@@ -316,6 +313,8 @@ abstract: |
   New lines are preserved, but note the indentation!
 ```
 
+*Note:* All lines must be indented!
+
 ---
 
 # YAML header
@@ -369,25 +368,29 @@ While it is not necessary to know `Markdown` to use `R Markdown` (though if you 
 .pull-left[
 ### Syntax
 
+```txt
+ *italics*
+ 
+ 
+ **bold**
+ 
+ 
+ ***bold & italics***
+ 
+ 
+ ~~strikethrough~~
 ```
-***bold**
 
-**italics*
-
-****bold & italics***
-
-~~strikethrough~~
-```
 ]
 
 .pull-right[
 ### Output
 
-**bold**
-
 *italics*
 
-***bold & italics***
+<span style="font-weight:bold;">bold</span>
+
+<span style="font-weight:bold;"><i>bold & italics</i></span>
 
 ~~strikethrough~~
 ]
@@ -399,7 +402,7 @@ While it is not necessary to know `Markdown` to use `R Markdown` (though if you 
 .pull-left[
 ### Syntax
 
-```
+```txt
 # Header 1
 
 ## Header 2
@@ -437,7 +440,7 @@ A new paragraph is started with a blank line before the text.
 .pull-left[
 ### Syntax
 
-```
+```markdown
 - unordered list
   + sub-item
 
@@ -467,12 +470,15 @@ A new paragraph is started with a blank line before the text.
 .pull-left[
 ### Syntax
 
-```
+```markdown
 `library(tidyverse)`
 
-[link](https://www.gesis.org)
+
+[link](https://gesis.org)
+
 
 > block quote
+
 
 ![R Logo](./img/Rlogo.png) 
 ```
@@ -483,7 +489,7 @@ A new paragraph is started with a blank line before the text.
 
 `library(tidyverse)`
 
-[link](https://www.gesis.org)
+[link](https://gesis.org)
 
 > block quote
 
@@ -522,7 +528,9 @@ You can insert a code chunk via the `Insert` button (select `R`) or using the ke
 
 # Code chunks
 
-It is good practice to name code chunks. In the example on the previous slide `{r cars}` specifies the language for the code `r` and a name `cars`. By naming code chunks it is, e.g., possible to reference them in other code chunks and they will also appear in the interactive ToC at the bottom of the tab for the `R Markdown` document. Chunk names may never be used twice in a single document and should not include spaces or underscores.
+It is good practice to name code chunks. In the example on the previous slide `{r cars}` specifies the language for the code `r` and a name `cars`. By naming code chunks it is, e.g., possible to reference them in other code chunks and they will also appear in the interactive ToC at the bottom of the tab for the `R Markdown` document.
+
+*Chunk names may never be used twice in a single document and should not include spaces or underscores.*
 
 ---
 
@@ -575,21 +583,20 @@ As with many things in `R`, there are many options for creating tables that can 
 # Excursus: Tables in `R Markdown`
 
 ```{r kable, eval=FALSE, echo=TRUE}
-library(tidyverse) # for wrangling and piping
+library(dplyr) # for wrangling
 library(gapminder) # for exemplary data
 library(kableExtra) # for table formatting
 
-gapminder %>% 
+gapminder |>
   filter(year == 2007,
-         continent == "Europe") %>%
+         continent == "Europe") |>
   select(country,
          lifeExp,
          pop,
-         gdpPercap) %>% 
-  head(11) %>% 
-  knitr::kable() %>% 
+         gdpPercap) |>
+  head(10) |>
+  knitr::kable() |>
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
-  
 ```
 
 ---
@@ -694,19 +701,12 @@ include_graphics("./img/rstudio_visual_rmd.png")
 
 - Load all packages in the first code chunk
     - Never include `install.packages()`
-    
 --
-
 - Use relative paths or load files from a permanent location
     - Do not use `setwd()`
-    
----
-
-# Some best practices for `R Markdown`
-
+--
 - Use meaningful chunk names
 - Keep `R` code close to the corresponding prose
-
 --
 
 - Set seeds for random number generators (`set.seed()`)
@@ -717,9 +717,8 @@ include_graphics("./img/rstudio_visual_rmd.png")
 
 To further increase the reproducibility of your `R Markdown` document you can include some information about your `R` (e.g., the OS, `R` version, and packages that you have used).
 
-```{r repro-info, eval=FALSE}
-sessionInfo() %>% 
-  print()
+```{r repro-info, eval=FALSE, echo = TRUE}
+sessionInfo()
 ```
 
 ---
@@ -771,7 +770,7 @@ The [`R Markdown` chapter](https://r4ds.had.co.nz/r-markdown.html) in *R for Dat
 BUT... there is a potential (or likely?) successor in the wings:
 "[Quarto](https://quarto.org/) is a multi-language, next generation version of R Markdown from RStudio, with many new features and capabilities" 
 
---
+---
 
 # Outlook: Quarto
 
@@ -780,3 +779,5 @@ BUT... there is a potential (or likely?) successor in the wings:
 - even more output formats
 
 For further details check out the [Quarto documentation](https://quarto.org/) and this [blog post by Alison Hill](https://www.apreshill.com/blog/2022-04-we-dont-talk-about-quarto/).
+
+*Note:* For `R`, Quarto uses R Markdown under the hood, so everything you learn here is fully compatible with Quarto.

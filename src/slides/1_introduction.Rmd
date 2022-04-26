@@ -38,7 +38,6 @@ exclude: true
 - Senior researcher at [*GESIS - Leibniz Institute for the Social Sciences*](https://www.gesis.org/home) (Department Survey Data Curation) & (co-) leader of the team *Research Data & Methods* at the [*Center for Advanced Internet Studies*](https://www.cais.nrw/) (CAIS)
 
 --
-
   - Uses and effects of digital media
   - Computational methods
   - Data management & Open science
@@ -48,11 +47,8 @@ exclude: true
 # About you
 
 - What's your name?  
-
 - What is your research area?  
-
 - What are your experiences with reproducible research (and the tools we cover in this course)?
-
 - What are your expectations for this course?
 
 ---
@@ -61,12 +57,12 @@ exclude: true
 
 Slides and material are available at
 
-.center[https://github.com/crsh/reproducible-research-practices-workshop]
+.center[
+http://github.com/crsh/reproducible-research-practices-workshop
+]
 
 - The workshop consists of a combination of lectures and hands-on exercises
-
 - Feel free to ask questions anytime
-
 - We will have frequent breaks (please remind us if necessary)
 
 ---
@@ -99,16 +95,18 @@ Creating...
 ## Course schedule
 
 .center[**Wednesday, April 27th, 2022**]
+
 ```{r schedule Wed, echo = F}
 schedule <- data.frame(
   "When?" = c("10:00 - 12:00", "12:00 - 13:00", "13:00 - 15:00", "15:00 - 15:30", "15:30 - 17:30")
+  , "&nbsp;" = "&nbsp;"
   , "What?" = c("Introduction: Reproducible Workflows", "<i>Lunch break</i>", "Introduction to R Markdown", "<i>Coffee break</i>", "papaja")
   , check.names = FALSE
 )
 knitr::kable(
   schedule
   , format = "html"
-  , align = "cc"
+  , align = "ll"
   , escape = FALSE
 )
 ```
@@ -118,16 +116,18 @@ knitr::kable(
 ## Course schedule
 
 .center[**Thursday, April 28th, 2022**]
+
 ```{r schedule Thur-1, echo = F}
 sharing_options <- data.frame(
   "When?" = c("09:00 - 10:15", "10:15 - 10:30", "10:30 - 11:30", "11:30 - 12:30")
+  , "&nbsp;" = "&nbsp;"
   , "What?" = c("Introduction to Git & GitHub", "<i>Coffee break</i>", "Git in RStudio", "Git & GitHub for collaboration - Part 1")
   , check.names = FALSE
 )
 knitr::kable(
   sharing_options
   , format = "html"
-  , align = "cc"
+  , align = "ll"
   , escape = FALSE
 )
 ```
@@ -140,13 +140,14 @@ knitr::kable(
 ```{r schedule Thur-2, echo = F}
 sharing_options <- data.frame(
   "When?" = c("12:30 - 13:30", "13:30 - 14:00", "14:00 - 14:15", "14:15 - 15:30", "15:30 - 16:00")
+  , "&nbsp;" = "&nbsp;"
   , "What?" = c("<i>Lunch break</i>", "Git & GitHub for collaboration - Part 2", "<i>Coffee break</i>", "Other tools & workflows", "Wrap-Up")
   , check.names = FALSE
 )
 knitr::kable(
   sharing_options
   , format = "html"
-  , align = "cc"
+  , align = "ll"
   , escape = FALSE
 )
 ```
@@ -218,12 +219,14 @@ include_graphics("./img/replication-typology-a.jpg")
 <small><small>By Christof Schöch. Source: https://dh-trier.github.io/trr/#/2/2</small></small>
 
 ---
-
+exclude: true
 <!-- Frederik takes over from here -->
 
-# Zooming in (on experimental research)
+# Zooming in
 
-Add figure from papaja workshop advanced slide 19 here (Frederik to continue with a focus on computational reproducibility)
+```{r zoomable-plot, out.height = "95%", out.extra='id="zoom-margin"'}
+knitr::include_graphics("img/reproducibility-schema-1.png")
+```
 
 ---
 
@@ -237,9 +240,9 @@ Add figure from papaja workshop advanced slide 19 here (Frederik to continue wit
 
 There are quite a few practices that researchers can adopt to increase the reproducibility of their work.
 
-- Project-oriented workflow (for `R`, see, e.g., https://www.tidyverse.org/blog/2017/12/workflow-vs-script/)
-- Folder structures (see https://psych-transparency-guide.uni-koeln.de/folder-structure.html)
-- Naming things (https://betterprogramming.pub/string-case-styles-camel-pascal-snake-and-kebab-case-981407998841?gi=3295916e039)
+- [Project-oriented workflow](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/)
+- [Folder structures](https://psych-transparency-guide.uni-koeln.de/folder-structure.html)
+- [Naming things](https://betterprogramming.pub/string-case-styles-camel-pascal-snake-and-kebab-case-981407998841?gi=3295916e039)
 - ...
 
 <!-- also mention/discuss file paths here? relative vs. absolute -->
@@ -264,7 +267,7 @@ One prerequisite for research being reproducible (by others) is sharing research
 3. Other study materials (e.g., questionnaires or stimulus materials)
 4. (Detailed) Information about the study procedure
 
-Notably, all of these outputs should be well-documented (e.g., via ReadMe files, metadata or comments in code).
+Notably, all of these outputs should be well-documented (e.g., via README files, metadata or comments in code).
 ]
 
 ---
@@ -286,7 +289,7 @@ There are many different ways in which researchers can share their data and code
 The paper by [Klein et al. (2018)](https://doi.org/10.1525/collabra.158) provides an overview of public repositories that hold psychological data.<sup>1</sup>
 A good tool for finding suitable repositories is the [*Registry of Research Data Repositories*](https://www.re3data.org/).
 
-<small><small>[1] However, parts of this overview have become somewhat outdated since the paper was published.</small></small>
+<small><small>[1] However, parts of this overview have inevitably become somewhat outdated since the paper was published.</small></small>
 
 
 ---
@@ -340,13 +343,13 @@ As you probably already know, there are lots of different tools and workflows th
 
 As stated before, we will focus on the following tools for reproducible research in this workshop:
 
-- `Git` & *GitHub*/*GitLab*
-- `R Markdown`
+- Git & *GitHub*/*GitLab*
+- R Markdown
 
 We will focus on using them via *RStudio*.
 
 .small[
-*Note*: In the outlook part, we will also briefly introduce some other/additional tools.
+*Note:* In the outlook part, we will also briefly introduce some other/additional tools.
 ]
 
 ---

@@ -28,11 +28,11 @@ Upon course completion, participants should
 
 ## Prerequisites
 
-Participants should have some basic knowledge of `R` have used *RStudio* before.
+Participants should have some basic knowledge of `R` and some experience with *RStudio*.
 
-For the hands-on parts of the workshop, you need to install [`R`](https://www.r-project.org/) (version 4.0.0 or higher), [`Git`](https://git-scm.com/), [*RStudio* (Desktop)](https://www.rstudio.com/products/rstudio/download/), and the following `R` packages: [`tinytex`](https://yihui.org/tinytex/), [`papaja`](https://github.com/crsh/papaja). 
+For the hands-on parts of the workshop, you need to install [`R`](https://www.r-project.org/) (version 4.0.0 or higher), [`Git`](https://git-scm.com/), [*RStudio*](https://www.rstudio.com/products/rstudio/download/), and the `R` packages [`tinytex`](https://yihui.org/tinytex/) and [`papaja`](https://github.com/crsh/papaja). 
 
-You should also set up a [*GitHub*](https://github.com/) account as well as a *GitLab* account for the instance hosted by your institution (if that is available and you you want to use it). For some help help with setting up `Git` and *GitHub* for use with *RStudio*, you can check out [*Happy Git and GitHub for the useR*](https://happygitwithr.com/).
+You should also set up a [*GitHub*](https://github.com/) account or an account for the *GitLab* instance hosted by your institution (if that is available and you you want to use it). To set up `Git` and *GitHub* for use with *RStudio*, refer to [*Happy Git and GitHub for the useR*](https://happygitwithr.com/).
 
 
 ## Modules
@@ -51,5 +51,3 @@ You should also set up a [*GitHub*](https://github.com/) account as well as a *G
 
 The workflow recommendations in this workshop are based on Klein, O., Hardwicke, T. E., Aust, F., Breuer, J., Danielsson, H., Hofelich Mohr, A., … Frank, M. C. (2018). A Practical Guide for Transparency in Psychological Science. Collabra: Psychology, 4(1). doi: [10.1525/collabra.158](https://doi.org/10.1525/collabra.158) ([Supplementary material](
 http://psych-transparency-guide.uni-koeln.de/))
-
-Icons by [Icons8](https://icons8.com), [CC-BY-ND 3.0](https://creativecommons.org/licenses/by-nd/3.0/).

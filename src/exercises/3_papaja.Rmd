@@ -1,5 +1,6 @@
 ---
-title     : "Introduction to papaja"
+title     : "Exercises: Introduction to papaja"
+subtitle  : "Reproducible research workflows for psychologists"
 ---
 
 ```{r child = "_setup.Rmd"}
@@ -89,7 +90,7 @@ classoption: "doc"
 
 ## Citations
 
-```{block, box.title = "Exercise 6", box.body = list(fill = "white"), box.icon = "fa-star"}
+```{block, box.title = "Exercise 4", box.body = list(fill = "white"), box.icon = "fa-star"}
 Copy the introduction of the example manuscript into your document. Use the visual editor or the RStudio addin [`citr`](https://github.com/crsh/citr) to insert citations.
 ```
 
@@ -97,7 +98,7 @@ Copy the introduction of the example manuscript into your document. Use the visu
 Don't forget to add the bibliography file(s) to your YAML front matter.
 ```
 
-```{block, box.title = "Solution 6", box.icon = "fa-check", solution = TRUE}
+```{block, box.title = "Solution 4", box.icon = "fa-check", solution = TRUE}
 Add the the bibliography files to the YAML front matter:
 
 <pre class="yaml">
@@ -114,7 +115,7 @@ One of the most frequently utilized paradigms in the field of implicit learning 
 
 ## Report statistical analyses
 
-```{block, box.title = "Exercise 4", box.body = list(fill = "white"), box.icon = "fa-star"}
+```{block, box.title = "Exercise 5", box.body = list(fill = "white"), box.icon = "fa-star"}
 Locate and open the R-script `analyses.R` and data folder `data` accompanying the example manuscript in the folder `exercises/3_papaja_example_manuscript`.
 
 Use `apa_print()` to report the results of one or more analysis using in-line code chunks in your **papaja** document.
@@ -126,7 +127,7 @@ Use the section comments (e.g., `## ----setup----`) to split the R script into m
 You may omit parts of the R script that are not necessary for the analysis you are trying to insert into your document.
 ```
 
-```{block, box.title = "Solution 4", box.icon = "fa-check", solution = TRUE}
+```{block, box.title = "Solution 5", box.icon = "fa-check", solution = TRUE}
 The following is a minimal example of how to report one hypothesis test of one of the analyses.
 
 <pre class="markdown">
@@ -189,7 +190,7 @@ apa_lineplot(
 
 ## Rendering tables
 
-```{block, box.title = "Exercise 5", box.body = list(fill = "white"), box.icon = "fa-star"}
+```{block, box.title = "Exercise 6", box.body = list(fill = "white"), box.icon = "fa-star"}
 Locate the section `proportion-correct-table-appendix` at the end of the R-script `analyses.R`.
 
 Render the table of descriptive statistics for the generation task in your **papaja** document with `apa_table()`.
@@ -199,7 +200,7 @@ Render the table of descriptive statistics for the generation task in your **pap
 Use the arguments `col_spanners` and `midrules` to structure the table. To add a caption, use the argument `caption`. See `?apa_table`.
 ```
 
-```{block, box.title = "Solution 5", box.icon = "fa-check", solution = TRUE}
+```{block, box.title = "Solution 6", box.icon = "fa-check", solution = TRUE}
 <pre class="markdown">
 &#96;&#96;&#96;{r proportion-correct-table}
 tmp <- generation[
@@ -294,7 +295,7 @@ apa_table(
 
 ## Captions and cross-referencing
 
-```{block, box.title = "Exercise 6", box.body = list(fill = "white"), box.icon = "fa-star"}
+```{block, box.title = "Exercise 7", box.body = list(fill = "white"), box.icon = "fa-star"}
 Use a text-reference for your table caption and reference the table in the body of the text.
 ```
 
@@ -302,7 +303,7 @@ Use a text-reference for your table caption and reference the table in the body 
 Text reference definitions must be on their own line, surrounded by empty lines, and start with `(ref:reference-name)`.
 ```
 
-```{block, box.title = "Solution 6", box.icon = "fa-check", solution = TRUE}
+```{block, box.title = "Solution 7", box.icon = "fa-check", solution = TRUE}
 <pre class="markdown">
 <div class="highlight">(ref:table-caption) Means ($M$) and standard errors ($\mathit{SE}$) of proportion of correctly generated second-order conditionals (SOCs).</div>
   

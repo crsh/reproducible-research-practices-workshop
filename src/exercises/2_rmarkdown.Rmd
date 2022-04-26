@@ -16,29 +16,29 @@ Please also feel free to change and play around with any of the other parameters
 
 # Exercises
 
-```{block, box.title = "1", box.body = list(fill = "white"), box.icon = "fa-star"}
+```{block, box.title = "Exercise 1", box.body = list(fill = "white"), box.icon = "fa-star"}
 Create a new `R Markdown` document, give it a meaningful name, and save it somewhere in your project folder where you will find it. The output format that we want to use for this exercise is `HTML`
 ```
 
-```{block, opts.label = "clues"}
+```{block, opts.label = "clues", box.icon = "fa-lightbulb"}
 The easiest way to create a new `R Markdown` document is through the *RStudio*  GUI.
 ```
 
-```{block, solution = TRUE}
+```{block, box.title = "Solution 1", solution = TRUE, box.icon = "fa-check"}
 You can create a new `R Markdown` document in *RStudio* via *File* -> *New File* -> *R Markdown* in the menu.
 ```
 
-```{block, box.title = "2", box.body = list(fill = "white"), box.icon = "fa-star"}
+```{block, box.title = "Exercise 2", box.body = list(fill = "white"), box.icon = "fa-star"}
 Create/edit the `YAML` header of the document, so that it includes the following: a meaningful title, an author name, the current date.
 
 We also want a table of contents with two levels and numbered headings.
 ```
 
-```{block, opts.label = "clues"}
+```{block, opts.label = "clues", box.icon = "fa-lightbulb"}
 You can already specify some parts of the `YAML` header through the *RStudio* GUI when creating a new document. To add the current date, you can use inline `R` code in the respective field within the `YAML` header. Remember that you need to enclose the `YAML` header in --- .
 ```
 
-```{block, solution = TRUE}
+```{block, box.title = "Solution 2", solution = TRUE, box.icon = "fa-check"}
 title: "Exploring Gapminder data"
 author: "Your name"
 date: "`r Sys.Date()`"
@@ -49,7 +49,7 @@ output:
     number_sections: true
 ```
 
-```{block, box.title = "3", box.body = list(fill = "white"), box.icon = "fa-star"}
+```{block, box.title = "Exercise 3", box.body = list(fill = "white"), box.icon = "fa-star"}
 Include a setup chunk in your document. Use this chunk to set the `knitr` options so that the code is displayed in the output document but messages are suppressed.
 
 Three other things we want to do in the setup chunk:
@@ -59,7 +59,7 @@ Three other things we want to do in the setup chunk:
 - load the packages `gapminder` and `tidyverse`
 ```
 
-```{block, opts.label = "clues"}
+```{block, opts.label = "clues", box.icon = "fa-lightbulb"}
 For the general options (i.e., the one not related to `knitr`), you can check `?options`.
 
 You probably do not want to include the chunk options as code output in the resulting `HTML` document. You can achieve this by setting the chunk option `include` to `FALSE` for the setup chunk.
@@ -67,14 +67,14 @@ You probably do not want to include the chunk options as code output in the resu
 Of course, if you want to use additional/other packages, you can also add those to the setup chunk.
 ```
 
-```{block, solution = TRUE}
+```{block, box.title = "Solution 3", solution = TRUE, box.icon = "fa-check"}
 Chunk options: {r setup, include=FALSE}
 (for the code to be included in this chunk, see the following solution box)
 
 *NB*: In your `R Markdown` document, a code block needs to start and end with three backticks. Remember that in *RStudio* you can use the keyboard shortcut <kbd>Ctrl + Alt + I</kbd> (*Windows* & *Linux*)/<kbd>Cmd + Option + I</kbd> (*Mac*) for inserting code chunks.
 ```
 
-```{r setup, solution = TRUE, eval=FALSE}
+```{r setup, box.title = "Solution 3", solution = TRUE, box.icon = "fa-check", eval=FALSE}
 knitr::opts_chunk$set(echo = TRUE,
                       message = FALSE)
 
@@ -85,7 +85,7 @@ library(tidyverse)
 library(gapminder)
 ```
 
-```{block, box.title = "4", box.body = list(fill = "white"), box.icon = "fa-star"}
+```{block, box.title = "Exercise 4", box.body = list(fill = "white"), box.icon = "fa-star"}
 Now you can start to create some [content](https://www.youtube.com/watch?v=9Tnux7K3MOQ) for your document. You can get as creative as you want, but the document should at least include the following:
 
 - two different levels of headings
@@ -101,25 +101,25 @@ Now you can start to create some [content](https://www.youtube.com/watch?v=9Tnux
 - at least one figure
 ```
 
-```{block, opts.label = "clues"}
+```{block, opts.label = "clues", box.icon = "fa-lightbulb"}
 To check if everything works the way you expect, you should knit the document periodically. We have created an exemplary `.Rmd` file using the *Gapminder* data. You can find this in the `exercises` folder.
 
 Please note that in the exemplary `R Markdown` document we use the [`dplyr` package](https://dplyr.tidyverse.org/) from the [`tidyverse`](https://www.tidyverse.org/) for data wrangling and [`ggplot2`](https://ggplot2.tidyverse.org/) for plotting. If you are not used to that or have other preferences, feel free to use `base R` or other packages of your choosing instead.
 ```
 
-```{block, solution = TRUE}
+```{block, box.title = "Solution 4", solution = TRUE, box.icon = "fa-check"}
 Have a look at `gapminder_example.Rmd` and the resulting `gapminder_example.html` for some examples and inspiration.
 ```
 
-```{block, box.title = 5, box.body = list(fill = "white"), box.icon = "fa-star"}
+```{block, box.title = "Exercise 5", box.body = list(fill = "white"), box.icon = "fa-star"}
 To further increase reproducibility, let's add some information about your `R` session (OS, `R` version, loaded packages) to the document. Add a section named *Reproducibility information* at the end of your document and display this information there.
 ```
 
-```{block, opts.label = "clues"}
+```{block, opts.label = "clues", box.icon = "fa-lightbulb"}
 You can use a `base R` function to access information about your session (function name hint 1) and another one for printing it (function name hint 2). You can exclude information about your `locale` settings there.
 ```
 
-```{r session-info, solution = TRUE, eval=FALSE}
+```{r session-info, box.title = "Solution 5", solution = TRUE, box.icon = "fa-check", eval=FALSE}
 sessionInfo() %>% 
   print(locale = FALSE)
 ```
