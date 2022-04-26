@@ -71,7 +71,7 @@ From the [*BinderHub GitHub* repository](https://github.com/jupyterhub/binderhub
 
 # What is *BinderHub*?
 
-```{r binger-img, out.width = "100%", echo=FALSE}
+```{r binger-img, out.width = "125%", echo=FALSE}
 include_graphics("./img/binderhub.png")
 ```
 
@@ -113,9 +113,11 @@ In the `runtime.txt` file, you need to specify a version number and date, indica
 
 # Binderizing your `Git` repository
 
-In the `install.R` file, you need to specify which `R` packages to install as you normally would in an `.R` file (e.g., `install.packages(c("gapminder", "tinytex"))). *CRAN* ackages are installed through the [*R Studio Package Manager*](https://packagemanager.rstudio.com/client/#/).
+In the `install.R` file, you need to specify which `R` packages to install as you normally would in an `.R` file (e.g., `install.packages(c("gapminder", "tinytex"))`). *CRAN* ackages are installed through the [*R Studio Package Manager*](https://packagemanager.rstudio.com/client/#/).
 
---
+---
+
+# Binderizing your `Git` repository
 
 There are many more options for changing or extending the executable environment. Two good resources to learn more are the [*Turing Way* guide *Zero-toBinder*](https://the-turing-way.netlify.app/communication/binder/zero-to-binder.html) or the [*Binder* example for `R`](https://github.com/binder-examples/r). 
 
@@ -141,7 +143,7 @@ Once the executable environment has been created, anyone who has the link to it 
 
 # Things to note when using *Binder*
 
-.small[
+.smaller[
 1. The *BinderHub* deployments are hosted on free-to-use servers (sometimes by academic institutions), so you might experience some "hiccups" in deploying and using the executable environments (e.g., if the service is heavily used at the time).
 2. Related to that, the amount of RAM is limited for the executable environment.
 3. One thing you need to consider is how to share your data when using *Binder*. The [*Turing Way* guide *Zero-toBinder*](https://the-turing-way.netlify.app/communication/binder/zero-to-binder.html) has some suggestions for that.
@@ -246,9 +248,9 @@ There also several `R` other packages for facilitating the creation and maintena
 
 There are a few things to consider for choosing the right tools:
 
-- Your habits, knowledge, and preferences (as well as those of your collaborators)
-- Your goals and their relative importance: E.g., computational reproducibility, reusability, replicability
-- Your audience: Future you, collaborators, the academic community, the general public
+- Your **habits, knowledge, and preferences** (as well as those of your collaborators)
+- Your **goals** and their relative importance: E.g., computational reproducibility, reusability, replicability
+- Your **audience**: Future you, collaborators, the academic community, the general public
 
 ---
 
@@ -265,6 +267,10 @@ But don't despair! There usually are solutions ([*Stack Overflow*](https://stack
 # Showing appreciation `r ji("clapping_hands")`
 
 The creation and maintenance of FOSS takes a lot of time and this is rarely recognized as much as it should be. One thing we can do to change this is to at least give credit where credit is due and cite the tools and resources that we use.
+
+---
+
+# Showing appreciation `r ji("clapping_hands")`
 
 ```{r cite, echo=TRUE}
 citation("papaja")
