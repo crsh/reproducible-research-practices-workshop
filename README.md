@@ -41,7 +41,7 @@ You should also set up a [*GitHub*](https://github.com/) account as well as a *G
 | ---: | :---- | ------: | ------ | --------- | --------- |
 | 1 | Introduction | ~ 2 hrs | [Slides](https://crsh.github.io/reproducible-research-practices-workshop/slides/1_introduction.html) | - | - |
 | 1 | `R Markdown` | ~ 2 hrs | [Slides](https://crsh.github.io/reproducible-research-practices-workshop/slides/2_Intro_RMarkdown.html) | [Exercises](https://crsh.github.io/reproducible-research-practices-workshop/exercises/2_rmarkdown_question.html) | [Solutions](https://crsh.github.io/reproducible-research-practices-workshop/exercises/2_rmarkdown_solution.html) |
-| 1 | `papaja` | ~ 1.5 hrs | | | |
+| 1 | `papaja` | ~ 1.5 hrs | [Slides](https://crsh.github.io/reproducible-research-practices-workshop/slides/3_papaja.html) | [Exercises](https://crsh.github.io/reproducible-research-practices-workshop/exercises/3_papaja_question.html) | [Solutions](https://crsh.github.io/reproducible-research-practices-workshop/exercises/3_papaja_solution.html) |
 | 2 | `Git` & *GitHub* | ~ 1 hr | | | |
 | 2 | `Git` & *RStudio* | ~ 1 hr | [Slides](https://crsh.github.io/reproducible-research-practices-workshop/slides/5_Git-RStudio.html) | [Exercises](https://crsh.github.io/reproducible-research-practices-workshop/exercises/5_git-rstudio_question.html) | [Solutions](https://crsh.github.io/reproducible-research-practices-workshop/exercises/5_git-rstudio_solution.html) |
 | 2 | Collaboration with `Git` and *GitHub* | ~ 1.5 hrs | | | |
