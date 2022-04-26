@@ -735,9 +735,9 @@ sessionInfo() %>%
 
 class: center, middle
 
-# [Exercise](https://crsh.github.io/reproducible-research-practices-workshop/exercises/1_rmarkdown_question.html) time `r ji("weight_lifting_woman")``r ji("muscle")``r ji("running_man")``r ji("biking_man")`
+# [Exercise](https://crsh.github.io/reproducible-research-practices-workshop/exercises/2_rmarkdown_question.html) time `r ji("weight_lifting_woman")``r ji("muscle")``r ji("running_man")``r ji("biking_man")`
 
-## [Solutions](https://crsh.github.io/reproducible-research-practices-workshop/exercises/1_rmarkdown_solution.html)
+## [Solutions](https://crsh.github.io/reproducible-research-practices-workshop/exercises/2_rmarkdown_solution.html)
 
 ---
 

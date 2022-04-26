@@ -15,12 +15,14 @@ exclude: true
 
 # Other topics in reproducible research
 
+.small[
 As we said in the introduction, we cannot cover all tools and topics related to reproducible research in this workshop. However, we want to use this session to cover some additional tools as well as other topics in reproducible research:
 
 - dependency management
 - preventing code rot
 - collaborating with others who do not use `R Markdown` and/or `Git`
 - publishing reproducible research environments and "one-click reproducibility"
+]
 
 ---
 
@@ -62,14 +64,14 @@ From the [*BinderHub GitHub* repository](https://github.com/jupyterhub/binderhub
 
 *BinderHub* ties together:
 
-- [*JupyterHub*](https://github.com/jupyterhub/jupyterhub) to provide a scalable system for authenticating users and spawning single user `Jupyter Notebook` servers, and
+- [*JupyterHub*](https://github.com/jupyterhub/jupyterhub) to provide a scalable system for authenticating users and spawning single user [`Jupyter Notebook`](https://jupyter.org/) servers, and
 - [*Repo2Docker*](https://github.com/jupyter/repo2docker) which generates a `Docker` image using a `Git` repository hosted online.
 
 ---
 
 # What is *BinderHub*?
 
-```{r binger-img, out.width = "75%", echo=FALSE}
+```{r binger-img, out.width = "100%", echo=FALSE}
 include_graphics("./img/binderhub.png")
 ```
 
@@ -77,7 +79,7 @@ include_graphics("./img/binderhub.png")
 
 # How to use *BinderHub*
 
-Using a *BinderHub* deployment like [*mybinder.org*](https://mybinder.org/) or [*GESIS Notebooks*](https://notebooks.gesis.org/binder/) you can turn an existing public `Git` repository into an executable environment.
+Using a *BinderHub* deployment like [*mybinder.org*](https://mybinder.org/) or [*GESIS Notebooks*](https://notebooks.gesis.org/binder/) you can turn an existing public `Git` repository into a publicly accessible executable environment.
 
 In order for this to work, you just need to add a few *Binder*-specific files to your repo (i.e., "Binderize" it).
 
@@ -105,17 +107,13 @@ The minimum requirements are the following:
 
 # Binderizing your `Git` repository
 
-In the `runtime.txt` file, you need to specify a date indicating which [snapshot](https://packagemanager.rstudio.com/client/#/repos/1/overview) to use from the [*R Studio Package Manager*](https://packagemanager.rstudio.com/client/#/). This is used to install `R` packages. For example: `r-2022-04-28` (optionally, you can also specify a specific `R` version to be installed: `r-4.1-2022-04-28`).
+In the `runtime.txt` file, you need to specify a version number and date, indicating which [snapshot](https://packagemanager.rstudio.com/client/#/repos/1/overview) to use from the [*R Studio Package Manager*](https://packagemanager.rstudio.com/client/#/). Example: `r-4.1-2022-04-22`).
 
 ---
 
 # Binderizing your `Git` repository
 
-In the `install.R` file, you need to specify which `R` packages to install as you normally would in an `.R` or `.Rmd` file (e.g., `install.packages(c("gapminder", "tinytex"))).
-
-.small[
-*Note*: You can also use the [`holepunch` package](https://karthik.github.io/holepunch/) to Binderize your `R` project hosted on *GitHub*.
-]
+In the `install.R` file, you need to specify which `R` packages to install as you normally would in an `.R` file (e.g., `install.packages(c("gapminder", "tinytex"))). *CRAN* ackages are installed through the [*R Studio Package Manager*](https://packagemanager.rstudio.com/client/#/).
 
 --
 
@@ -126,6 +124,12 @@ There are many more options for changing or extending the executable environment
 # Deploying your executable environment
 
 Once you have "Binderized" your repository, you can use [*mybinder.org*](https://mybinder.org/) to create the executable environment. You can set a few additional parameters in the process (such as the branch). *NB*: Creating the executable environment can take some time (esp. if you install many and/or large `R` packages).
+
+--
+
+.small[
+*Note*: You can also use the [`holepunch` package](https://karthik.github.io/holepunch/) to Binderize your `R` project hosted on *GitHub*.
+]
 
 ---
 
@@ -238,6 +242,16 @@ There also several `R` other packages for facilitating the creation and maintena
 
 ---
 
+# Choosing the right tools `r ji("hammer")``r ji("wrench")`
+
+There are a few things to consider for choosing the right tools:
+
+- Your habits, knowledge, and preferences (as well as those of your collaborators)
+- Your goals and their relative importance: E.g., computational reproducibility, reusability, replicability
+- Your audience: Future you, collaborators, the academic community, the general public
+
+---
+
 # Shoulders of giants... but sometimes also clay feet
 
 .small[
@@ -270,10 +284,22 @@ In addition to properly citing the tools and resources you use, you can make sur
 
 ---
 
-# Keep calm and stay reproducible! `r ji("smiling_face_with_smiling_eyes")`
+# Looking back
+
+You created a *GitHub*/*GitLab* repository containing materials for a fully reproducible research pipeline! `r ji("popper")`
+
+If you created a public *GitHub* repository: Head over to http://starlogs.net/ and paste the URL of the repository to recap your heroic journey into the universe of reproducible research! `r ji("milky_way")`
+
+---
+
+# Looking forward
 
 We hope that we could get you started or help you with with making your research (more) reproducible. 
-Of course, as always, there is much more to explore and learn. The only way to really get familiar with the tools and workflows is if you use them for your own research. 
+Of course, as always, there is much more to explore and learn. The only way to really get familiar with the tools and workflows is if you use them for your own research.
+
+--
+
+Keep calm and stay reproducible! `r ji("smiling_face_with_smiling_eyes")`
 
 ---
 
