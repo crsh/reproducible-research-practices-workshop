@@ -13,7 +13,7 @@ Navigating the growing space of tools and practices, however, can be a daunting 
 
 Hence, the purpose of this 2 days workshop is to introduce researchers to the essential components of tailored reproducible research workflows as well as the tools for implementing them.
 Combining lectures with practical hands-on sessions, the workshop will focus on data analysis, reporting of results, and sharing data and materials.
-Regarding the tool stack, the workshop will cover version control with Git and writing reports with RMarkdown as key components of a reproducible research workflow, but will also introduce other tools, such as the Open Science Framework (OSF), Docker, and Binder.
+Regarding the tool stack, the workshop will cover version control with `Git` and writing reports with `R Markdown` as key components of a reproducible research workflow, but will also introduce other tools, such as `Docker`, and `Binder`.
 
 
 ## Learning objectives
@@ -22,31 +22,34 @@ Upon course completion, participants should
 
 1. be familiar with key concepts of reproducible research
 2. be able to choose the appropriate tools to implement a tailored workflow
-3. have gained basic proficiency of Git, LaTeX, R Markdown, and `papaja`
-4. be able to manage projects and collaborate using Git and GitHub
+3. have gained basic proficiency of `Git`, `R Markdown`, and `papaja`
+4. be able to manage projects and collaborate using `Git` and *GitHub*
 
 
 ## Prerequisites
 
-Participants should have some basic knowledge of R have used R Studio before.
+Participants should have some basic knowledge of `R` have used *RStudio* before.
+
+For the hands-on parts of the workshop, you need to install [`R`](https://www.r-project.org/) (version 4.0.0 or higher), [`Git`](https://git-scm.com/), [*RStudio* (Desktop)](https://www.rstudio.com/products/rstudio/download/), and the following `R` packages: [`tinytex`](https://yihui.org/tinytex/), [`papaja`](https://github.com/crsh/papaja). 
+
+You should also set up a [*GitHub*](https://github.com/) account as well as a *GitLab* account for the instance hosted by your institution (if that is available and you you want to use it). For some help help with setting up `Git` and *GitHub* for use with *RStudio*, you can check out [*Happy Git and GitHub for the useR*](https://happygitwithr.com/).
 
 
 ## Modules
 
-| Topic | Duration | Slides | Exercises |
-| :---- | ------: | ------ | --------- |
-| Introduction to key concepts | 2 | | |
-| R Markdown | 2 | | |
-| `papaja` | 1.5 | | |
-| Git & GitHub | 1 | | |
-| Git & RStudio | 1 | | |
-| Collarboration with Git and GitHub | 1.5 | | |
-| Combating code rot | 1 | | |
-| Publishing | 0.5 | | |
+| Day | Topic | Duration | Slides | Exercises | Solutions |
+| ---: | :---- | ------: | ------ | --------- | --------- |
+| 1 | Introduction | ~ 2 hrs | [Slides](https://crsh.github.io/reproducible-research-practices-workshop/slides/1_introduction.html) | - | - |
+| 1 | `R Markdown` | ~ 2 hrs | [Slides](https://crsh.github.io/reproducible-research-practices-workshop/slides/2_Intro_RMarkdown.html) | [Exercises](https://crsh.github.io/reproducible-research-practices-workshop/exercises/2_rmarkdown_question.html) | [Solutions](https://crsh.github.io/reproducible-research-practices-workshop/exercises/2_rmarkdown_solution.html) |
+| 1 | `papaja` | ~ 1.5 hrs | | | |
+| 2 | `Git` & *GitHub* | ~ 1 hr | | | |
+| 2 | `Git` & *RStudio* | ~ 1 hr | [Slides](https://crsh.github.io/reproducible-research-practices-workshop/slides/5_Git-RStudio.html) | [Exercises](https://crsh.github.io/reproducible-research-practices-workshop/exercises/5_git-rstudio_question.html) | [Solutions](https://crsh.github.io/reproducible-research-practices-workshop/exercises/5_git-rstudio_solution.html) |
+| 2 | Collaboration with `Git` and *GitHub* | ~ 1.5 hrs | | | |
+| 2 | Other topics in reproducible research | ~ 1.5 hrs | [Slides](https://crsh.github.io/reproducible-research-practices-workshop/slides/7_Other_Topics.html) | - | - |
 
 ## Acknowledgements
 
-Materials are based on Klein, O., Hardwicke, T. E., Aust, F., Breuer, J., Danielsson, H., Hofelich Mohr, A., … Frank, M. C. (2018). A Practical Guide for Transparency in Psychological Science. Collabra: Psychology, 4(1). doi: [10.1525/collabra.158](https://doi.org/10.1525/collabra.158) ([Supplementary material](
+The workflow recommendations in this workshop are based on Klein, O., Hardwicke, T. E., Aust, F., Breuer, J., Danielsson, H., Hofelich Mohr, A., … Frank, M. C. (2018). A Practical Guide for Transparency in Psychological Science. Collabra: Psychology, 4(1). doi: [10.1525/collabra.158](https://doi.org/10.1525/collabra.158) ([Supplementary material](
 http://psych-transparency-guide.uni-koeln.de/))
 
 Icons by [Icons8](https://icons8.com), [CC-BY-ND 3.0](https://creativecommons.org/licenses/by-nd/3.0/).

@@ -1,0 +1,119 @@
+---
+title: "Exploring Gapminder data"
+author: "R User"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE)
+
+options(scipen = 10,
+        digits = 2)
+
+library(tidyverse)
+library(gapminder)
+```
+
+# The data
+
+In this report, we explore data from [*Gapminder*](https://www.gapminder.org/). More specifically, we use an excerpt from these data that is included in the [`gapminder` package for `R`](https://github.com/jennybc/gapminder). The data contains information about life expectancy, population, and GDP per capita for `r n_distinct(gapminder$country)` countries from `r n_distinct(gapminder$continent)` different continents, spanning the time from `r min(gapminder$year)` to `r max(gapminder$year)`.
+
+# Analyses
+
+For our exploration, we will focus on data from the year 2007.
+
+```{r wrangle-data, echo=FALSE}
+gap_2007 <- gapminder %>% 
+  filter(year == 2007)
+```
+
+## Life expectancy
+
+In 2007, life expectancy ranged from `r min(gapminder$lifeExp)` to `r max(gapminder$lifeExp)`, with a global average of `r mean(gapminder$lifeExp)`.
+
+```{r lifeExp-dist, fig.cap="Distribution of life expectancy in 2007"}
+gap_2007 %>% 
+  ggplot(aes(x = lifeExp)) +
+  geom_density(fill="#69b3a2",
+               color="#e9ecef") +
+  scale_y_continuous(expand=expansion(mult=c(0,0.1))) +
+  scale_x_continuous(expand=expansion(mult=c(0,0))) +
+  theme_minimal()
+```
+
+```{r gap-toplife}
+gap_2007 %>%
+  select(country, continent,lifeExp) %>%
+  arrange(-lifeExp) %>% 
+  head(10) %>% 
+  knitr::kable(caption = "10 countries with the highest life expectancy in 2007")
+```
+
+```{r box-life, fig.cap="Differences between continents in average life expectancy in 2007"}
+gap_2007 %>% 
+  ggplot(aes(x = continent, y = lifeExp)) +
+  geom_boxplot(outlier.colour = "hotpink") +
+  geom_jitter(position = position_jitter(width = 0.1, height = 0),
+              alpha = 0.25)
+```
+
+## GDP per capita
+
+The minimum GDP per capita in 2007 was `r min(gapminder$gdpPercap)`, the maximum was `r max(gapminder$gdpPercap)`, and the worldwide mean was `r mean(gapminder$gdpPercap)`.
+
+As we can see, GDP per capita is heavily right-skewed.
+
+```{r gdp-dist, fig.cap="Distribution of GPD per capita in 2007"}
+gap_2007 %>% 
+  ggplot(aes(x = gdpPercap)) +
+  geom_density(fill="#69b3a2",
+               color="#e9ecef") +
+  scale_y_continuous(expand=expansion(mult=c(0,0.1))) +
+  scale_x_continuous(expand=expansion(mult=c(0,0))) +
+  theme_minimal()
+```
+
+```{r gap-topgdp}
+gap_2007 %>%
+  select(country, continent,gdpPercap) %>%
+  arrange(-gdpPercap) %>% 
+  head(10) %>% 
+  knitr::kable(caption = "10 countries with the highest GDP per capita in 2007")
+```
+
+```{r box-gdp, fig.cap="Differences between continents in GDP per capita in 2007"}
+gap_2007 %>% 
+  ggplot(aes(x = continent, y = gdpPercap)) +
+  geom_boxplot(outlier.colour = "hotpink") +
+  geom_jitter(position = position_jitter(width = 0.1, height = 0),
+              alpha = 0.25)
+```
+
+## Relationship between life expectancy and GDP per capita
+
+We employ a bubble plot as made popular by the [TED talk by Hans Rosling](https://www.ted.com/talks/hans_rosling_the_best_stats_you_ve_ever_seen) to visualize the relationship between GDP per capita and life expectancy in 2007. The plot also includes visual information about the continent on which a country is located as well as its population size.
+
+```{r bubble}
+gap_2007 %>% 
+ggplot(aes(x = gdpPercap, y = lifeExp)) +
+  geom_point(aes(size = pop,
+                 color = continent),
+             alpha = .5) +
+  scale_x_log10() +
+  labs(caption = "Due to the heavily skewed distribution of GDP per capita, the X-axis uses a log-scale")
+```
+
+# Reproducibility information
+
+This document was created with the following settings:
+
+```{r session-info, echo=FALSE}
+sessionInfo() %>% 
+  print(locale = FALSE)
+```

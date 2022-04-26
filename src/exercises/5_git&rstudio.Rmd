@@ -1,0 +1,88 @@
+---
+title     : "Exercises: Git & RStudio"
+subtitle  : "Reproducible research workflows for psychologists"
+---
+
+```{r child = "_setup.Rmd"}
+```
+
+
+In this set of exercises, we clone and work on the *GitHub* or *GitLab* repository you have created in the previous session.
+
+In order to do the following exercises, you should have gone through the steps described in the setup information for the workshop. Specifically, you should...
+
+- make sure that we can use `Git` via *RStudio*
+- have created and stored a PAT for authentication via `HTTPS` for *GitHub*
+
+For using *GitLab* you should also have enabled `SSH` authentication through creating a RSA key in the Git/SVN options in *RStudio*.
+
+```{block, box.title = "1", box.body = list(fill = "white"), box.icon = "fa-star"}
+After we've made sure that everything works, we can now clone and work on the repository we have created on *GitHub* or *GitLab* in the previous session. When doing this, you should also create a new *RStudio* project.
+```
+
+```{block, opts.label = "clues"}
+You can create a new version-controlled project that is connected to an existing *GitHub* or *GitLab* repository via the *RStudio* menu. If you need some further information, you can check out the [New project, GitHub first](https://happygitwithr.com/new-github-first.html) section in *Happy Git and GitHub for the useR*.
+```
+
+```{block, solution = TRUE}
+You can create a new version-controlled project and associate it with a repository cloned from *GitHub* via *File* -> *New Project* -> *Version Control*. Then choose `Git`, enter the URL of the *GitHub*/*GitLab* repository (remember that the URL looks different depending on whether you use `HTTPS` or `SSH` for authentication), and choose a location where to store the project on your local machine. 
+As we will start working on the project right away, also check "Open in new session".
+```
+
+```{block, box.title = "2", box.body = list(fill = "white"), box.icon = "fa-star"}
+If everything has worked, a new instance of *RStudio* should have opened with the working directory set to the location of your new project, the files included in the project folder visible in the *Files* tab, and an active `Git` tab. To make extra sure that everything worked, let's check the `Git` status of our project via the `Terminal` in *RStudio*.
+```
+
+```{block, opts.label = "clues"}
+You may want to check which shell the `Terminal` in *RStudio* uses via *Tools* -> *Global Options* -> *Terminal*. If you use Windows, you should choose `Git Bash` (which you should have installed with `Git` for Windows).
+```
+
+```{bash, solution = TRUE, eval=FALSE}
+git status
+```
+
+```{block, box.title = "3", box.body = list(fill = "white"), box.icon = "fa-star"}
+Now that the project is set up and in sync with the remote repository, we can start working on it. Modify the README file (just add, remove or edit a few words). If you want to, you can also edit the `R Markdown` file(s) in your repository/project.
+
+After modifying the file(s), save the changes (via the *Save* icon in the *RStudio* menu or the keyboard shortcut your OS uses for saving files) and stage them in `Git`.
+```
+
+```{block, opts.label = "clues"}
+You can use the *RStudio* GUI for staging changes (for modified or added files). As a reminder: When you modify existing files and/or create new ones and save the changes, these should be displayed in the `Git` tab in *RStudio* and their status will be indicated as *modified* or *untracked*.
+```
+
+```{block, solution = TRUE}
+You can stage changed files in the *RStudio* GUI by checking the boxes in the *Staged* column in the `Git` tab.
+```
+
+```{block, box.title = "4", box.body = list(fill = "white"), box.icon = "fa-star"}
+After staging your changes, let's create a commit and push that to the remote repository.
+```
+
+```{block, opts.label = "clues"}
+You can do both (committing and pushing) via the *RStudio* GUI. Remember to write a meaningful commit message.
+```
+
+```{block, solution = TRUE}
+After staging the changes, simply click on the *Commit* button in the `Git` tab in *RStudio*, write a commit message in the menu that opens up, and then click the *Push*  button in the same menu.
+```
+
+```{block, box.title = "8", box.body = list(fill = "white"), box.icon = "fa-star"}
+As a final exercise for this session, let's do the opposite of pushing and pull changes from the remote repository to your local project. Before we can do this, we first need to make some edits in the remote repository. Go to the website of your remote *GitHub*/*GitLab* repository (while being logged in) and edit the README file in the browser (again, just add, remove, or edit a few words). How you edit a file depends on the platform:
+
+On *GitHub*:
+You can edit the README via the small pen icon next displayed above the content of your README file.
+
+On *GitLab*:
+Click on the name of the file you want to edit (in this case this should be `README.md`). Next, choose and click "Edit" from the blue dropdown menu shown next to the file name.
+
+Once you have edited the file (and committed the changes directly on *GitHub*/*GitLab*), you can pull the changes to your local project.
+```
+
+```{block, opts.label = "clues"}
+Remember that if you edit a file directly via the *GitHub* or *GitLab* web interface, you also need to make a commit (and add a commit message). You can do the pull operation via the respective icon in the *RStudio* GUI.
+```
+
+```{block, solution = TRUE}
+After making and saving the edits to the README file via the *GitHub* or *GitLab* web interface, you can simply click the *Pull* button in the `Git` tab in *RStudio* to update your local project.
+```

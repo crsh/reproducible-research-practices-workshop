@@ -64,9 +64,7 @@ TL;DR of the *Wikipedia* article: `Markdown` is a lightweight markup language fo
 ```{r, rmarkdown-rocks-cartoon, out.width = "75%", echo = F}
 include_graphics("./img/rmarkdown_rockstar.png")
 ```
-.footnote[
-[Artwork]((https://github.com/allisonhorst/stats-Artworks)) by [@allison_horst](https://twitter.com/allison_horst)
-]
+<small><small>[Artwork](https://github.com/allisonhorst/stats-Artworks) by [@allison_horst](https://twitter.com/allison_horst)</small></small>
 
 ---
 
@@ -77,19 +75,16 @@ As it combines code, text, and outputs, `R Markdown` is a great tool for writing
 ```{r, rmarkdown-repro-cartoon, out.width = "70%", echo = F}
 include_graphics("./img/reproducibility_court.png")
 ```
-.footnote[
-[Artwork]((https://github.com/allisonhorst/stats-Artworks)) by [@allison_horst](https://twitter.com/allison_horst)
-]
+<small><small>[Artwork](https://github.com/allisonhorst/stats-Artworks) by [@allison_horst](https://twitter.com/allison_horst)</small></small>
 
 ---
 
 # What can you do with `R Markdown`?
 
+.smaller[
 In a nutshell, with `R Markdown` it is possible to generate **reproducible** dynamic documents which...
 
 - (can) include text, code, and output from that code
-
---
 
 - render to many different output formats, including:
   + `HTML`
@@ -100,11 +95,13 @@ In a nutshell, with `R Markdown` it is possible to generate **reproducible** dyn
   + `RTF`
 
 For a [full list of supported output formats](https://rmarkdown.rstudio.com/docs/reference/index.html#section-output-formats) see the `rmarkdown` package documentation.
+]
 
 ---
 
 # What can you do with `R Markdown`?
 
+.small[
 There are quite a few packages that offer extension output formats for `R Markdown`. For example:
 
 - [`xaringan`](https://github.com/yihui/xaringan) for presentations - which is what we use for our slides
@@ -115,12 +112,13 @@ There are quite a few packages that offer extension output formats for `R Markdo
 - [`flexdashboard`](https://rmarkdown.rstudio.com/flexdashboard/index.html) for interactive dashboards
 
 ... and there are many more.
+]
 
 ---
 
 # `R Markdown` and versatility
 
-```{r rmd-formats, echo=FALSE}
+```{r rmd-formats, out.width ="70%", echo=FALSE}
 include_graphics("./img/rmarkdown_formats.png")
 ```
 
@@ -129,6 +127,8 @@ include_graphics("./img/rmarkdown_formats.png")
 # Disclaimer: What we will cover
 
 Covering everything you can do with `R Markdown` or even exploring all options for specific kinds of outputs, such as presentations or scientific publications, in-depth would be enough for separate workshops. Hence, this session will only cover the basics of `R Markdown`.
+
+--
 
 In the next session, we will discuss reference management with `R Markdown` and dive into the possibilities offered by the package [`papaja`](https://github.com/crsh/papaja) which can be used to prepare APA Journal Articles with `R Markdown`.
 
@@ -150,6 +150,10 @@ install.packages("rmarkdown")
 
 If you want to generate PDF output with `R Markdown`, you need $\LaTeX$. If you have a $\LaTeX$ distribution like [`MiKTeX`](https://miktex.org/) or [`TeX Live`](https://www.tug.org/texlive/) on your system, you should be all set.
 
+---
+
+# PDF output with `R Markdown`
+
 If you do not have $\LaTeX$ installed, the easiest option - especially if you do not want to use plain $\LaTeX$ - is installing [`TinyTeX`](https://yihui.org/tinytex/), which is "a lightweight, cross-platform, portable, and easy-to-maintain LaTeX distribution based on TeX Live". You can do that using the [`tinytex` package](https://cran.r-project.org/web/packages/tinytex/index.html). It also takes care of installing missing $\LaTeX$ packages on the fly when knitting documents.
 
 ```{r tinytex, eval = F}
@@ -164,9 +168,9 @@ tinytex::install_tinytex()
 
 # Getting started with `R Markdown`
 
-You can create a new `R Markdown` document in *RStudio* via *File* -> *New File* -> *R Markdown* in the menu. This will open a new window in which you can set the author and title and pick an output format for your document.
+You can create a new `R Markdown` document in *RStudio* via *File* -> *New File* -> *R Markdown* in the menu. This will open a new window in which you can set the author name and title and pick an output format for your document.
 
-```{r, rmarkdown-menu, out.width = "50%", echo = F}
+```{r, rmarkdown-menu, out.width = "40%", echo = F}
 include_graphics("./img/create_rmarkdown_menu.png")
 ```
 
@@ -188,7 +192,7 @@ include_graphics("./img/create_rmarkdown_menu.png")
 
 # Anatomy of an `R Markdown` document
 
-```{r, rmarkdown-annotated, out.width = "65%", echo = F}
+```{r, rmarkdown-annotated, out.width = "60%", echo = F}
 include_graphics("./img/rmarkdown_example_annotated.png")
 ```
 
@@ -196,7 +200,7 @@ include_graphics("./img/rmarkdown_example_annotated.png")
 
 # YAML header
 
-```{r yaml-101, eval = F}
+```{yaml, echo = TRUE}
 ---
 title: "My First R Markdown Document"
 subtitle: "A first in the series of many more to come"
@@ -206,9 +210,11 @@ output: html_document
 ---
 ```
 
+.small[
 [YAML](https://yaml.org/) stands for "YAML Ain't Markup Language" (formerly known as "Yet Another Markup Language"). The YAML header in `R Markdown` documents contains metadata for the document. It provides human-readable configuration information and can include a large variety of key:values-pairs to specify what the document should look like. It needs to be at the beginning of the document and start and end with `---`.
 
 *Note*: There is an `R` package called [`ymlthis`](https://ymlthis.r-lib.org/) for creating extended YAML headers in and with `R`.
+]
 
 ---
 
@@ -219,12 +225,12 @@ output: html_document
 
 .pull-left-45[
 ```{yaml, echo = TRUE}
-*---
+---
 title: "My First R Markdown Document"
 author: "Gordon Shamway"
 date: "27 04 2022"
 output: html_document
-*---
+---
 ```
 ]
 
@@ -420,6 +426,8 @@ A new paragraph is started with a blank line before the text.
 
 **NB**: If you just hit Enter/Return to move text to a new line in an `R Markdown` document, the text you enter after that will not be on a new line in the output document.
 
+--
+
 *Note*: When you generate `HTML` output, you can also use `HTML` commands in your `R Markdown` document. So, for example, you could insert an empty line with `<br>`. Likewise, when producing PDF output, you can use $\LaTeX$ commands, such as `\newline` or `\newpage`.
 
 ---
@@ -454,7 +462,7 @@ A new paragraph is started with a blank line before the text.
 
 ---
 
-## Other formatting stuff
+# Other formatting stuff
 
 .pull-left[
 ### Syntax
@@ -484,6 +492,9 @@ include_graphics("./img/RLogo.png")
 ```
 ]
 
+---
+
+# Other formatting stuff
 
 For more formatting options check out the [RMarkdown Reference Guide](https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) which is also available in *RStudio* via *Help* -> *Cheatsheets* -> *R Markdown Reference Guide*.
 
@@ -497,7 +508,13 @@ include_graphics("./img/code_chunk.png")
 
 As the name says, code chunks in `R Markdown` documents include code. This is typically `R` code, but other languages are supported as well (e.g., `Python` or `SQL`). The code is executed when the file is knitted (we'll talk about what this means in a bit). 
 
+---
+
+# Code chunks
+
 You can insert a code chunk via the `Insert` button (select `R`) or using the keyboard shortcut <kbd>Ctrl + Alt + I</kbd> (*Windows* & *Linux*)/<kbd>Cmd + Option + I</kbd> (*Mac*). 
+
+--
 
 *Note*: It is possible to [render an `R` script into an `R Markdown` report](https://bookdown.org/yihui/rmarkdown-cookbook/spin.html) using `knitr::spin` and, vice versa, to [convert an `R Markdown` document to an `R` script](https://bookdown.org/yihui/rmarkdown-cookbook/purl.html) via `knitr::purl()`.
 
@@ -535,7 +552,7 @@ It generally makes sense to include a setup chunk in your document (right after 
 include_graphics("./img/inline_code.png")
 ```
 
-It is also possible to execute code within text. That way, the output is automatically updated if it is compiled again after the input (usually the data) has changed. Inline code needs to be enclosed in `backticks` and has to start with a specification of the language (typically `r`) if the code should be executed when the document is compiled. Only the result(s) of the inline code (not the code itself) will be displayed in the output document.
+It is also possible to execute code within text. That way, the output is automatically updated if it is compiled again after the input (usually the data) has changed. Inline code needs to be enclosed in backticks and has to start with a specification of the language (typically `r`) if the code should be executed when the document is compiled. Only the result(s) of the inline code (not the code itself) will be displayed in the output document.
 
 ---
 
@@ -557,7 +574,7 @@ As with many things in `R`, there are many options for creating tables that can 
 
 # Excursus: Tables in `R Markdown`
 
-```{r kable, eval=FALSE}
+```{r kable, eval=FALSE, echo=TRUE}
 library(tidyverse) # for wrangling and piping
 library(gapminder) # for exemplary data
 library(kableExtra) # for table formatting
@@ -579,9 +596,17 @@ gapminder %>%
 
 # Excursus: Tables in `R Markdown`
 
-```{r ref.label=c("kable")}
+.small[
+```{r ref.label=c("kable"), message=FALSE}
 
 ```
+]
+
+---
+
+# Excursus: Tables in `R Markdown`
+
+*Note*: If you want to [reference tables (or figures) in `R Markdown` documents](https://bookdown.org/yihui/rmarkdown-cookbook/cross-ref.html), you need to use the [`bookdown`](https://bookdown.org/home/) output format `html_document2` (or `pdf_document2`).
 
 ---
 
@@ -589,24 +614,39 @@ gapminder %>%
 
 To compile the `R Markdown` document (in this case into a `HTML`) document, you simply need to click the `Knit` `r ji("yarn")` button. Doing this will generate the `HTML` file (by default) in the directory where the `.Rmd` file is stored. It will also open a preview window in *RStudio*.
 
-```{r, rmarkdown-preview, out.width = "55%", echo = F}
+```{r, rmarkdown-preview, out.width = "40%", echo = F}
 include_graphics("./img/rmarkdown_preview.png")
 ```
 
 ---
 
-Knitting an `R Markdown` file
+# Knitting `r ji("yarn")`
+
+Instead of using the *Knit* button in the *RStudio* GUI you can also use the `render()` command from the `rmarkdown` package.
+
+```{r knit, eval=FALSE}
+rmarkdown::render('my_report.Rmd', 
+                  output_file = '../output/my_report.html')
+```
+
+---
+
+# Knitting `r ji("yarn")`
+
+.small[
+Knitting an `R Markdown` file...
 
 1. Starts a new `R` session
     - No variables defined
-    - No `R` packages loaded
---
+    - No packages loaded
 
 2. Sets the working directory to the location of the `R Markdown` file
+
 3. Executes all `R` code chunks from top to bottom
     - Variables are available in subsequent chunks
     
 *Note*: For computationally intensive tasks, you can set the option `opts_chunk$set(cache = TRUE)`. It will cache chunk calls and their results as long as you do not edit them.
+]
 
 ---
 
@@ -615,9 +655,7 @@ Knitting an `R Markdown` file
 ```{r, rmarkdown-wizards-cartoon, out.width = "85%", echo = F}
 include_graphics("./img/rmarkdown_wizards.png")
 ```
-.footnote[
-[Artwork]((https://github.com/allisonhorst/stats-Artworks)) by [@allison_horst](https://twitter.com/allison_horst)
-]
+<small><small>[Artwork](https://github.com/allisonhorst/stats-Artworks) by [@allison_horst](https://twitter.com/allison_horst)</small></small>
 
 ---
 
@@ -628,9 +666,7 @@ Behind the scenes, `R Markdown` uses [`knitr`](https://yihui.org/knitr/) to exec
 ```{r, rmarkdown-process, out.width = "70%", echo = F}
 include_graphics("./img/rmarkdown_process.png")
 ```
-.footnote[
-Figure by [Andrew Collier](https://github.com/datawookie)
-]
+<small><small>Figure by [Andrew Collier](https://github.com/datawookie)</small></small>
 
 ---
 
@@ -638,7 +674,7 @@ Figure by [Andrew Collier](https://github.com/datawookie)
 
 If [WYSIWYG](https://en.wikipedia.org/wiki/WYSIWYG) is more your thing, you can rejoice as new(er) versions of *RStudio* (v. 1.4 or higher) now offer a [Visual `R Markdown`](https://rstudio.github.io/visual-markdown-editing/#/) editor. If you have an `.Rmd` document open in *RStudio*, you can open the visual editor via the GUI (in the `Source` pane).
 
-```{r, visual-rmd-open, out.width = "85%", echo = F}
+```{r, visual-rmd-open, out.width = "60%", echo = F}
 include_graphics("./img/rstudio_open_visual_rmd.png")
 ```
 
@@ -664,7 +700,9 @@ include_graphics("./img/rstudio_visual_rmd.png")
 - Use relative paths or load files from a permanent location
     - Do not use `setwd()`
     
---
+---
+
+# Some best practices for `R Markdown`
 
 - Use meaningful chunk names
 - Keep `R` code close to the corresponding prose
@@ -675,8 +713,38 @@ include_graphics("./img/rstudio_visual_rmd.png")
 
 ---
 
+# Reproducibility information
+
+To further increase the reproducibility of your `R Markdown` document you can include some information about your `R` (e.g., the OS, `R` version, and packages that you have used).
+
+```{r repro-info, eval=FALSE}
+sessionInfo() %>% 
+  print()
+```
+
+---
+
+# Reproducibility information
+
+.small[
+```{r ref.label=c("repro-info")}
+
+```
+]
+
+---
+
+class: center, middle
+
+# [Exercise](https://crsh.github.io/reproducible-research-practices-workshop/exercises/2_rmarkdown_question.html) time `r ji("weight_lifting_woman")``r ji("muscle")``r ji("running_man")``r ji("biking_man")`
+
+## [Solutions](https://crsh.github.io/reproducible-research-practices-workshop/exercises/2_rmarkdown_solution.html)
+
+---
+
 # `R Markdown` resources
 
+.small[
 The [*RStudio* `R Markdown` Cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/rmarkdown-2.0.pdf)
 
 The [`R Markdown` materials by *RStudio*](https://rmarkdown.rstudio.com/index.html)
@@ -690,6 +758,7 @@ The [`R Markdown` chapter](https://r4ds.had.co.nz/r-markdown.html) in *R for Dat
 [*R Markdown for Scientists*](https://rmd4sci.njtierney.com/) by Nicholas Tierney
 
 [*R Markdown Tips and Tricks*](https://indrajeetpatil.github.io/RmarkdownTips/) by Indrajeet Patil
+]
 
 ---
 
@@ -703,6 +772,8 @@ BUT... there is a potential (or likely?) successor in the wings:
 "[Quarto](https://quarto.org/) is a multi-language, next generation version of R Markdown from RStudio, with many new features and capabilities" 
 
 --
+
+# Outlook: Quarto
 
 - support for `R`, `Python`, [`Julia`](https://julialang.org/), and [`Observable`](https://observablehq.com/)
 - can also be used with [`Jupyter`](https://jupyter.org/) notebooks
