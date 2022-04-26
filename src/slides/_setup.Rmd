@@ -25,6 +25,7 @@ style_mono_accent(
   , text_font_google = google_font("Open Sans")
   , text_font_size = "22pt"
   , text_color = "#3a3a3a"
+  , code_font_size = "1.1rem"
   , outfile = "src/xaringan-themer.css"
 )
 ```

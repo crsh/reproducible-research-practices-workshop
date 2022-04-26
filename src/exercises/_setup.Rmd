@@ -14,3 +14,32 @@ knitr::opts_template$set(
 ```{r klippy, echo = FALSE}
 klippy::klippy()
 ```
+
+```{css, echo = FALSE}
+.highlight {
+  background-color: rgb(255, 150, 79, 0.75); /*#ffcc66;*/
+}
+
+a:not([href^="#"]):not([href^="/"])::after {
+  font-family: 'FontAwesome';
+  content: " \f08e";
+  font-size: 1rem;
+  vertical-align: top;
+}
+
+a[target="_blank"]:after {
+  font-family: 'FontAwesome';
+  content: " \f08e";
+  font-size: 1rem;
+  vertical-align: top;
+}
+
+pre {
+  white-space: pre-wrap;       /* Since CSS 2.1 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;       /*Internet Explorer 5.5+ */
+  word-break: break-word;       /*Internet Explorer 5.5+ */
+}
+```

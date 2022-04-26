@@ -1,0 +1,323 @@
+---
+title     : "Introduction to papaja"
+---
+
+```{r child = "_setup.Rmd"}
+```
+
+
+## Document template
+
+```{block, box.title = "Exercise 1", box.body = list(fill = "white"), box.icon = "fa-star"}
+Create a new **papaja** document from the R Markdown templates.
+```
+
+```{block, box.title = "Solution 1", box.icon = "fa-check", solution = TRUE}
+`File > New File > R Markdown... > From Template`
+```
+
+
+```{block, box.title = "Exercise 2", box.body = list(fill = "white"), box.icon = "fa-star"}
+Locate the example manuscript in the folder `exercises/3_papaja_example_manuscript` and open the file `manuscript.pdf` or `manuscript.docx`.
+
+Populate the YAML front matter of your **papaja** document by transfering the metadata from the example manuscript.
+```
+
+```{block, opts.label = "clues", box.icon = "fa-lightbulb"}
+The manuscript contains no note or contributorship information.
+The `note`field and each author's `role` field can simply be omitted.
+```
+
+```{yaml, box.title = "Solution 2", box.icon = "fa-check", solution = TRUE}
+title: "Distorted estimates of implicit and explicit learning in applications of the process-dissociation procedure to the SRT task"
+shorttitle: "Distorted PD estimates in sequence learning"
+
+author: 
+  - name: "Christoph Stahl"
+    affiliation: ""
+    corresponding: yes
+    address: "Herbert-Lewin-Straße 2, 50931 Köln"
+    email: "christoph.stahl@uni-koeln.de"
+  - name: "Marius Barth"
+    affiliation: ""
+  - name: "Hilde Haider"
+    affiliation: ""
+
+affiliation:
+  - id: ""
+    institution: "University of Cologne"
+
+authornote: |
+  This work was funded by Deutsche Forschungsgemeinschaft grants STA-1269/1-1 and HA-5447/8-1.
+
+abstract: |
+  We investigated potential biases affecting the validity of the process-dissociation (PD) procedure when applied to sequence learning.
+  Participants were or were not exposed to a serial reaction time task (SRTT) with two types of pseudo-random materials.
+  Afterwards, participants worked on a free or cued generation task under inclusion and exclusion instructions.
+  Results showed that pre-experimental response tendencies,
+  non-associative learning of location frequencies,
+  and the usage of cue locations introduced bias to PD estimates.
+  These biases may lead to erroneous conclusions regarding the presence of implicit and explicit knowledge.
+  Potential remedies for these problems are discussed.
+
+keywords: "implicit learning, serial reaction time task, process-dissociation procedure, response bias"
+wordcount: "8,167"
+```
+
+
+```{block, box.title = "Exercise 3", box.body = list(fill = "white"), box.icon = "fa-star"}
+Make your manuscript preprint-ready: Hide line numbers and add a "DRAFT" watermark.
+```
+
+```{block, opts.label = "clues", box.icon = "fa-lightbulb"}
+Use the `draft` and `linenumbers` options in the YAML front matter.
+```
+
+```{yaml, box.title = "Solution 3", box.icon = "fa-check", solution = TRUE}
+draft: yes
+linenumbers: no
+```
+
+```{block, box.title = "Bonus", box.body = list(fill = "white"), box.icon = "fa-medal", box.collapse = TRUE}
+Try the single-column single-spaced document style by using the `"doc"` class option.
+```
+
+```{yaml, box.title = "Bonus solution", box.icon = "fa-check", solution = TRUE, box.collapse = TRUE}
+classoption: "doc"
+```
+
+
+## Citations
+
+```{block, box.title = "Exercise 6", box.body = list(fill = "white"), box.icon = "fa-star"}
+Copy the introduction of the example manuscript into your document. Use the visual editor or the RStudio addin [`citr`](https://github.com/crsh/citr) to insert citations.
+```
+
+```{block, opts.label = "clues", box.icon = "fa-lightbulb"}
+Don't forget to add the bibliography file(s) to your YAML front matter.
+```
+
+```{block, box.title = "Solution 6", box.icon = "fa-check", solution = TRUE}
+Add the the bibliography files to the YAML front matter:
+
+<pre class="yaml">
+bibliography: ["references.bib", "r-references.bib"]
+</pre>
+
+The following is an examplary excerpt of what you citations could look like:
+
+<pre class="markdown">
+One of the most frequently utilized paradigms in the field of implicit learning is the serial reaction time task (SRTT) originating from <span class="highlight">@nissen_attentional_1987</span>. [...] Even with more sensitive tests including the recently introduced wagering task <span class="highlight">[@dienes_gambling_2010; @haider_old_2011;  @persaud_postdecision_2007]</span> or the process-dissociation procedure <span class="highlight">[@destrebecqz_can_2001; @haider_old_2011; @jacoby_process_1991]</span>, explicit knowledge of the sequence is rare.
+</pre>
+```
+
+
+## Report statistical analyses
+
+```{block, box.title = "Exercise 4", box.body = list(fill = "white"), box.icon = "fa-star"}
+Locate and open the R-script `analyses.R` and data folder `data` accompanying the example manuscript in the folder `exercises/3_papaja_example_manuscript`.
+
+Use `apa_print()` to report the results of one or more analysis using in-line code chunks in your **papaja** document.
+```
+
+```{block, opts.label = "clues", box.icon = "fa-lightbulb"}
+Use the section comments (e.g., `## ----setup----`) to split the R script into meaningful code chunks and use the section headings as chunk names.
+
+You may omit parts of the R script that are not necessary for the analysis you are trying to insert into your document.
+```
+
+```{block, box.title = "Solution 4", box.icon = "fa-check", solution = TRUE}
+The following is a minimal example of how to report one hypothesis test of one of the analyses.
+
+<pre class="markdown">
+&#96;&#96;&#96;{r setup}
+# load packages
+library("papaja")
+library("afex")
+&#96;&#96;&#96;
+
+&#96;&#96;&#96;{r prepare-data}
+acquisition <- readRDS("data/acquisition-task.rds")
+&#96;&#96;&#96;
+
+&#96;&#96;&#96;{r acquisition-rt}
+# within the permuted-material group, high vs. low frequency locations can be distinguished
+tmp.perm <- acquisition[
+  acquisition$error == 0 &
+  acquisition$trial > 1 &
+  acquisition$included_participant &
+  acquisition$material == "Permuted" &
+  !is.na(acquisition$frequency),
+]
+
+permuted_aov <- aov_ez(
+  data = tmp.perm
+  , dv = "SRI"
+  , within = c("block", "frequency")
+  , id = "id"
+)
+
+<div class="highlight">permuted_res <- apa_print(permuted_aov)</div>&#96;&#96;&#96;
+
+<div class="highlight">The effect of *frequency* was significant, &#96;r permuted_res$full_result$frequency&#96;.</div></pre>
+```
+
+```{block, box.title = "Bonus", box.body = list(fill = "white"), box.icon = "fa-medal", box.collapse = TRUE}
+Add the corresponding plot that visualizes the results to your document.
+```
+
+```{block, box.title = "Bonus solution", box.icon = "fa-check", solution = TRUE, box.collapse = TRUE}
+<pre class="markdown">
+&#96;&#96;&#96;{r acquisition-rt-plot}
+apa_lineplot(
+  data = tmp.perm
+  , id = "id"
+  , dv = "SRI"
+  , factors = c("block", "frequency")
+  , dispersion = wsci
+  , ylab = ""
+  , args_lines = list(lty = c("solid", "solid"))
+  , args_points = list(pch = c(21, 21))
+  , args_legend = list(legend = c("High", "Low"), title = "Location frequency")
+  , ylim = c(475, 650)
+  , jit = .05
+)
+&#96;&#96;&#96;
+</pre>
+```
+
+
+## Rendering tables
+
+```{block, box.title = "Exercise 5", box.body = list(fill = "white"), box.icon = "fa-star"}
+Locate the section `proportion-correct-table-appendix` at the end of the R-script `analyses.R`.
+
+Render the table of descriptive statistics for the generation task in your **papaja** document with `apa_table()`.
+```
+
+```{block, opts.label = "clues", box.icon = "fa-lightbulb"}
+Use the arguments `col_spanners` and `midrules` to structure the table. To add a caption, use the argument `caption`. See `?apa_table`.
+```
+
+```{block, box.title = "Solution 5", box.icon = "fa-check", solution = TRUE}
+<pre class="markdown">
+&#96;&#96;&#96;{r proportion-correct-table}
+tmp <- generation[
+  generation$included_participant &
+  generation$repetition == 0 &
+  generation$post_repetition == 0,
+]
+
+# calculate proportion of regular transitions per participant
+agg <- aggregate(
+  formula = correct_SOC ~ material + generation + order + PD_instruction + id
+  , data = tmp
+  , FUN = mean
+  , na.rm = TRUE
+)
+
+# calculate condition means and standard errors
+means <- aggregate(
+  formula = cbind(M = correct_SOC) ~ material + generation + order + PD_instruction
+  , data = agg
+  , FUN = mean
+)
+SEs <- aggregate(
+  formula = cbind(`SE` = correct_SOC) ~ material + generation + order + PD_instruction
+  , data = agg
+  , FUN = se
+)
+
+# merge means and CI width
+tab <- merge(means, SEs)
+
+# bind Inclusion and Exclusion side-by-side
+tab <- cbind(tab[tab$PD_instruction == "Inclusion", ], tab[tab$PD_instruction == "Exclusion", c("M", "SE")])
+tab$PD_instruction <- NULL
+
+tab$material <- gsub(tab$material, pattern = "-", replacement = " ", fixed = TRUE)
+tab$generation <- as.character(tab$generation)
+tab$generation[duplicated(paste0(tab$material, tab$generation))] <- ""
+tab$material[duplicated(tab$material)] <- ""
+
+<div class="highlight">apa_table(
+  tab
+  , row.names = FALSE
+  , col_spanners = list(Inclusion = c(4, 5), Exclusion = c(6, 7))
+  , midrules = c(4, 8, 12)
+  , caption = "Means (M) and standard errors (SE) of proportion of correctly generated second-order
+    conditionals (SOCs)."
+  , placement = NULL
+)</div>
+&#96;&#96;&#96;
+</pre>
+```
+
+
+```{block, box.title = "Bonus", box.body = list(fill = "white"), box.icon = "fa-medal", box.collapse = TRUE}
+Place the table in the appendix of your document. To start an appendix, use the following special heading:
+
+<pre class="markdown">
+# (APPENDIX) Appendix {-}
+</pre>
+```
+
+```{block, box.title = "Bonus solution", box.icon = "fa-check", solution = TRUE, box.collapse = TRUE}
+<pre class="markdown">
+\newpage
+
+# References
+
+::: {#refs custom-style="Bibliography"}
+:::
+
+
+\newpage
+
+# (APPENDIX) Appendix {-}
+
+
+&#96;&#96;&#96;{r proportion-correct-table-appendix}
+apa_table(
+  tab
+  , row.names = FALSE
+  , col_spanners = list(Inclusion = c(4, 5), Exclusion = c(6, 7))
+  , midrules = c(4, 8, 12)
+  , caption = "Means (M) and standard errors (SE) of proportion of correctly generated second-order
+    conditionals (SOCs)."
+  , placement = NULL
+)
+&#96;&#96;&#96;
+</pre>
+```
+
+
+## Captions and cross-referencing
+
+```{block, box.title = "Exercise 6", box.body = list(fill = "white"), box.icon = "fa-star"}
+Use a text-reference for your table caption and reference the table in the body of the text.
+```
+
+```{block, opts.label = "clues", box.icon = "fa-lightbulb"}
+Text reference definitions must be on their own line, surrounded by empty lines, and start with `(ref:reference-name)`.
+```
+
+```{block, box.title = "Solution 6", box.icon = "fa-check", solution = TRUE}
+<pre class="markdown">
+<div class="highlight">(ref:table-caption) Means ($M$) and standard errors ($\mathit{SE}$) of proportion of correctly generated second-order conditionals (SOCs).</div>
+  
+&#96;&#96;&#96;{r proportion-correct-table}
+apa_table(
+  tab
+  , row.names = FALSE
+  , col_spanners = list(Inclusion = c(4, 5), Exclusion = c(6, 7))
+  , midrules = c(4, 8, 12)
+<div class="highlight">  , caption = "(ref:table-caption)"</div>
+  , placement = NULL
+)
+&#96;&#96;&#96;
+</pre>
+```
+
+
+

@@ -1,0 +1,163 @@
+---
+title             : "papaja: Table examples"
+shorttitle        : "Table examples"
+
+author: 
+  - name          : "Frederik Aust"
+    affiliation   : ""
+    corresponding : yes    # Define only one corresponding author
+    address       : "Postal address"
+    email         : "my@email.com"
+
+affiliation:
+  - id            : ""
+    institution   : "University of Cologne"
+
+abstract: |
+  This document showcases some `apa_table()` examples.
+  
+bibliography      : "apa_table_demo.bib"
+
+floatsintext      : no
+linenumbers       : yes
+draft             : no
+mask              : no
+
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+
+classoption       : "man"
+output            : papaja::apa6_pdf
+---
+
+```{r setup, include = FALSE}
+library("papaja")
+library("psych")
+r_refs("r-references.bib")
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r analysis-preferences}
+# Seed for random number generation
+set.seed(42)
+knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
+```
+
+```{r load-data}
+load("cosmetic_surgery.Rdata")
+```
+
+```{r fit-models}
+lm1 <- lm(formula = Post_QoL ~ BDI, data = cosmetic_surgery)
+lm2 <- lm(formula = Post_QoL ~ Base_QoL + BDI, data = cosmetic_surgery)
+lm3 <- lm(formula = Post_QoL ~ Base_QoL + Age + Gender + BDI, data = cosmetic_surgery)
+
+lm3_apa <- apa_print(lm3)
+
+mod_comp_apa <- apa_print(
+  list(Bivariate = lm1, Baseline = lm2, Demographics = lm3)
+  , anova_fun = anova
+  , boot_samples = 0
+)
+```
+
+(ref:regression-table-caption) Results of model comparisons between three set of linear regression models that describe participants' quality of life post surgery.
+
+(ref:regression-table-note) The predictor *Gender* was dummy coded with females as reference category. BDI = Beck's depression inventory [@bdi], *Bas QoL* = Quality of life at baseline.
+
+```{r regression-table-syntax}
+apa_table(
+  lm3_apa$table
+  , caption = "(ref:regression-table-caption)"
+  , note = "(ref:regression-table-note)"
+)
+```
+
+(ref:mod-comp-table-caption) Results of model comparisons between three set of linear regression models that describe participants' quality of life post surgery.
+
+(ref:mod-comp-table-note) The predictor *Gender* was dummy coded with females as reference category. BDI = Beck's depression inventory [@bdi], *Bas QoL* = Quality of life at baseline, AIC = Akaike information criterion, BIC = Bayesian information criterion.
+
+```{r standard-table, results = "asis"}
+apa_table(
+  mod_comp_apa$table
+  , align = "lrrr"
+  , caption = "(ref:mod-comp-table-caption)"
+  , note = "(ref:mod-comp-table-note)"
+  , escape = TRUE
+)
+```
+
+```{r more-elaborate-table, results = "asis"}
+apa_table(
+  mod_comp_apa$table
+  , align = "lrrr"
+  , caption = "(ref:mod-comp-table-caption)"
+  , note = "(ref:mod-comp-table-note)"
+  , escape = FALSE
+  , col_spanners = list("Covariate models" = c(3, 4))
+  , stub_indents = list("Predictors" = 1:5, "Model fit" = 6:12, "Model comparison" = 13:19)
+  , midrules = c(6, 14)
+  # , font_size = "tiny"
+  , longtable = TRUE
+)
+```
+
+```{r descriptives}
+descriptives <- describeBy(
+  subset(cosmetic_surgery, select = -c(ID, Clinic, Surgery, Gender, Reason))
+  , cosmetic_surgery$Reason
+)
+
+class(descriptives)
+
+descriptives <- unclass(descriptives)
+is.list(descriptives)
+
+# Add variable labels to each data.frame in the list
+descriptive_labels <- c(
+  # vars = "Variable"
+  n = "$n$"
+  , mean = "$\\overline{M}$"
+  , sd = "$SD$"
+  , median = "$\\widetilde{M}$"
+  , trimmed = "$\\overline{M_t}$"
+  , mad = "MAD"
+  , min = "Min"
+  , max = "Max"
+  , range = "Range"
+  , skew = "$\\gamma_1$"
+  , kurtosis = "$\\gamma_4$"
+  , se = "$SE$"
+)
+
+descriptives[[1]]$n <- as.integer(descriptives[[1]]$n)
+descriptives[[1]]$vars <- NULL
+descriptives[[2]]$n <- as.integer(descriptives[[2]]$n)
+descriptives[[2]]$vars <- NULL
+
+variable_labels(descriptives[[1]]) <- descriptive_labels
+variable_labels(descriptives[[2]]) <- descriptive_labels
+```
+
+(ref:descriptives-table) Predictor descriptives seperately for reported reason for surgery.
+
+```{r merged-table, results = "asis"}
+apa_table(
+  descriptives
+  , align = c("l", rep("r", 12))
+  , caption = "(ref:descriptives-table)"
+  , added_stub_head = "Variable"
+  , midrules = c(1, 5, 6)
+  , landscape = TRUE
+)
+```
+
+
+\newpage
+
+# References
+
+::: {#refs}
+:::

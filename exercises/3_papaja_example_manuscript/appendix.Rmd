@@ -1,0 +1,52 @@
+
+# Additional Descriptives
+
+(ref:table-caption) Means ($M$) and standard errors ($\mathit{SE}$) of proportion of correctly generated second-order conditionals (SOCs).
+
+
+```{r}
+tmp <- generation[
+  generation$included_participant &
+  generation$repetition == 0 &
+  generation$post_repetition == 0
+  , 
+]
+
+# calculate proportion of regular transitions per participant
+agg <- aggregate(formula = correct_SOC ~ material + generation + order + PD_instruction + id, data = tmp, FUN = mean, na.rm = TRUE)
+
+# calculate condition means and standard errors
+means <- aggregate(formula = cbind(M = correct_SOC) ~ material + generation + order + PD_instruction, data = agg, FUN = mean)
+SEs <- aggregate(formula = cbind(`SE` = correct_SOC) ~ material + generation + order + PD_instruction, data = agg, FUN = se)
+
+# merge means and CI width
+tab <- merge(means, SEs)
+
+# bind Inclusion and Exclusion side-by-side
+tab <- cbind(tab[tab$PD_instruction == "Inclusion", ], tab[tab$PD_instruction == "Exclusion", c("M", "SE")])
+tab$PD_instruction <- NULL
+
+tab$material <- gsub(tab$material, pattern = "-", replacement = " ", fixed = TRUE)
+tab$generation <- as.character(tab$generation)
+tab$generation[duplicated(paste0(tab$material, tab$generation))] <- ""
+tab$material[duplicated(tab$material)] <- ""
+
+
+variable_labels(tab) <- c(
+  material = "Material"
+  , generation = "Generation task"
+  , order = "Order"
+  , M = "$M$"
+  , SE = "$\\mathit{SE}$"
+)
+
+apa_table(
+  tab
+  , row.names = FALSE
+  , col_spanners = list(Inclusion = c(4, 5), Exclusion = c(6, 7))
+  , caption = "(ref:table-caption)"
+  , midrules = seq(4, 12, 4)
+  , format.args = list(gt1 = FALSE) # suppress leading zeros
+  , placement = NULL
+)
+```

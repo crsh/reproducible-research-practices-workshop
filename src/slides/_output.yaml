@@ -4,6 +4,7 @@ xaringan::moon_reader:
   css: ["src/xaringan-themer.css", "src/slides.css"]
   nature:
     countIncrementalSlides: false
+    highlightLines: true
     slideNumberFormat: |
       <div class="progress-bar-container">
         <div class="progress-bar" style="width: calc(%current% / %total% * 100%);">
