@@ -773,6 +773,8 @@ BUT... there is a potential (or likely?) successor in the wings:
 
 --
 
+# Outlook: Quarto
+
 - support for `R`, `Python`, [`Julia`](https://julialang.org/), and [`Observable`](https://observablehq.com/)
 - can also be used with [`Jupyter`](https://jupyter.org/) notebooks
 - even more output formats

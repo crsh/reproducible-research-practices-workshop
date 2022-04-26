@@ -30,18 +30,22 @@ Upon course completion, participants should
 
 Participants should have some basic knowledge of `R` have used *RStudio* before.
 
+For the hands-on parts of the workshop, you need to install [`R`](https://www.r-project.org/) (version 4.0.0 or higher), [`Git`](https://git-scm.com/), [*RStudio* (Desktop)](https://www.rstudio.com/products/rstudio/download/), and the following `R` packages: [`tinytex`](https://yihui.org/tinytex/), [`papaja`](https://github.com/crsh/papaja). 
+
+You should also set up a [*GitHub*](https://github.com/) account as well as a *GitLab* account for the instance hosted by your institution (if that is available and you you want to use it). For some help help with setting up `Git` and *GitHub* for use with *RStudio*, you can check out [*Happy Git and GitHub for the useR*](https://happygitwithr.com/).
+
 
 ## Modules
 
-| Day | Topic | Duration | Slides | Exercises |
-| ---: | :---- | ------: | ------ | --------- |
-| 1 | Introduction | ~ 2 hrs | [Slides](https://crsh.github.io/reproducible-research-practices-workshop/slides/1_introduction.html) | - |
-| 1 | `R Markdown` | ~ 2 hrs | [Slides](https://crsh.github.io/reproducible-research-practices-workshop/slides/2_Intro_RMarkdown.html) | [Exercises](https://crsh.github.io/reproducible-research-practices-workshop/exercises/2_rmarkdown_question.html) |
-| 1 | `papaja` | ~ 1.5 hrs | | |
-| 2 | `Git` & *GitHub* | ~ 1 hr | | |
-| 2 | `Git` & *RStudio* | ~ 1 hr | [Slides](https://crsh.github.io/reproducible-research-practices-workshop/slides/5_Git-RStudio.html) | [Exercises](https://crsh.github.io/reproducible-research-practices-workshop/exercises/5_git-rstudio_question.html) |
-| 2 | Collaboration with `Git` and *GitHub* | ~ 1.5 hrs | | |
-| 2 | Other topics in reproducible research | ~ 1.5 hrs | [Slides](https://crsh.github.io/reproducible-research-practices-workshop/slides/7_Other_Topics.html) | - |
+| Day | Topic | Duration | Slides | Exercises | Solutions |
+| ---: | :---- | ------: | ------ | --------- | --------- |
+| 1 | Introduction | ~ 2 hrs | [Slides](https://crsh.github.io/reproducible-research-practices-workshop/slides/1_introduction.html) | - | - |
+| 1 | `R Markdown` | ~ 2 hrs | [Slides](https://crsh.github.io/reproducible-research-practices-workshop/slides/2_Intro_RMarkdown.html) | [Exercises](https://crsh.github.io/reproducible-research-practices-workshop/exercises/2_rmarkdown_question.html) | [Solutions](https://crsh.github.io/reproducible-research-practices-workshop/exercises/2_rmarkdown_solution.html) |
+| 1 | `papaja` | ~ 1.5 hrs | | | |
+| 2 | `Git` & *GitHub* | ~ 1 hr | | | |
+| 2 | `Git` & *RStudio* | ~ 1 hr | [Slides](https://crsh.github.io/reproducible-research-practices-workshop/slides/5_Git-RStudio.html) | [Exercises](https://crsh.github.io/reproducible-research-practices-workshop/exercises/5_git-rstudio_question.html) | [Solutions](https://crsh.github.io/reproducible-research-practices-workshop/exercises/5_git-rstudio_solution.html) |
+| 2 | Collaboration with `Git` and *GitHub* | ~ 1.5 hrs | | | |
+| 2 | Other topics in reproducible research | ~ 1.5 hrs | [Slides](https://crsh.github.io/reproducible-research-practices-workshop/slides/7_Other_Topics.html) | - | - |
 
 ## Acknowledgements
 
