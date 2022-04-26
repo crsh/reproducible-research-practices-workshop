@@ -8,7 +8,7 @@ subtitle  : "Reproducible research workflows for psychologists"
 
 # Preliminaries
 
-You can find the solutions for this exercise as well as the following ones in the `solutions` folder within the workshop materials. You can easily copy code from these solution files by clicking on the small blue clipboard icon in the upper right corner of the solution boxes showing the code.
+You can find the solutions for this exercise as well as the following ones in the `exercises` folder within the workshop materials. You can easily copy code from these solution files by clicking on the small blue clipboard icon in the upper right corner of the solution boxes showing the code.
 
 In this exercise, we will create a first `R Markdown` document. The example data we use here comes from the [`gapminder` package](https://github.com/jennybc/gapminder) which is based on data from [the non-profit with the same name](https://www.gapminder.org/). However, if you prefer to use other or your own data for this exercise as well as the following ones, feel free to do so. 
 
@@ -29,20 +29,16 @@ You can create a new `R Markdown` document in *RStudio* via *File* -> *New File*
 ```
 
 ```{block, box.title = "2", box.body = list(fill = "white"), box.icon = "fa-star"}
-Create/edit the `YAML` header of the document, so that it includes the following:
-- a meaningful title
-- an author name
-- the current date
+Create/edit the `YAML` header of the document, so that it includes the following: a meaningful title, an author name, the current date.
 
 We also want a table of contents with two levels and numbered headings.
 ```
 
 ```{block, opts.label = "clues"}
-You can already specify some parts of the `YAML` header through the *RStudio* GUI when creating a new document. To add the current date, you can use inline `R` code in the respective field within the `YAML` header.
+You can already specify some parts of the `YAML` header through the *RStudio* GUI when creating a new document. To add the current date, you can use inline `R` code in the respective field within the `YAML` header. Remember that you need to enclose the `YAML` header in --- .
 ```
 
 ```{block, solution = TRUE}
----
 title: "Exploring Gapminder data"
 author: "Your name"
 date: "`r Sys.Date()`"
@@ -51,7 +47,6 @@ output:
     toc: true
     toc_depth: 2
     number_sections: true
----
 ```
 
 ```{block, box.title = "3", box.body = list(fill = "white"), box.icon = "fa-star"}
@@ -76,7 +71,7 @@ Of course, if you want to use additional/other packages, you can also add those 
 Chunk options: {r setup, include=FALSE}
 (for the code to be included in this chunk, see the following solution box)
 
-*NB*: In your `R Markdown` document, this code block needs to start and end with three backticks. Remember that in *RStudio* you can use the keyboard shortcut <kbd>Ctrl + Alt + I</kbd> (*Windows* & *Linux*)/<kbd>Cmd + Option + I</kbd> (*Mac*) for inserting code chunks.
+*NB*: In your `R Markdown` document, a code block needs to start and end with three backticks. Remember that in *RStudio* you can use the keyboard shortcut <kbd>Ctrl + Alt + I</kbd> (*Windows* & *Linux*)/<kbd>Cmd + Option + I</kbd> (*Mac*) for inserting code chunks.
 ```
 
 ```{r setup, solution = TRUE, eval=FALSE}
@@ -93,7 +88,7 @@ library(gapminder)
 ```{block, box.title = "4", box.body = list(fill = "white"), box.icon = "fa-star"}
 Now you can start to create some [content](https://www.youtube.com/watch?v=9Tnux7K3MOQ) for your document. You can get as creative as you want, but the document should at least include the following:
 
-- two levels of headings
+- two different levels of headings
 
 - some basic text formatting and links
 

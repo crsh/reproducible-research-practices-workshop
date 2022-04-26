@@ -18,11 +18,35 @@ exclude: true
 .small[
 As we said in the introduction, we cannot cover all tools and topics related to reproducible research in this workshop. However, we want to use this session to cover some additional tools as well as other topics in reproducible research:
 
+- collaborating on publications with others (who do not use `R Markdown` and/or `Git`)
 - dependency management
 - preventing code rot
-- collaborating with others who do not use `R Markdown` and/or `Git`
 - publishing reproducible research environments and "one-click reproducibility"
 ]
+
+---
+
+# Collaborating on publications
+
+There also are `R` packages that you can use for collaborating on `R Markdown` documents with people who do not (want to) use `R Markdown` (and `Git`):
+
+- [`trackdown`](https://claudiozandonella.github.io/trackdown/) uses *Google Drive* for this
+
+- [`redoc`](https://noamross.github.io/redoc/) "is a package to enable a two-way R Markdown-Microsoft Word workflow" (*note*: development currently suspended)
+
+---
+
+# `trackdown`
+
+The basic workflow for `trackdown` is that you upload the content of an `.Rmd` file to *Google Drive* where you can collaboratively edit the text parts. You can then download the document again (e.g., to edit the code in the `R Markdown` document in *RStudio*), and also update the file on *Google Drive* after changing the `.Rmd` locally. The [`trackdown` documentation](https://claudiozandonella.github.io/trackdown/) provides further details.
+
+---
+
+# Advanced use of `trackdown` with `Git`
+
+To combine `R Markdown` with collaborative text editing via `trackdown` and version control (and to avoid potential issues caused by - possibly unintended - changes to the code parts on *Google Drive*), the author of the `trackdown` package, [Claudio Zandonella Callegher](https://github.com/ClaudioZandonella), proposes a solution in an [issue in the *GitHub* repository for the package](https://github.com/ClaudioZandonella/trackdown/issues/31).
+
+Essentially, the idea here is to create a `trackdown` branch in the `Git` repository and merge it with the `main` branch which is (mainly) used to edit the code.
 
 ---
 
@@ -119,7 +143,7 @@ In the `install.R` file, you need to specify which `R` packages to install as yo
 
 # Binderizing your `Git` repository
 
-There are many more options for changing or extending the executable environment. Two good resources to learn more are the [*Turing Way* guide *Zero-toBinder*](https://the-turing-way.netlify.app/communication/binder/zero-to-binder.html) or the [*Binder* example for `R`](https://github.com/binder-examples/r). 
+There are many more options for changing or extending the executable environment. Two good resources to learn more are the [*Turing Way* guide *Zero-to-Binder*](https://the-turing-way.netlify.app/communication/binder/zero-to-binder.html) or the [*Binder* example for `R`](https://github.com/binder-examples/r). 
 
 ---
 
@@ -146,7 +170,7 @@ Once the executable environment has been created, anyone who has the link to it 
 .smaller[
 1. The *BinderHub* deployments are hosted on free-to-use servers (sometimes by academic institutions), so you might experience some "hiccups" in deploying and using the executable environments (e.g., if the service is heavily used at the time).
 2. Related to that, the amount of RAM is limited for the executable environment.
-3. One thing you need to consider is how to share your data when using *Binder*. The [*Turing Way* guide *Zero-toBinder*](https://the-turing-way.netlify.app/communication/binder/zero-to-binder.html) has some suggestions for that.
+3. One thing you need to consider is how to share your data when using *Binder*. The [*Turing Way* guide *Zero-to-Binder*](https://the-turing-way.netlify.app/communication/binder/zero-to-binder.html) has some suggestions for that.
 4. By default, the link to the executable environment will open an instance of [*Jupyter Notebook*](https://jupyter.org/), but it is also possible to run [*Jupyter Lab*](https://jupyterlab.readthedocs.io/en/stable/#), or *RStudio* (this can be done by adding parameters at the end of the URL, such as `$urlpath=rstudio`). 
 ]
 
@@ -158,38 +182,14 @@ We have prepared a Binderized repo for you that you can test, clone, fork or wha
 
 ---
 
-# Collaborating on publications
-
-There also are `R` packages that you can use for collaborating on `R Markdown` documents with people who do not (want to) use `R Markdown` (and `Git`):
-
-- [`trackdown`](https://claudiozandonella.github.io/trackdown/) uses *Google Drive* for this
-
-- [`redoc`](https://noamross.github.io/redoc/) "is a package to enable a two-way R Markdown-Microsoft Word workflow"
-
----
-
-# `trackdown`
-
-The basic workflow for `trackdown` is that you upload the content of an `.Rmd` file to *Google Drive* where you can collaboratively edit the text parts. You can then download the document again (e.g., to edit the code in the `R Markdown` document in *RStudio*), and also update the file on *Google Drive* after changing the `.Rmd` locally. The [`trackdown` documentation](https://claudiozandonella.github.io/trackdown/) provides further details.
-
----
-
-# Advanced use of `trackdown` with `Git`
-
-To combine `R Markdown` with collaborative text editing via `trackdown` and version control (and to avoid potential issues caused by - possibly unintended - changes to the code parts on *Google Drive*), the author of the `trackdown` package, [Claudio Zandonella Callegher](https://github.com/ClaudioZandonella), proposes a solution in an [issue in the *GitHub* repository for the package](https://github.com/ClaudioZandonella/trackdown/issues/31).
-
-Essentially, the idea here is to create a `trackdown` branch in the `Git` repository and merge it with the `main` branch which is (mainly) used to edit the code.
-
----
-
 # Exercise
 
 Try out and explore one or more of the tools we have just presented:
 
+- `trackdown`
 - one of the `R` packages for dependency management (such as `renv`, `checkpoint`, or `groundhog`)
 - `Docker`
 - `Binder`
-- `trackdown`
 
 ---
 
@@ -215,7 +215,11 @@ In this workshop, we have shown you how to manually set up a reproducible resear
 
 To run the file, open a shell/command line interface (and navigate to) where the `create-project.sh` file is located. To execute it, you need to provide a valid path for the new project folder that should be created as an argument.
 
-```{r eval=FALSE}
+---
+
+# Project setup and templates
+
+```{r eval=FALSE, echo=TRUE}
 sh create-project.sh "./my-project"
 ```
 

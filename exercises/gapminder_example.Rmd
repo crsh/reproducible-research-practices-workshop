@@ -22,7 +22,7 @@ library(gapminder)
 
 # The data
 
-In this report, we explore data from [*Gapminder*](https://www.gapminder.org/). More specifically, we use an excerpt from these data that are included in the [`gapminder` package for `R`](https://github.com/jennybc/gapminder). The data contains information about life expectancy, population, and GDP per capita for `r n_distinct(gapminder$country)` countries from `r n_distinct(gapminder$continent)` different continents, spanning the time from `r min(gapminder$year)` to `r max(gapminder$year)`.
+In this report, we explore data from [*Gapminder*](https://www.gapminder.org/). More specifically, we use an excerpt from these data that is included in the [`gapminder` package for `R`](https://github.com/jennybc/gapminder). The data contains information about life expectancy, population, and GDP per capita for `r n_distinct(gapminder$country)` countries from `r n_distinct(gapminder$continent)` different continents, spanning the time from `r min(gapminder$year)` to `r max(gapminder$year)`.
 
 # Analyses
 
@@ -52,7 +52,7 @@ gap_2007 %>%
   select(country, continent,lifeExp) %>%
   arrange(-lifeExp) %>% 
   head(10) %>% 
-  knitr::kable(caption = "10 countried with the highest life expectancy in 2007")
+  knitr::kable(caption = "10 countries with the highest life expectancy in 2007")
 ```
 
 ```{r box-life, fig.cap="Differences between continents in average life expectancy in 2007"}
@@ -84,7 +84,7 @@ gap_2007 %>%
   select(country, continent,gdpPercap) %>%
   arrange(-gdpPercap) %>% 
   head(10) %>% 
-  knitr::kable(caption = "10 countried with the highest GDP per capita in 2007")
+  knitr::kable(caption = "10 countries with the highest GDP per capita in 2007")
 ```
 
 ```{r box-gdp, fig.cap="Differences between continents in GDP per capita in 2007"}

@@ -60,7 +60,7 @@ After staging your changes, let's create a commit and push that to the remote re
 ```
 
 ```{block, opts.label = "clues"}
-You can do both (committing and pushing) via the *RStudio* GUI. Remember to write a meaningful commit message before you push.
+You can do both (committing and pushing) via the *RStudio* GUI. Remember to write a meaningful commit message.
 ```
 
 ```{block, solution = TRUE}

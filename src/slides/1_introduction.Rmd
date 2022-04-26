@@ -33,7 +33,7 @@ exclude: true
 
 # About us
 
-[Johannes Breuer](https://www.johannesbreuer.com/) ([johannes.breuer@gesis.org](mailto:johannes.breuer@gesis.org), [@MattEagle09](https://twitter.com/MattEagle09)
+[Johannes Breuer](https://www.johannesbreuer.com/) ([johannes.breuer@gesis.org](mailto:johannes.breuer@gesis.org), [@MattEagle09](https://twitter.com/MattEagle09))
 
 - Senior researcher at [*GESIS - Leibniz Institute for the Social Sciences*](https://www.gesis.org/home) (Department Survey Data Curation) & (co-) leader of the team *Research Data & Methods* at the [*Center for Advanced Internet Studies*](https://www.cais.nrw/) (CAIS)
 
@@ -307,8 +307,8 @@ In general, research data (and code) that are publicly archived should follow th
 Some more specific key criteria for choosing a repository are that it should...
 
 - use persistent and unique identifiers (such as DOIs)
-- accommodates licensing
-- features access controls (e.g., allowing the restriction of 
+- accommodate licensing
+- feature access controls (e.g., allowing the restriction of 
 access to a particular set of users)
 - have persistence guarantees for long-term access
 - store data in accordance with local legislation (e.g. the [GDPR](https://gdpr.eu/) in Europe)
@@ -320,7 +320,11 @@ access to a particular set of users)
 
 # Public archiving options
 
-Two archiving options that are quite popular among researchers (esp. also in psychology) are the [*Open Science Framework*](https://osf.io/) (OSF) and [*Zenodo*](https://zenodo.org/). While these two archives are not curated, which somewhat reduces findability, they are quite flexible and easy to use. They can be used to share different types of content, including data and code/scripts, and also offer some degree of access control. A nice feature of the *OSF* and *Zenodo*, especially for sharing code, is that they both offer integration with *GitHub* (which facilitates version control).
+Two archiving options that are quite popular among researchers (esp. also in psychology) are the [*Open Science Framework*](https://osf.io/) (OSF) and [*Zenodo*](https://zenodo.org/). 
+
+--
+
+While these two archives are not curated, which somewhat reduces findability, they are quite flexible and easy to use. They can be used to share different types of content, including data and code, and also offer some degree of access control. A nice feature of the *OSF* and *Zenodo*, especially for sharing code, is that they offer integration with *GitHub* (which facilitates version control).
 
 ---
 
@@ -344,3 +348,9 @@ We will focus on using them via *RStudio*.
 .small[
 *Note*: In the outlook part, we will also briefly introduce some other/additional tools.
 ]
+
+---
+
+class: center, middle
+
+# Any questions so far?

@@ -81,12 +81,10 @@ include_graphics("./img/reproducibility_court.png")
 
 # What can you do with `R Markdown`?
 
-.small[
+.smaller[
 In a nutshell, with `R Markdown` it is possible to generate **reproducible** dynamic documents which...
 
 - (can) include text, code, and output from that code
-
---
 
 - render to many different output formats, including:
   + `HTML`
@@ -113,7 +111,6 @@ There are quite a few packages that offer extension output formats for `R Markdo
 - [`posterdown`](https://github.com/brentthorne/posterdown) for academic (conference) posters
 - [`flexdashboard`](https://rmarkdown.rstudio.com/flexdashboard/index.html) for interactive dashboards
 
---
 ... and there are many more.
 ]
 
@@ -121,7 +118,7 @@ There are quite a few packages that offer extension output formats for `R Markdo
 
 # `R Markdown` and versatility
 
-```{r rmd-formats, out.width ="90%", echo=FALSE}
+```{r rmd-formats, out.width ="70%", echo=FALSE}
 include_graphics("./img/rmarkdown_formats.png")
 ```
 
@@ -204,18 +201,20 @@ include_graphics("./img/rmarkdown_example_annotated.png")
 # YAML header
 
 ```{yaml, echo = TRUE}
-*---
+---
 title: "My First R Markdown Document"
 subtitle: "A first in the series of many more to come"
 author: "Gordon Shamway"
 date: "27-04-2022"
 output: html_document
-*---
+---
 ```
 
+.small[
 [YAML](https://yaml.org/) stands for "YAML Ain't Markup Language" (formerly known as "Yet Another Markup Language"). The YAML header in `R Markdown` documents contains metadata for the document. It provides human-readable configuration information and can include a large variety of key:values-pairs to specify what the document should look like. It needs to be at the beginning of the document and start and end with `---`.
 
 *Note*: There is an `R` package called [`ymlthis`](https://ymlthis.r-lib.org/) for creating extended YAML headers in and with `R`.
+]
 
 ---
 
@@ -226,12 +225,12 @@ output: html_document
 
 .pull-left-45[
 ```{yaml, echo = TRUE}
-*---
+---
 title: "My First R Markdown Document"
 author: "Gordon Shamway"
 date: "27 04 2022"
 output: html_document
-*---
+---
 ```
 ]
 
@@ -515,6 +514,8 @@ As the name says, code chunks in `R Markdown` documents include code. This is ty
 
 You can insert a code chunk via the `Insert` button (select `R`) or using the keyboard shortcut <kbd>Ctrl + Alt + I</kbd> (*Windows* & *Linux*)/<kbd>Cmd + Option + I</kbd> (*Mac*). 
 
+--
+
 *Note*: It is possible to [render an `R` script into an `R Markdown` report](https://bookdown.org/yihui/rmarkdown-cookbook/spin.html) using `knitr::spin` and, vice versa, to [convert an `R Markdown` document to an `R` script](https://bookdown.org/yihui/rmarkdown-cookbook/purl.html) via `knitr::purl()`.
 
 ---
@@ -551,7 +552,7 @@ It generally makes sense to include a setup chunk in your document (right after 
 include_graphics("./img/inline_code.png")
 ```
 
-It is also possible to execute code within text. That way, the output is automatically updated if it is compiled again after the input (usually the data) has changed. Inline code needs to be enclosed in `backticks` and has to start with a specification of the language (typically `r`) if the code should be executed when the document is compiled. Only the result(s) of the inline code (not the code itself) will be displayed in the output document.
+It is also possible to execute code within text. That way, the output is automatically updated if it is compiled again after the input (usually the data) has changed. Inline code needs to be enclosed in backticks and has to start with a specification of the language (typically `r`) if the code should be executed when the document is compiled. Only the result(s) of the inline code (not the code itself) will be displayed in the output document.
 
 ---
 
@@ -596,7 +597,7 @@ gapminder %>%
 # Excursus: Tables in `R Markdown`
 
 .small[
-```{r ref.label=c("kable")}
+```{r ref.label=c("kable"), message=FALSE}
 
 ```
 ]
@@ -605,7 +606,7 @@ gapminder %>%
 
 # Excursus: Tables in `R Markdown`
 
-*Note*: If you want to [reference tables (or figures) `R Markdown` documents](https://bookdown.org/yihui/rmarkdown-cookbook/cross-ref.html), you need to use the [`bookdown`](https://bookdown.org/home/) output format `html_document2` (or `pdf_document2`).
+*Note*: If you want to [reference tables (or figures) in `R Markdown` documents](https://bookdown.org/yihui/rmarkdown-cookbook/cross-ref.html), you need to use the [`bookdown`](https://bookdown.org/home/) output format `html_document2` (or `pdf_document2`).
 
 ---
 
@@ -621,7 +622,7 @@ include_graphics("./img/rmarkdown_preview.png")
 
 # Knitting `r ji("yarn")`
 
-Instead of using the *Knit* button in the *RStudio GUI you can also use the `render()` command from the `rmarkdown` package.
+Instead of using the *Knit* button in the *RStudio* GUI you can also use the `render()` command from the `rmarkdown` package.
 
 ```{r knit, eval=FALSE}
 rmarkdown::render('my_report.Rmd', 
@@ -638,9 +639,9 @@ Knitting an `R Markdown` file...
 1. Starts a new `R` session
     - No variables defined
     - No packages loaded
---
 
 2. Sets the working directory to the location of the `R Markdown` file
+
 3. Executes all `R` code chunks from top to bottom
     - Variables are available in subsequent chunks
     
