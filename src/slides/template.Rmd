@@ -1,9 +1,9 @@
 ---
-title     : "Title"
-subtitle  : "<small>for psychologists</small>"
+title     : "Reproducible research workflows for psychologists"
+subtitle  : "<small>Lecture title</small>"
 
-author    : "<br />`r params$author[1]`"
-date      : "<small>`r params$date`</small>"
+author    : "<br />`r paste(params$author, collapse = ' & ')`"
+date      : "<small>`r paste0(params$location, ', ', params$date)`</small>"
 ---
 exclude: true
 

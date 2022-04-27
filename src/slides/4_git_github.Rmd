@@ -67,6 +67,15 @@ Why use Git?
 
 ---
 layout: false
+class: center, middle
+
+```{r out.height = "450px", out.width = "", echo = FALSE}
+knitr::include_graphics("img/git-fire.png")
+```
+
+
+---
+layout: false
 name: git-system
 
 # Git
@@ -209,6 +218,7 @@ knitr::include_graphics("img/rstudio-new-git.png")
 **Adding files**
 
 ~~~bash
+git status # What has changed?
 git add . # Stage all changes
 git commit -m "My very first commit! :)"
 ~~~
@@ -222,7 +232,7 @@ git commit -m "My very first commit! :)"
 
 .pull-right-55[
 
-```{r out.height="", out.width="85%", echo = FALSE}
+```{r out.height="", out.width="80%", echo = FALSE}
 knitr::include_graphics("img/rstudio-git-commit.png")
 ```
 
@@ -271,8 +281,31 @@ knitr::include_graphics("img/rstudio-git-history.png")
 
 ~~~bash
 git pull
+git status
 git add .
 git commit -m "Such exciting changes! :)"
 git log
 git push
 ~~~
+
+---
+
+GitHub provides a web interface for your repository
+
+- List of files
+- Overview of commit history
+
+```{r out.height="", out.width="700px", echo = FALSE}
+knitr::include_graphics("img/github-commit.png")
+```
+
+
+---
+layout: false
+class: middle, center
+
+# Exercise time
+
+.center[[Exercise](http://frederikaust.com/reproducible-research-practices-workshop/exercises/4_git_github_question.html)]
+
+.center[[Solutions](http://frederikaust.com/reproducible-research-practices-workshop/exercises/4_git_github_solution.html)]

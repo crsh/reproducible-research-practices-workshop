@@ -6,7 +6,7 @@ subtitle  : "Reproducible research workflows for psychologists"
 ```{r child = "_setup.Rmd"}
 ```
 
-## Add collaborators
+## Adding collaborators
 
 ```{block, box.title = "Exercise 1", box.body = list(fill = "white"), box.icon = "fa-star"}
 Find one or two collaborators. Go to GitHub (or GitLab) and add each other as collaborators to your repositories.
@@ -21,6 +21,8 @@ GitLab: `Project information > Members > Invite members`
 ## Publish changes without review
 
 ```{block, box.title = "Exercise 2", box.body = list(fill = "white"), box.icon = "fa-star"}
+Now, it's time to start collaborating.
+
 1. Clone your collaborators repository into a new directory (not inside your repository!)
 1. Make some constructive changes
 1. Stage, commit, and push all changes to your collaborators remote repository
@@ -29,10 +31,10 @@ GitLab: `Project information > Members > Invite members`
 ```
 
 ```{block, opts.label = "clues", box.icon = "fa-lightbulb"}
-You may review the changes to your repository on GitHub or in R Studio. In RStudio, click the little clock icon in the Git pane to open the commit history and review the changes.
+You may review the changes to your repository on GitHub or in RStudio. In RStudio, click the little clock icon in the Git pane to open the commit history and review the changes.
 ```
 
-```{bash, box.title = "Solution 2", box.icon = "fa-check", solution = TRUE}
+```{bash, box.title = "Solution 2", box.icon = "fa-check", solution = TRUE, eval = FALSE}
 git clone
 git add .
 git commit -m "Constructive changes"
@@ -40,37 +42,82 @@ git push
 ```
 
 
-## Create a "pull request" for review
+## Open a pull request
 
-```{block, box.title = "Exercise 1", box.body = list(fill = "white"), box.icon = "fa-star"}
-1. Open two pull request (online and locally) to your partners repository
-2. Review the proposed changes to your repository and request a change
-3. If applicable, make the requested changes to your PR
-4. Merge the updated pull requests to your repository
+```{block, box.title = "Exercise 3", box.body = list(fill = "white"), box.icon = "fa-star"}
+Open your browser and navigate to your collaborator's GitHub repository.
 
-~~~bash
-git pull
-*git branch revision
-*git checkout revision
-git add .
-git commit -m "My changes"
-*git push origin revision
-~~~
+1. Choose a file and edit it in your browser
+2. Open a pull request
+3. Review the changes your collaborator has proposed to your repository, accept them, and merge the pull request
 ```
 
 ```{block, opts.label = "clues", box.icon = "fa-lightbulb"}
-Not really a lot to do here.
+After creating a new branch with `git branch my-branch` you have to switch over to that branch before making any edits with `git checkout my-branch`.
+
+When pushing a newly created branch for the first time, you need to specify where the branch should be pushed to (`git push origin my-branch`).
 ```
 
-```{block, box.title = "Solution 1", box.icon = "fa-check", solution = TRUE}
-Well done!
+```{bash, box.title = "Solution 3", box.icon = "fa-check", solution = TRUE, eval = FALSE}
+git pull
+git branch revision
+git checkout revision
+git add .
+git commit -m "My changes"
+git push origin revision
 ```
 
-## Merge conflict
 
-1. Together with your partner produce a merge conflicts on your repositories
-    - Open a pull request (do not merge)
-    - Make an edit to the same line on the main branch
-2. Resolve the merge conflict
+```{block, box.title = "Exercise 4", box.body = list(fill = "white"), box.icon = "fa-star"}
+Start a conversation. Open your collaborator's repository in RStudio.
+
+1. Pull the latest changes from the remote repository
+2. Create a new branch
+1. Edit multiple files, stage, commit, and push the changes
+2. Open your collaborator's GitHub repository, find your branch, and open a pull request
+2. Review the changes your collaborator has proposed to your repository and request a change
+3. Make the requested changes to your PR
+4. After reviewing the updated pull requests to your repository, accept and merge it
+```
+
+```{block, opts.label = "clues", box.icon = "fa-lightbulb"}
+You can revise your pull request simply by editing the branch in RStudio and pushing the committed changes to GitHub as usual. The pull request will be updated automatically.
+```
 
 
+## Merge conflicts
+
+```{block, box.title = "Exercise 5", box.body = list(fill = "white"), box.icon = "fa-star"}
+Together with your collaborator, create a merge conflicts on each others repositories.
+
+1. Pull the latest changes from the remote repository
+2. Choose a file and edit the same line in that file in your RStudio and commit the change (do not push, yet).
+3. Let your collaborator push the change to your repository and then try pushing yourself.
+4. Pull the latest changes from the remote repository
+5. Resolve the merge conflict
+6. Push your changes to your repository
+```
+
+```{block, opts.label = "clues", box.icon = "fa-lightbulb"}
+When resolving a merge conflict, you can do so in any way you see fit. You can keep your changes or those of your collaborator. You may also combine the changes or discard both and come up with something new.
+```
+
+```{block, box.title = "Solution 3", box.icon = "fa-check", solution = TRUE}
+The file containing the merge conflict might look something like the following.
+
+<pre class="markdown">
+<<<<<<<< HEAD
+Your changes
+========
+Your collaborator's changes
+>>>>>>>> b8e009f666b984509b28a8dedc18e45811be94a6
+</pre>
+
+After resolving the conflict, the file could look as follows.
+
+<pre class="markdown">
+Your and your collaborator's changes
+</pre>
+
+Then you can just stage and commit the conflict resolution as usual.
+```
