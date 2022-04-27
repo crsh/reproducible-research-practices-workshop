@@ -58,7 +58,7 @@ GitHub provides a lot of collaboration features
 
 - Edit files in browser
 - Change highlighting and commenting
-- Interative revise-and-resubmit workflow
+- Interactive revise-and-resubmit workflow
     - [See example](https://github.com/crsh/papaja/pull/443)
 - Issue tracker (to-do list and discussion)
 - ...

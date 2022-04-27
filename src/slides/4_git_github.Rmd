@@ -239,7 +239,7 @@ knitr::include_graphics("img/rstudio-git-commit.png")
 ]
 
 ???
-Ammend a previous commit if you forgot to add a change
+Amend a previous commit if you forgot to add a change
 
 ---
 template: git-system

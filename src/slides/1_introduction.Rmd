@@ -58,7 +58,7 @@ exclude: true
 Slides and material are available at
 
 .center[
-http://github.com/crsh/reproducible-research-practices-workshop
+http://frederikaust.com/reproducible-research-practices-workshop
 ]
 
 - The workshop consists of a combination of lectures and hands-on exercises

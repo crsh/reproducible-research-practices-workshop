@@ -137,7 +137,7 @@ In the `runtime.txt` file, you need to specify a version number and date, indica
 
 # Binderizing your `Git` repository
 
-In the `install.R` file, you need to specify which `R` packages to install as you normally would in an `.R` file (e.g., `install.packages(c("gapminder", "tinytex"))`). *CRAN* ackages are installed through the [*R Studio Package Manager*](https://packagemanager.rstudio.com/client/#/).
+In the `install.R` file, you need to specify which `R` packages to install as you normally would in an `.R` file (e.g., `install.packages(c("gapminder", "tinytex"))`). *CRAN* packages are installed through the [*R Studio Package Manager*](https://packagemanager.rstudio.com/client/#/).
 
 ---
 
@@ -284,7 +284,7 @@ citation("papaja")
 
 # Showing appreciation `r ji("clapping_hands")`
 
-When working with `R Markdown`, you can create a `packages.bib` file to cite the packages you have used or use the [`grateful` package](https://pakillo.github.io/grateful/).
+When working with `R Markdown`, you can create a `packages.bib` file to cite the packages you have used, either manually, using `papaja::r_refs()`, or the [`grateful` package](https://pakillo.github.io/grateful/).
 
 ---
 

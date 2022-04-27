@@ -15,7 +15,7 @@ exclude: true
 
 # Interacting with `Git`
 
-There are various tools that we can use for interactiong with `Git`. Besides command line interfaces (CLI), such as [*git bash*](https://gitforwindows.org/) for *Windows* or the Terminal on *MacOS*, there also are Graphical User Interfaces (GUI), such as [*GitHub Desktop*](https://desktop.github.com/) or [*GitKraken*](https://www.gitkraken.com/) (for an overview of `Git` clients with a GUI, see https://git-scm.com/downloads/guis).
+There are various tools that we can use for interacting with `Git`. Besides command line interfaces (CLI), such as [*git bash*](https://gitforwindows.org/) for *Windows* or the Terminal on *MacOS*, there also are Graphical User Interfaces (GUI), such as [*GitHub Desktop*](https://desktop.github.com/) or [*GitKraken*](https://www.gitkraken.com/) (for an overview of `Git` clients with a GUI, see https://git-scm.com/downloads/guis).
 
 ---
 

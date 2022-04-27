@@ -189,7 +189,7 @@ Open and show BibTeX file
 You can add pre- and post-fixes to individual citations
 
 - `[e.g., @bem_2011]` yields "(e.g., Bem, 2011)"
-- `[see @bem_2011 for a surpising result]` yields<br />"(see Bem, 2011, for a surpising result)"
+- `[see @bem_2011 for a surprising result]` yields<br />"(see Bem, 2011, for a surpising result)"
 
 
 ---
@@ -753,7 +753,7 @@ include_graphics("img/standard-finding.png")
 By comparing reaction times for regular transitions with random transitions,
 is is possible to distinguish sequence-specific learning from general practice effects
 
-increasing RT differences between regular and nonregular transitions is a measure of sequence-specific learning
+increasing RT differences between regular and irregular transitions is a measure of sequence-specific learning
 
 
 ---
