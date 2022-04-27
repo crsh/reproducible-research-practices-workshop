@@ -87,7 +87,7 @@ You can revise your pull request simply by editing the branch in RStudio and pus
 
 ## Merge conflicts
 
-```{block, box.title = "Exercise 5", box.body = list(fill = "white"), box.icon = "fa-star"}
+```{block, box.title = "Bonus", box.body = list(fill = "white"), box.icon = "fa-medal"}
 Together with your collaborator, create a merge conflicts on each others repositories.
 
 1. Pull the latest changes from the remote repository
@@ -102,7 +102,7 @@ Together with your collaborator, create a merge conflicts on each others reposit
 When resolving a merge conflict, you can do so in any way you see fit. You can keep your changes or those of your collaborator. You may also combine the changes or discard both and come up with something new.
 ```
 
-```{block, box.title = "Solution 3", box.icon = "fa-check", solution = TRUE}
+```{block, box.title = "Bonus solution", box.icon = "fa-check", solution = TRUE}
 The file containing the merge conflict might look something like the following.
 
 <pre class="markdown">
