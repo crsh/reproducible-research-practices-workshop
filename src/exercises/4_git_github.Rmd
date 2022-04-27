@@ -1,0 +1,28 @@
+---
+title     : "Exercises: Git & GitHub"
+subtitle  : "Reproducible research workflows for psychologists"
+---
+
+```{r child = "_setup.Rmd"}
+```
+
+
+```{block, box.title = "Exercise 1", box.body = list(fill = "white"), box.icon = "fa-star"}
+Go to GitHub (or GitLab) and create a new repository for this workshop.
+```
+
+```{block, box.title = "Solution 1", box.icon = "fa-check", solution = TRUE}
+### GitHub
+
+![](../slides/img/github-home.png)
+
+![](../slides/img/github-new-repo.png)
+
+---
+
+### GitLab
+
+![](../slides/img/gitlab-home.png)
+
+![](../slides/img/gitlab-new-repo.png)
+```

@@ -1,0 +1,76 @@
+---
+title     : "Exercises: Collaborate with Git & GitHub"
+subtitle  : "Reproducible research workflows for psychologists"
+---
+
+```{r child = "_setup.Rmd"}
+```
+
+## Add collaborators
+
+```{block, box.title = "Exercise 1", box.body = list(fill = "white"), box.icon = "fa-star"}
+Find one or two collaborators. Go to GitHub (or GitLab) and add each other as collaborators to your repositories.
+```
+
+```{block, box.title = "Solution 1", box.icon = "fa-check", solution = TRUE}
+GitHub: `Settings > Manage access > Add people`
+
+GitLab: `Project information > Members > Invite members`
+```
+
+## Publish changes without review
+
+```{block, box.title = "Exercise 2", box.body = list(fill = "white"), box.icon = "fa-star"}
+1. Clone your collaborators repository into a new directory (not inside your repository!)
+1. Make some constructive changes
+1. Stage, commit, and push all changes to your collaborators remote repository
+1. Pull and review the changes your collaborator has made to your repository
+1. Comment on one of the changes to your repository on GitHub
+```
+
+```{block, opts.label = "clues", box.icon = "fa-lightbulb"}
+You may review the changes to your repository on GitHub or in R Studio. In RStudio, click the little clock icon in the Git pane to open the commit history and review the changes.
+```
+
+```{bash, box.title = "Solution 2", box.icon = "fa-check", solution = TRUE}
+git clone
+git add .
+git commit -m "Constructive changes"
+git push
+```
+
+
+## Create a "pull request" for review
+
+```{block, box.title = "Exercise 1", box.body = list(fill = "white"), box.icon = "fa-star"}
+1. Open two pull request (online and locally) to your partners repository
+2. Review the proposed changes to your repository and request a change
+3. If applicable, make the requested changes to your PR
+4. Merge the updated pull requests to your repository
+
+~~~bash
+git pull
+*git branch revision
+*git checkout revision
+git add .
+git commit -m "My changes"
+*git push origin revision
+~~~
+```
+
+```{block, opts.label = "clues", box.icon = "fa-lightbulb"}
+Not really a lot to do here.
+```
+
+```{block, box.title = "Solution 1", box.icon = "fa-check", solution = TRUE}
+Well done!
+```
+
+## Merge conflict
+
+1. Together with your partner produce a merge conflicts on your repositories
+    - Open a pull request (do not merge)
+    - Make an edit to the same line on the main branch
+2. Resolve the merge conflict
+
+

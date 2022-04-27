@@ -1,20 +1,20 @@
 ---
-title     : "Reproducible research workflows"
-subtitle  : "<small>for psychologists</small>"
+title     : "Exercises: "
+subtitle  : "Reproducible research workflows for psychologists"
 ---
 
 ```{r child = "_setup.Rmd"}
 ```
 
 
-```{block, box.title = "1", box.body = list(fill = "white"), box.icon = "fa-star"}
+```{block, box.title = "Exercise 1", box.body = list(fill = "white"), box.icon = "fa-star"}
 This is exercise 1.
 ```
 
-```{block, opts.label = "clues"}
+```{block, opts.label = "clues", box.icon = "fa-lightbulb"}
 Not really a lot to do here.
 ```
 
-```{block, solution = TRUE}
+```{block, box.title = "Solution 1", box.icon = "fa-check", solution = TRUE}
 Well done!
 ```
