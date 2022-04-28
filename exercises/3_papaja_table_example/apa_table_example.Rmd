@@ -16,7 +16,7 @@ affiliation:
 abstract: |
   This document showcases some `apa_table()` examples.
   
-bibliography      : "apa_table_demo.bib"
+bibliography      : "apa_table_example.bib"
 
 floatsintext      : no
 linenumbers       : yes
@@ -46,7 +46,7 @@ knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
 ```
 
 ```{r load-data}
-load("cosmetic_surgery.Rdata")
+load("../../src/slides/cosmetic_surgery.Rdata")
 ```
 
 ```{r fit-models}
