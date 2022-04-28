@@ -8,7 +8,6 @@ date      : "<small>`r paste0(params$location, ', ', params$date)`</small>"
 exclude: true
 
 ```{r child = "_setup.Rmd"}
-
 ```
 
 ---
@@ -18,15 +17,15 @@ exclude: true
 .small[
 As we said in the introduction, we cannot cover all tools and topics related to reproducible research in this workshop. However, we want to use this session to cover some additional tools as well as other topics in reproducible research:
 
-- collaborating on publications with others (who do not use `R Markdown` and/or `Git`)
-- dependency management
-- preventing code rot
-- publishing reproducible research environments and "one-click reproducibility"
+- Collaborating with others who do not use `R Markdown` and/or `Git`
+- R package dependency management
+- Preventing code rot
+- Publishing reproducible research environments and "one-click reproducibility"
 ]
 
 ---
 
-# Collaborating on publications
+# Other approaches to collaboration
 
 There also are `R` packages that you can use for collaborating on `R Markdown` documents with people who do not (want to) use `R Markdown` (and `Git`):
 
@@ -48,21 +47,319 @@ To combine `R Markdown` with collaborative text editing via `trackdown` and vers
 
 Essentially, the idea here is to create a `trackdown` branch in the `Git` repository and merge it with the `main` branch which is (mainly) used to edit the code.
 
----
 
 <!-- Frederik takes over from here -->
 
+---
+layout: true
+template: footer
+
 # Dependency management
 
-`renv`, `checkpoint`, `groundhog`, etc.
-
-<!-- also show/remind of `sessionInfo()`? - is mentioned before in the R Markdown intro -->
 
 ---
 
-# Preventing code rot
+```{r zoomable-plot, out.width = "75%", out.extra='id="zoom-margin"'}
+include_graphics("img/dependendy-graph.png")
+```
 
-`Docker`...
+---
+
+- Our projects may use/require different package versions
+- Manually managing dependencies is a nightmare
+    - Keeping track of the dependencies and their changes
+    - Restore the R environment
+
+---
+
+1. [`checkpoint`](https://github.com/RevolutionAnalytics/checkpoint/) by Microsoft
+  - Requires a project-based workflow
+  - Package database will gradually grow
+--
+
+2. [`groundhog`](https://groundhogr.com/)
+  - Package database will gradually grow
+--
+
+3. [`renv`](https://rstudio.github.io/renv/articles/renv.html) by RStudio
+  - Most flexible and powerful
+  - Least straight forward to use
+  - No "forensic" applications
+
+---
+
+```{r}
+include_graphics("img/checkpoint-pkg.png")
+```
+
+
+---
+
+Dependencies are detected automatically
+
+```{r echo = TRUE, eval = FALSE}
+library("checkpoint")
+checkpoint("2022-04-27")
+
+library("ggplot2")
+```
+
+--
+
+Uses a date-specific directory outside of usual library
+
+```bash
+~/.checkpoint/...
+```
+
+---
+layout: true
+template: footer
+
+# Code rot
+
+---
+name: toppling
+
+.pull-left-75[
+
+```{r echo = FALSE, fig.align = "center", out.height = "475px", out.width = ""}
+knitr::include_graphics("img/toppling-tower.jpg")
+```
+
+]
+
+---
+template: toppling
+
+.pull-right-25[
+<br /><br />
+`r ji("white_check_mark")`
+]
+
+
+---
+- We need to archive the computing environment
+
+--
+- But how?
+
+--
+    - Lock away computer used to run the analysis?
+    - Trade-off between robustness and feasibility
+
+--
+
+<br />
+
+```{r echo = TRUE, eval = FALSE}
+checkpoint("2020-01-01", r_version = "3.6.2")
+```
+
+---
+template: toppling
+
+.pull-right-25[
+<br /><br />
+`r ji("white_check_mark")`
+<br /><br />
+(`r ji("white_check_mark")`)
+]
+
+
+---
+
+### Virtual machines
+
+```{r echo = FALSE, fig.align = "center", out.height = "", out.width = "450px"}
+knitr::include_graphics("img/vm-stack.png")
+```
+
+.center[
+  <span style = "font-size: 75%">(Piccolo & Frampton, 2016)</span>
+]
+
+
+---
+
+### Containers
+
+```{r echo = FALSE, fig.align = "center", out.height = "", out.width = "450px"}
+knitr::include_graphics("img/container-stack.png")
+```
+
+.center[
+  <span style = "font-size: 75%">(Piccolo & Frampton, 2016)</span>
+]
+
+
+---
+template: toppling
+
+.pull-right-25[
+<br /><br />
+`r ji("white_check_mark")`
+<br /><br />
+`r ji("white_check_mark")`
+<br /><br />
+`r ji("white_check_mark")`
+]
+
+
+---
+layout: false
+
+# Docker
+
+```{r echo = FALSE, fig.align = "center", out.height = "", out.width = "450px"}
+knitr::include_graphics("img/docker-logo.png")
+```
+
+
+---
+layout: true
+
+# Docker: Kind of like Hermann
+
+<small>
+> Herman cake (often called Herman) is a 'friendship cake'. [...] the starter is passed from person to person (like a chain letter) and continues to grow as it contains yeast and lactic acid bacteria. One starter can, in theory, last indefinitely. ([Wikipedia](https://en.wikipedia.org/wiki/Herman_cake))
+</small>
+
+---
+
+```{r echo = FALSE, fig.align = "center", out.height = "", out.width = "700px"}
+knitr::include_graphics("img/hermann.png")
+```
+
+
+---
+
+```{r echo = FALSE, fig.align = "center", out.height = "", out.width = "700px"}
+knitr::include_graphics("img/hermann-docker.png")
+```
+
+
+---
+layout: true
+
+# Docker
+
+---
+
+Built on a prepackaged base images from DockerHub (["rocker"](https://github.com/rocker-org/rocker#versioned-stack-builds-on-r-ver))
+
+```{r echo = FALSE, fig.align = "center", out.height = "", out.width = "450px"}
+knitr::include_graphics("img/rocker-images.png")
+```
+
+---
+
+**Simplified Docker example**
+
+--
+
+~~~Dockerfile
+# Select base image
+FROM rocker/rstudio:4.1.2
+~~~
+
+- Latest Debian version
+- R 4.1.2
+- Latest RStudio version
+    - Pandoc
+- Git
+
+
+---
+
+Add system-level requirements
+
+~~~Dockerfile
+# System libraries
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+*  libgsl0-dev \
+*  libnlopt-dev \
+*  libxt6 \
+*  ssh
+~~~
+
+
+---
+
+Install TeX Live 2021 and required LaTeX packages
+
+~~~Dockerfile
+# TeX Live
+ENV CTAN_REPO=http://mirror.ctan.org/systems/texlive/tlnet
+RUN /rocker_scripts/install_texlive.sh
+ENV PATH=$PATH:/usr/local/texlive/bin/x86_64-linux
+
+RUN tlmgr install \
+*  apa6 apa7 booktabs caption csquotes \
+*  ...
+~~~
+
+
+---
+
+Install `papaja` and required R packages
+
+~~~Dockerfile
+# Setup R packages for papaja
+RUN install2.r --error \
+--skipinstalled \
+*  tinytex \
+*  remotes \
+*  markdown \
+*  mime
+
+## Latest papaja development version
+RUN Rscript -e "remotes::install_github('crsh/papaja')"
+~~~
+
+---
+
+Our image bundles (among other things)
+
+- Latest Debian version
+- R 4.1.2
+- Latest RStudio version
+    - Pandoc
+- Git
+
+--
+- .highlight[TeX Live 2021]
+- .highlight[Latest `papaja` version]
+
+
+---
+exclude: true
+
+Online services (e.g. CodeOcean, Clyburne-Sherin, Fei, & Green, 2019)
+
+```{r out.width = "600px"}
+include_graphics("img/codeocean.png")
+```
+
+Limited computational resources
+
+
+---
+
+[A minimally obtrusive Docker workflow to work reproducibly with papaja](https://github.com/crsh/papaja_docker)
+
+```{r out.width = "700px"}
+include_graphics("img/papaja-docker-repo.png")
+```
+
+
+---
+layout: false
+class: middle, center
+
+# A quick demonstration!
+
 
 ---
 
