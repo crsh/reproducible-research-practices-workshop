@@ -52,9 +52,7 @@ You should also set up a [*GitHub*](https://github.com/) account or an account f
 
 If you use these materials, please cite them as follows.
 
-~~~
-Aust, F., & Breuer, J. (2022). Workshop on reproducible research practices for psychologists. https://github.com/crsh/reproducible-research-practices-workshop
-~~~
+> Aust, F., & Breuer, J. (2022). Workshop on reproducible research practices for psychologists. https://github.com/crsh/reproducible-research-practices-workshop
 
 ## Acknowledgements
 
