@@ -48,6 +48,12 @@ You should also set up a [*GitHub*](https://github.com/) account or an account f
 | 2 | Other topics in reproducible research | ~ 1.5 hrs | [HTML](https://crsh.github.io/reproducible-research-practices-workshop/slides/7_Other_Topics.html), [PDF](https://raw.githubusercontent.com/crsh/reproducible-research-practices-workshop/main/slides/7_Other_Topics.pdf) | - | - |
 
 
+## Citation
+
+If you use these materials, please cite them as follows.
+
+Aust, F., & Breuer, J. (2022). Workshop on reproducible research practices for psychologists. https://github.com/crsh/reproducible-research-practices-workshop
+
 ## Acknowledgements
 
 The workflow recommendations in this workshop are based on Klein, O., Hardwicke, T. E., Aust, F., Breuer, J., Danielsson, H., Hofelich Mohr, A., … Frank, M. C. (2018). A Practical Guide for Transparency in Psychological Science. Collabra: Psychology, 4(1). doi: [10.1525/collabra.158](https://doi.org/10.1525/collabra.158) ([Supplementary material](
